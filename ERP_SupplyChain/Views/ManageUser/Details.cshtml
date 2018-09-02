@@ -1,0 +1,87 @@
+﻿@model IEnumerable<ERPEntities.Models.UserModel>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "User Details";
+}
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8 col-md-8">
+                <div class="card">
+                    <div class="card-header card-header-info card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">assignment</i>
+                        </div>
+                        <h4 class="card-title">@ViewBag.Title</h4>
+                    </div>
+                    <div class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-4 form-group">
+                                    <div class="detail-item">
+                                        <label>@Html.DisplayNameFor(model => model.UserID)</label>
+                                    </div>
+                                    <div class="detail-item">
+                                        <label>@Html.DisplayNameFor(model => model.FirstName)</label>
+                                    </div>
+                                    <div class="detail-item">
+                                        <label>@Html.DisplayNameFor(model => model.LastName)</label>
+                                    </div>
+                                    <div class="detail-item">
+                                        <label>@Html.DisplayNameFor(model => model.UserName)</label>
+                                    </div>
+                                    <div class="detail-item">
+                                        <label>@Html.DisplayNameFor(model => model.Password)</label>
+                                    </div>
+                                    <div class="detail-item">
+                                        <label>@Html.DisplayNameFor(model => model.Email)</label>
+                                    </div>
+                                    <div class="detail-item">
+                                        <label>@Html.DisplayNameFor(model => model.RoleID)</label>
+                                    </div>
+                                </div>
+                                @foreach (var user in Model)
+                                {
+                                    <div class="col-lg-4 form-group">
+
+                                        <div class="detail-value">
+                                            <label class="">@Html.DisplayFor(modelItem => user.UserID)</label>
+                                        </div>
+                                        <div class="detail-value">
+                                            <label class="">@Html.DisplayFor(modelItem => user.FirstName)</label>
+                                        </div>
+                                        <div class="detail-value">
+                                            <label class="">@Html.DisplayFor(modelItem => user.LastName)</label>
+                                        </div>
+                                        <div class="detail-value">
+                                            <label class="">@Html.DisplayFor(modelItem => user.UserName)</label>
+                                        </div>
+                                        <div class="detail-value">
+                                            <label class="">@Html.DisplayFor(modelItem => user.Password)</label>
+                                        </div>
+                                        <div class="detail-value">
+                                            <label class="">@Html.DisplayFor(modelItem => user.Email)</label>
+                                        </div>
+                                        <div class="detail-value">
+                                            <label class="">@Html.DisplayFor(modelItem => user.RoleID)</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="footer">
+                                        <div class="text-center">
+                                            <a class="btn btn-info btn-fill btn-wd" href="/Inventory/update?id=@Html.DisplayFor(modelItem => user.UserID)">Edit</a>
+                                            <a class="btn btn-info btn-fill btn-wd" href="/Inventory/Delete?id=@Html.DisplayFor(modelItem => user.UserID)">Delete</a>
+                                            <a class="btn btn-info btn-fill btn-wd" href="/Inventory/ViewItems)">Close</a>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2"></div>
+            </div>
+        </div>
+    </div>

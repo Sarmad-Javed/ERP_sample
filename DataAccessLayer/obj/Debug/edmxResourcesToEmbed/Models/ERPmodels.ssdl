@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ERPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="items">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="VendorID" Type="int" Nullable="false" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+    <Property Name="ProductName" Type="varchar(max)" Nullable="false" />
+    <Property Name="MfgDate" Type="date" Nullable="false" />
+    <Property Name="ExpDate" Type="date" Nullable="false" />
+    <Property Name="UnitPrice" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SalePrice" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Unit_of_Measure" Type="varbinary" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="ERPModelStoreContainer">
+    <EntitySet Name="items" EntityType="Self.items" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

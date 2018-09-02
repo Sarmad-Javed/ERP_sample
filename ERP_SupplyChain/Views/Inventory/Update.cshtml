@@ -1,0 +1,110 @@
+﻿@model IEnumerable<ERPEntities.Models.ItemsModel>
+@{
+    ViewBag.Title = "EditItem";
+}
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8 col-md-8">
+                <div class="card">
+                    <div class="card-header card-header-info card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">assignment</i>
+                        </div>
+                        <h4 class="card-title">@ViewBag.Title</h4>
+                    </div>
+                    <div class="content">
+                        @foreach (var item in Model)
+                        {
+                        <form method="post" action="/Inventory/Update?id=@Html.DisplayFor(modelItem => item.ItemID)">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Vendor-ID</label>
+                                        <input type="text" name="VendorID" class="form-control border-input" value=@Html.DisplayFor(modelItem => item.VendorID)>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Category-ID</label>
+                                        <input type="text" name="CategoryID" class="form-control border-input" value=@Html.DisplayFor(modelItem => item.CategoryID)>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Item Name</label>
+                                        <input type="text" name="ItemName" class="form-control border-input"  value=@Html.DisplayFor(modelItem => item.ItemName)>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Unit Price</label>
+                                        <input type="text" name="UnitPrice" class="form-control border-input" value=@Html.DisplayFor(modelItem => item.UnitPrice)>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Purchase Price</label>
+                                        <input type="text" name="PurchasePrice" class="form-control border-input" value=@Html.DisplayFor(modelItem => item.PurchasePrice)>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Lead Time/Unit(sec)</label>
+                                        <input type="text" name="LeadTime" class="form-control border-input" value=@Html.DisplayFor(modelItem => item.LeadTime)>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Mfg Date</label>
+                                        <input type="date" name="MfgDate" class="form-control border-input " value=@Html.DisplayFor(modelItem => item.MfgDate)>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Exp Date</label>
+                                        <input type="date" name="ExpDate" class="form-control border-input" value=@Html.DisplayFor(modelItem => item.ExpDate)>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Unit of Measure</label>
+                                    <select name="UnitofMeasure" class="form-control">
+                                        <option value=@Html.DisplayFor(modelItem => item.Unit_of_Measure)>@Html.DisplayFor(modelItem => item.Unit_of_Measure)</option>
+                                        <option value="Per Box">Per Box</option>
+                                        <option value="Per Pack">Per Pack</option>
+                                        <option value="Per Unit">Per Unit</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group ">
+                                        <label>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <input type="submit" class="btn btn-info btn-fill btn-wd" value="Update" />
+                            </div>
+                            <div class="clearfix"></div>
+                        </form>
+                        }
+                   </div>
+                </div>
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+</div>
+
+
+

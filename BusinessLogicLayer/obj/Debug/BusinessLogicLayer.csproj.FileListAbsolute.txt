@@ -1,0 +1,9 @@
+C:\Users\sarma\OneDrive\Documents\Visual Studio\ERP_Sample\BusinessLogicLayer\bin\Debug\BusinessLogicLayer.dll
+C:\Users\sarma\OneDrive\Documents\Visual Studio\ERP_Sample\BusinessLogicLayer\bin\Debug\BusinessLogicLayer.pdb
+C:\Users\sarma\OneDrive\Documents\Visual Studio\ERP_Sample\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.dll
+C:\Users\sarma\OneDrive\Documents\Visual Studio\ERP_Sample\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.pdb
+C:\Users\sarma\OneDrive\Documents\Visual Studio\ERP_Sample\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.csprojResolveAssemblyReference.cache
+C:\Users\sarma\OneDrive\Documents\Visual Studio\ERP_Sample\BusinessLogicLayer\bin\Debug\ERPEntities.dll
+C:\Users\sarma\OneDrive\Documents\Visual Studio\ERP_Sample\BusinessLogicLayer\bin\Debug\ERPEntities.pdb
+C:\Users\sarma\OneDrive\Documents\Visual Studio\ERP_Sample\BusinessLogicLayer\bin\Debug\DataAccessLayer.dll
+C:\Users\sarma\OneDrive\Documents\Visual Studio\ERP_Sample\BusinessLogicLayer\bin\Debug\DataAccessLayer.pdb

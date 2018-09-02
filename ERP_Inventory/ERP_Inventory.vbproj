@@ -1,0 +1,471 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectGuid>{AFD9A0CB-8C05-4186-BE41-287C3BC1889F}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ERP_Inventory</RootNamespace>
+    <AssemblyName>ERP_Inventory</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MyType>Custom</MyType>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>ERP_Inventory.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>ERP_Inventory.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Collections.Specialized" />
+    <Import Include="System.Configuration" />
+    <Import Include="System.Text" />
+    <Import Include="System.Text.RegularExpressions" />
+    <Import Include="System.Web" />
+    <Import Include="System.Web.Caching" />
+    <Import Include="System.Web.SessionState" />
+    <Import Include="System.Web.Security" />
+    <Import Include="System.Web.Profile" />
+    <Import Include="System.Web.UI" />
+    <Import Include="System.Web.UI.WebControls" />
+    <Import Include="System.Web.UI.WebControls.WebParts" />
+    <Import Include="System.Web.UI.HtmlControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\assets-for-demo\demo.css" />
+    <Content Include="assets\assets-for-demo\docs.css" />
+    <Content Include="assets\assets-for-demo\docs.min.css" />
+    <Content Include="assets\assets-for-demo\features-5.jpg" />
+    <Content Include="assets\assets-for-demo\js\docs.min.js" />
+    <Content Include="assets\assets-for-demo\js\jquery.sharrre.js" />
+    <Content Include="assets\assets-for-demo\js\modernizr.js" />
+    <Content Include="assets\assets-for-demo\js\src\application.js" />
+    <Content Include="assets\assets-for-demo\js\vendor\anchor.min.js" />
+    <Content Include="assets\assets-for-demo\js\vendor\clipboard.min.js" />
+    <Content Include="assets\assets-for-demo\js\vendor\holder.min.js" />
+    <Content Include="assets\assets-for-demo\js\vendor\split.min.js" />
+    <Content Include="assets\assets-for-demo\js\vertical-nav.js" />
+    <Content Include="assets\assets-for-demo\modernizr.js" />
+    <Content Include="assets\css\material-dashboard.css" />
+    <Content Include="assets\css\material-dashboard.min.css" />
+    <Content Include="assets\img\apple-icon.png" />
+    <Content Include="assets\img\cover.jpg" />
+    <Content Include="assets\img\faces\avatar.jpg" />
+    <Content Include="assets\img\faces\card-profile1-square.jpg" />
+    <Content Include="assets\img\faces\card-profile2-square.jpg" />
+    <Content Include="assets\img\faces\marc.jpg" />
+    <Content Include="assets\img\favicon.png" />
+    <Content Include="assets\img\mask.png" />
+    <Content Include="assets\img\new_logo.png" />
+    <Content Include="assets\img\sidebar-1.jpg" />
+    <Content Include="assets\img\sidebar-2.jpg" />
+    <Content Include="assets\img\sidebar-3.jpg" />
+    <Content Include="assets\img\sidebar-4.jpg" />
+    <Content Include="assets\js\bootstrap-material-design.js" />
+    <Content Include="assets\js\bootstrap-material-design.min.js" />
+    <Content Include="assets\js\core\jquery.min.js" />
+    <Content Include="assets\js\core\popper.min.js" />
+    <Content Include="assets\js\material-dashboard.js" />
+    <Content Include="assets\js\plugins\arrive.min.js" />
+    <Content Include="assets\js\plugins\bootstrap-notify.js" />
+    <Content Include="assets\js\plugins\bootstrap.min.js" />
+    <Content Include="assets\js\plugins\chartist.min.js" />
+    <Content Include="assets\js\plugins\demo.js" />
+    <Content Include="assets\js\plugins\material.min.js" />
+    <Content Include="assets\js\plugins\perfect-scrollbar.jquery.min.js" />
+    <Content Include="assets\scss\bootstrap\scss\bootstrap-grid.css" />
+    <Content Include="assets\scss\bootstrap\scss\bootstrap-reboot.css" />
+    <Content Include="assets\scss\bootstrap\scss\bootstrap.css" />
+    <Content Include="Global.asax" />
+    <Content Include="assets\.DS_Store" />
+    <Content Include="assets\css\.DS_Store" />
+    <Content Include="assets\css\material-dashboard.css.map" />
+    <Content Include="assets\img\.DS_Store" />
+    <Content Include="assets\js\.DS_Store" />
+    <Content Include="assets\js\bootstrap-material-design.js.map" />
+    <Content Include="assets\scss\.DS_Store" />
+    <Content Include="assets\scss\bootstrap\scss\bootstrap-grid.css.map" />
+    <Content Include="assets\scss\bootstrap\scss\bootstrap-grid.scss" />
+    <Content Include="assets\scss\bootstrap\scss\bootstrap-reboot.css.map" />
+    <Content Include="assets\scss\bootstrap\scss\bootstrap-reboot.scss" />
+    <Content Include="assets\scss\bootstrap\scss\bootstrap.css.map" />
+    <Content Include="assets\scss\bootstrap\scss\bootstrap.scss" />
+    <Content Include="assets\scss\bootstrap\scss\mixins\_alert.scss" />
+    <Content Include="assets\scss\bootstrap\scss\mixins\_background-variant.scss" />
+    <Content Include="assets\scss\bootstrap\scss\mixins\_badge.scss" />
+    <Content Include="assets\scss\bootstrap\scss\mixins\_border-radius.scss" />
+    <Content Include="assets\scss\bootstrap\scss\mixins\_box-shadow.scss" />
+    <Content Include="assets\scss\bootstrap\scss\mixins\_breakpoints.scss" />
+    <Content Include="assets\scss\bootstrap\scss\mixins\_buttons.scss" />
+    <Content Include="assets\scss\bootstrap\scss\mixins\_caret.scss" />
+    <Content Include="assets\scss\bootstrap\scss\mixins\_clearfix.scss" />
+    <Content Include="assets\scss\bootstrap\scss\mixins\_float.scss" />
+    <Content Include="assets\scss\bootstrap\scss\mixins\_forms.scss" />
+    <Content Include="assets\scss\bootstrap\scss\mixins\_gradients.scss" />
+    <Content Include="assets\scss\bootstrap\scss\mixins\_grid-framework.scss" />
+    <Content Include="assets\scss\bootstrap\scss\mixins\_grid.scss" />
+    <Content Include="assets\scss\bootstrap\scss\mixins\_hover.scss" />
+    <Content Include="assets\scss\bootstrap\scss\mixins\_image.scss" />
+    <Content Include="assets\scss\bootstrap\scss\mixins\_list-group.scss" />
+    <Content Include="assets\scss\bootstrap\scss\mixins\_lists.scss" />
+    <Content Include="assets\scss\bootstrap\scss\mixins\_nav-divider.scss" />
+    <Content Include="assets\scss\bootstrap\scss\mixins\_navbar-align.scss" />
+    <Content Include="assets\scss\bootstrap\scss\mixins\_pagination.scss" />
+    <Content Include="assets\scss\bootstrap\scss\mixins\_reset-text.scss" />
+    <Content Include="assets\scss\bootstrap\scss\mixins\_resize.scss" />
+    <Content Include="assets\scss\bootstrap\scss\mixins\_screen-reader.scss" />
+    <Content Include="assets\scss\bootstrap\scss\mixins\_size.scss" />
+    <Content Include="assets\scss\bootstrap\scss\mixins\_table-row.scss" />
+    <Content Include="assets\scss\bootstrap\scss\mixins\_text-emphasis.scss" />
+    <Content Include="assets\scss\bootstrap\scss\mixins\_text-hide.scss" />
+    <Content Include="assets\scss\bootstrap\scss\mixins\_text-truncate.scss" />
+    <Content Include="assets\scss\bootstrap\scss\mixins\_transition.scss" />
+    <Content Include="assets\scss\bootstrap\scss\mixins\_visibility.scss" />
+    <Content Include="assets\scss\bootstrap\scss\utilities\_align.scss" />
+    <Content Include="assets\scss\bootstrap\scss\utilities\_background.scss" />
+    <Content Include="assets\scss\bootstrap\scss\utilities\_borders.scss" />
+    <Content Include="assets\scss\bootstrap\scss\utilities\_clearfix.scss" />
+    <Content Include="assets\scss\bootstrap\scss\utilities\_display.scss" />
+    <Content Include="assets\scss\bootstrap\scss\utilities\_embed.scss" />
+    <Content Include="assets\scss\bootstrap\scss\utilities\_flex.scss" />
+    <Content Include="assets\scss\bootstrap\scss\utilities\_float.scss" />
+    <Content Include="assets\scss\bootstrap\scss\utilities\_position.scss" />
+    <Content Include="assets\scss\bootstrap\scss\utilities\_screenreaders.scss" />
+    <Content Include="assets\scss\bootstrap\scss\utilities\_sizing.scss" />
+    <Content Include="assets\scss\bootstrap\scss\utilities\_spacing.scss" />
+    <Content Include="assets\scss\bootstrap\scss\utilities\_text.scss" />
+    <Content Include="assets\scss\bootstrap\scss\utilities\_visibility.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_alert.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_badge.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_breadcrumb.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_button-group.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_buttons.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_card.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_carousel.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_close.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_code.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_custom-forms.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_dropdown.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_forms.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_functions.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_grid.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_images.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_input-group.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_jumbotron.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_list-group.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_media.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_mixins.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_modal.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_nav.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_navbar.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_pagination.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_popover.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_print.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_progress.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_reboot.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_root.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_tables.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_tooltip.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_transitions.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_type.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_utilities.scss" />
+    <Content Include="assets\scss\bootstrap\scss\_variables.scss" />
+    <Content Include="assets\scss\core\cards\_card-background.scss" />
+    <Content Include="assets\scss\core\cards\_card-blog.scss" />
+    <Content Include="assets\scss\core\cards\_card-collapse.scss" />
+    <Content Include="assets\scss\core\cards\_card-contact.scss" />
+    <Content Include="assets\scss\core\cards\_card-form-horizontal.scss" />
+    <Content Include="assets\scss\core\cards\_card-pricing.scss" />
+    <Content Include="assets\scss\core\cards\_card-product.scss" />
+    <Content Include="assets\scss\core\cards\_card-profile.scss" />
+    <Content Include="assets\scss\core\cards\_card-rotate.scss" />
+    <Content Include="assets\scss\core\cards\_card-signup.scss" />
+    <Content Include="assets\scss\core\cards\_card-testimonials.scss" />
+    <Content Include="assets\scss\core\mixins\_alert.scss" />
+    <Content Include="assets\scss\core\mixins\_animations.scss" />
+    <Content Include="assets\scss\core\mixins\_breakpoints.scss" />
+    <Content Include="assets\scss\core\mixins\_buttons.scss" />
+    <Content Include="assets\scss\core\mixins\_chartist.scss" />
+    <Content Include="assets\scss\core\mixins\_colored-shadows.scss" />
+    <Content Include="assets\scss\core\mixins\_drawer.scss" />
+    <Content Include="assets\scss\core\mixins\_forms.scss" />
+    <Content Include="assets\scss\core\mixins\_hover.scss" />
+    <Content Include="assets\scss\core\mixins\_layout.scss" />
+    <Content Include="assets\scss\core\mixins\_navbar-colors.scss" />
+    <Content Include="assets\scss\core\mixins\_navs.scss" />
+    <Content Include="assets\scss\core\mixins\_sidebar-color.scss" />
+    <Content Include="assets\scss\core\mixins\_transparency.scss" />
+    <Content Include="assets\scss\core\mixins\_type.scss" />
+    <Content Include="assets\scss\core\mixins\_utilities.scss" />
+    <Content Include="assets\scss\core\mixins\_variables.scss" />
+    <Content Include="assets\scss\core\mixins\_vendor-prefixes.scss" />
+    <Content Include="assets\scss\core\plugins\_animate.scss" />
+    <Content Include="assets\scss\core\plugins\_chartist.scss" />
+    <Content Include="assets\scss\core\plugins\_datatables.net.scss" />
+    <Content Include="assets\scss\core\plugins\_fullcalendar.scss" />
+    <Content Include="assets\scss\core\plugins\_jquery.jvectormap.scss" />
+    <Content Include="assets\scss\core\plugins\_perfect-scrollbar.scss" />
+    <Content Include="assets\scss\core\plugins\_plugin-bootstrap-select.scss" />
+    <Content Include="assets\scss\core\plugins\_plugin-datetime-picker.scss" />
+    <Content Include="assets\scss\core\plugins\_plugin-flexisel.scss" />
+    <Content Include="assets\scss\core\plugins\_plugin-nouislider.scss" />
+    <Content Include="assets\scss\core\plugins\_plugin-tagsinput.scss" />
+    <Content Include="assets\scss\core\plugins\_select-bootstrap.scss" />
+    <Content Include="assets\scss\core\plugins\_sweetalert2.scss" />
+    <Content Include="assets\scss\core\plugins\_wizard-card.scss" />
+    <Content Include="assets\scss\core\variables\_body.scss" />
+    <Content Include="assets\scss\core\variables\_bootstrap-material-design-base.scss" />
+    <Content Include="assets\scss\core\variables\_bootstrap-material-design.scss" />
+    <Content Include="assets\scss\core\variables\_brand.scss" />
+    <Content Include="assets\scss\core\variables\_buttons.scss" />
+    <Content Include="assets\scss\core\variables\_card.scss" />
+    <Content Include="assets\scss\core\variables\_code.scss" />
+    <Content Include="assets\scss\core\variables\_colors-map.scss" />
+    <Content Include="assets\scss\core\variables\_colors.scss" />
+    <Content Include="assets\scss\core\variables\_custom-forms.scss" />
+    <Content Include="assets\scss\core\variables\_drawer.scss" />
+    <Content Include="assets\scss\core\variables\_dropdown.scss" />
+    <Content Include="assets\scss\core\variables\_forms.scss" />
+    <Content Include="assets\scss\core\variables\_layout.scss" />
+    <Content Include="assets\scss\core\variables\_list-group.scss" />
+    <Content Include="assets\scss\core\variables\_menu.scss" />
+    <Content Include="assets\scss\core\variables\_modals.scss" />
+    <Content Include="assets\scss\core\variables\_nav.scss" />
+    <Content Include="assets\scss\core\variables\_pagination.scss" />
+    <Content Include="assets\scss\core\variables\_shadow.scss" />
+    <Content Include="assets\scss\core\variables\_snackbar.scss" />
+    <Content Include="assets\scss\core\variables\_spacing.scss" />
+    <Content Include="assets\scss\core\variables\_state.scss" />
+    <Content Include="assets\scss\core\variables\_tables.scss" />
+    <Content Include="assets\scss\core\variables\_tooltip.scss" />
+    <Content Include="assets\scss\core\variables\_type.scss" />
+    <Content Include="assets\scss\core\_alerts.scss" />
+    <Content Include="assets\scss\core\_badges.scss" />
+    <Content Include="assets\scss\core\_buttons.scss" />
+    <Content Include="assets\scss\core\_cards.scss" />
+    <Content Include="assets\scss\core\_carousel.scss" />
+    <Content Include="assets\scss\core\_checkboxes.scss" />
+    <Content Include="assets\scss\core\_core-bootstrap.scss" />
+    <Content Include="assets\scss\core\_custom-forms.scss" />
+    <Content Include="assets\scss\core\_drawer.scss" />
+    <Content Include="assets\scss\core\_dropdown.scss" />
+    <Content Include="assets\scss\core\_example-pages.scss" />
+    <Content Include="assets\scss\core\_fixed-plugin.scss" />
+    <Content Include="assets\scss\core\_footers.scss" />
+    <Content Include="assets\scss\core\_forms.scss" />
+    <Content Include="assets\scss\core\_headers.scss" />
+    <Content Include="assets\scss\core\_images.scss" />
+    <Content Include="assets\scss\core\_info-areas.scss" />
+    <Content Include="assets\scss\core\_input-group.scss" />
+    <Content Include="assets\scss\core\_layout.scss" />
+    <Content Include="assets\scss\core\_list-group.scss" />
+    <Content Include="assets\scss\core\_misc.scss" />
+    <Content Include="assets\scss\core\_mixins.scss" />
+    <Content Include="assets\scss\core\_modal.scss" />
+    <Content Include="assets\scss\core\_nav.scss" />
+    <Content Include="assets\scss\core\_navbar.scss" />
+    <Content Include="assets\scss\core\_nucleo-outline.scss" />
+    <Content Include="assets\scss\core\_pages.scss" />
+    <Content Include="assets\scss\core\_pagination.scss" />
+    <Content Include="assets\scss\core\_pills.scss" />
+    <Content Include="assets\scss\core\_popover.scss" />
+    <Content Include="assets\scss\core\_popups.scss" />
+    <Content Include="assets\scss\core\_progress.scss" />
+    <Content Include="assets\scss\core\_radios.scss" />
+    <Content Include="assets\scss\core\_reboot.scss" />
+    <Content Include="assets\scss\core\_responsive.scss" />
+    <Content Include="assets\scss\core\_ripples.scss" />
+    <Content Include="assets\scss\core\_sidebar-and-main-panel.scss" />
+    <Content Include="assets\scss\core\_social-buttons.scss" />
+    <Content Include="assets\scss\core\_switches.scss" />
+    <Content Include="assets\scss\core\_tables.scss" />
+    <Content Include="assets\scss\core\_tabs.scss" />
+    <Content Include="assets\scss\core\_togglebutton.scss" />
+    <Content Include="assets\scss\core\_tooltip.scss" />
+    <Content Include="assets\scss\core\_type.scss" />
+    <Content Include="assets\scss\core\_variables.scss" />
+    <Content Include="assets\scss\material-dashboard.scss" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.vb" />
+    <Compile Include="Controllers\DashboardController.vb" />
+    <Compile Include="Global.asax.vb">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\MyExtensions\MyWebExtension.vb">
+      <VBMyExtensionTemplateID>Microsoft.VisualBasic.Web.MyExtension</VBMyExtensionTemplateID>
+      <VBMyExtensionTemplateVersion>1.0.0.0</VBMyExtensionTemplateVersion>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Dashboard.vbhtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Views\Dashboard\" />
+    <Folder Include="Views\Products\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>18763</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:18763/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

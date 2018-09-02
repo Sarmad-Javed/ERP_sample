@@ -1,0 +1,186 @@
+﻿@model ERPEntities.Models.ItemsModel
+
+@{
+    ViewBag.Title = "Add Items";
+    ViewBag.isActive = "active";
+}
+<script src="~/Scripts/jquery-1.10.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-info card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">assignment</i>
+                        </div>
+                        <h4 class="card-title">Add Items</h4>
+                    </div>
+                    <div class="content">
+                       
+                            @using (Html.BeginForm("","",FormMethod.Post, new { method="post", action="/Inventory/Additems"}))
+
+                            { @Html.ValidationSummary(true)
+                                @Html.AntiForgeryToken()
+
+                                <div class="row">
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>@Html.LabelFor(model => model.VendorID)</label>
+                                            @Html.TextBoxFor(model => model.VendorID, new { @class = "form-control border-input", name = " VendorID" })
+                                            <div>@Html.ValidationMessageFor(model => model.VendorID)</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>@Html.LabelFor(model => model.CategoryID)</label>
+                                            @Html.TextBoxFor(model => model.CategoryID, new { @class = "form-control border-input", name = "CategoryID" })
+                                            <div>@Html.ValidationMessageFor(model => model.CategoryID)</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>@Html.LabelFor(model => model.ItemName)</label>
+                                            @Html.TextBoxFor(model => model.ItemName, new { @class = "form-control border-input", name = "ItemName" })
+                                            <div>@Html.ValidationMessageFor(model => model.ItemName)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>@Html.LabelFor(model => model.UnitPrice)</label>
+                                            @Html.TextBoxFor(model => model.UnitPrice, new { @class = "form-control border-input", name = "UnitPrice" })
+                                            <div>@Html.ValidationMessageFor(model => model.UnitPrice)</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>@Html.LabelFor(model => model.PurchasePrice)</label>
+                                            @Html.TextBoxFor(model => model.PurchasePrice, new { @class = "form-control border-input", name = "PurchasePrice" })
+                                            <div>@Html.ValidationMessageFor(model => model.PurchasePrice)</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>@Html.LabelFor(model => model.LeadTime)</label>
+                                            @Html.TextBoxFor(model => model.LeadTime, new { @class = "form-control border-input", name = "LeadTime" })
+                                            <div>@Html.ValidationMessageFor(model => model.LeadTime)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>@Html.LabelFor(model => model.MfgDate)</label>
+                                            @Html.TextBoxFor(model => model.MfgDate, new { @class = "form-control border-input", type = "date", name = "MfgDate" })
+                                            <div>@Html.ValidationMessageFor(model => model.MfgDate)</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>@Html.LabelFor(model => model.ExpDate)</label>
+                                            @Html.TextBoxFor(model => model.ExpDate, new { @class = "form-control border-input", type = "date", name = "ExpDate" })
+                                            <div>@Html.ValidationMessageFor(model => model.ExpDate)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.Unit_of_Measure)
+
+                                        @{
+                                                        List<SelectListItem> listItems = new List<SelectListItem> {
+                                                        new SelectListItem { Text = "Per Box", Value = "Per Box" },
+                                                        new SelectListItem { Text = "Per Unit", Value = "Per Unit" },
+                                                        new SelectListItem { Text = "Per Pack", Value = "Per Pack"}
+                                                         };
+                                        }
+                                        @Html.DropDownListFor(model => model.Unit_of_Measure, listItems, "-Select Unit-",
+                                                    new { @class = "form-control border-input", name = "UnitofMeasure" })
+                                        <div>@Html.ValidationMessageFor(model => model.Unit_of_Measure)</div>
+
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <input type="submit" class="btn btn-info btn-fill btn-wd" value="Submit" />
+                                </div>
+                                <div class="clearfix"></div>
+                            }
+                       
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Striped Table</h4>
+                        <p class="category">Here is a subtitle for this table</p>
+                    </div>
+                    <div class="content table-responsive table-full-width">
+                        <table class="table table-striped">
+                            <thead>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Salary</th>
+                            <th>Country</th>
+                            <th>City</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Dakota Rice</td>
+                                    <td>$36,738</td>
+                                    <td>Niger</td>
+                                    <td>Oud-Turnhout</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Minerva Hooper</td>
+                                    <td>$23,789</td>
+                                    <td>Curaçao</td>
+                                    <td>Sinaai-Waas</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Sage Rodriguez</td>
+                                    <td>$56,142</td>
+                                    <td>Netherlands</td>
+                                    <td>Baileux</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Philip Chaney</td>
+                                    <td>$38,735</td>
+                                    <td>Korea, South</td>
+                                    <td>Overland Park</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Doris Greene</td>
+                                    <td>$63,542</td>
+                                    <td>Malawi</td>
+                                    <td>Feldkirchen in Kärnten</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>Mason Porter</td>
+                                    <td>$78,615</td>
+                                    <td>Chile</td>
+                                    <td>Gloucester</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

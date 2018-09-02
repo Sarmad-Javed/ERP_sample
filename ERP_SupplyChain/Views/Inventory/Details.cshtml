@@ -1,0 +1,105 @@
+﻿@model IEnumerable<ERPEntities.Models.ItemsModel>
+
+@{
+    ViewBag.Title = "Item Details";
+}
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8 col-md-8">
+                <div class="card">
+                    <div class="card-header card-header-info card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">assignment</i>
+                        </div>
+                        <h4 class="card-title">@ViewBag.Title</h4>
+                    </div>
+                    <div class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-4 form-group">
+                                    <div class="detail-item">
+                                        <label>@Html.DisplayNameFor(model => model.ItemID)</label>
+                                    </div>
+                                    <div class="detail-item">
+                                        <label>@Html.DisplayNameFor(model => model.VendorID)</label>
+                                    </div>
+                                    <div class="detail-item">
+                                        <label>@Html.DisplayNameFor(model => model.CategoryID)</label>
+                                    </div>
+                                    <div class="detail-item">
+                                        <label>@Html.DisplayNameFor(model => model.ItemName)</label>
+                                    </div>
+                                    <div class="detail-item">
+                                        <label>@Html.DisplayNameFor(model => model.UnitPrice)</label>
+                                    </div>
+                                    <div class="detail-item">
+                                        <label>@Html.DisplayNameFor(model => model.PurchasePrice)</label>
+                                    </div>
+                                    <div class="detail-item">
+                                        <label>@Html.DisplayNameFor(model => model.MfgDate)</label>
+                                    </div>
+                                    <div class="detail-item">
+                                        <label>@Html.DisplayNameFor(model => model.ExpDate)</label>
+                                    </div>
+                                    <div class="detail-item">
+                                        <label>@Html.DisplayNameFor(model => model.LeadTime)</label>
+                                    </div>
+                                    <div class="detail-item">
+                                        <label>@Html.DisplayNameFor(model => model.Unit_of_Measure)</label>
+                                    </div>
+
+                                </div>
+                                @foreach (var item in Model)
+                                {
+                                <div class="col-lg-4 form-group">
+                                   
+                                        <div class="detail-value">
+                                            <label class="">@Html.DisplayFor(modelItem => item.ItemID)</label>
+                                        </div>
+                                        <div class="detail-value">
+                                            <label class="">@Html.DisplayFor(modelItem => item.VendorID)</label>
+                                        </div>
+                                        <div class="detail-value">
+                                            <label class="">@Html.DisplayFor(modelItem => item.CategoryID)</label>
+                                        </div>
+                                        <div class="detail-value">
+                                            <label class="">@Html.DisplayFor(modelItem => item.ItemName)</label>
+                                        </div>
+                                        <div class="detail-value">
+                                            <label class="">@Html.DisplayFor(modelItem => item.UnitPrice)</label>
+                                        </div>
+                                        <div class="detail-value">
+                                            <label class="">@Html.DisplayFor(modelItem => item.PurchasePrice)</label>
+                                        </div>
+                                        <div class="detail-value">
+                                            <label class="">@Html.DisplayFor(modelItem => item.MfgDate)</label>
+                                        </div>
+                                        <div class="detail-value">
+                                            <label class="">@Html.DisplayFor(modelItem => item.ExpDate)</label>
+                                        </div>
+                                        <div class="detail-value">
+                                            <label class="">@Html.DisplayFor(modelItem => item.LeadTime)</label>
+                                        </div>
+                                        <div class="detail-value">
+                                            <label class="">@Html.DisplayFor(modelItem => item.Unit_of_Measure)</label>
+                                        </div>
+                                    </div>
+                            
+                            <div class="footer">
+                                            <div class="text-center">
+                                                <a class="btn btn-info btn-fill btn-wd" href="/Inventory/update?id=@Html.DisplayFor(modelItem => item.ItemID)">Edit</a>
+                                                <a class="btn btn-info btn-fill btn-wd" href="/Inventory/Delete?id=@Html.DisplayFor(modelItem => item.ItemID)">Delete</a>
+                                                <a class="btn btn-info btn-fill btn-wd" href="/Inventory/ViewItems)">Close</a>
+                                            </div>
+                                        </div>
+                             }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+</div>

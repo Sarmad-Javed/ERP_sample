@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="ERP">
+  <DataContextMoniker Name="/ERPDataContext" />
+  <nestedChildShapes>
+    <classShape Id="f3c69b84-303c-43ff-ab44-eb2d6ad1f8de" absoluteBounds="0.625, 3.375, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/ERPDataContext/Item" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e6d49dfa-68c5-4cb3-8509-25fea1aa5c8d" absoluteBounds="0.64000000000000012, 3.835, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6d2d3fe8-a990-4762-a01e-fa910d581d6d" absoluteBounds="0.75, 0.5, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/ERPDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3f99bbba-30a2-4290-9eae-13f2904056aa" absoluteBounds="0.76500000000000012, 0.96, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="119d97cb-af88-4f14-a41c-d34dfca8a137" absoluteBounds="4, 0.625, 2, 1.3862939453125">
+      <DataClassMoniker Name="/ERPDataContext/Role" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6070fe0c-4f90-42e7-9a29-7f78c0f8bba4" absoluteBounds="4.015, 1.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4 : 1.31814697265625); (2.75 : 1.31814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ERPDataContext/Role/Role_User" />
+      <nodes>
+        <classShapeMoniker Id="119d97cb-af88-4f14-a41c-d34dfca8a137" />
+        <classShapeMoniker Id="6d2d3fe8-a990-4762-a01e-fa910d581d6d" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

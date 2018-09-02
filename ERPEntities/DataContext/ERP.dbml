@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ERP" Class="ERPDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=pc-sarmad;Initial Catalog=ERP;Integrated Security=True" SettingsObjectName="ERPEntities.Properties.Settings" SettingsPropertyName="ERPConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Items" Member="Items">
+    <Type Name="Item">
+      <Column Name="ItemID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="VendorID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CategoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ItemName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="MfgDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ExpDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="UnitPrice" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PurchasePrice" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Unit_of_Measure" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LeadTime" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="UserName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="RoleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Role_User" Member="Role" ThisKey="UserID" OtherKey="RoleID" Type="Role" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Roles" Member="Roles">
+    <Type Name="Role">
+      <Column Name="RoleID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RoleName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="RoleDisc" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="Role_User" Member="User" ThisKey="RoleID" OtherKey="UserID" Type="User" Cardinality="One" />
+    </Type>
+  </Table>
+</Database>

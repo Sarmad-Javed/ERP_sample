@@ -1,0 +1,6 @@
+C:\Users\sarma\OneDrive\Documents\Visual Studio\ERP_Sample\ERPEntities\bin\Debug\ERPEntities.dll
+C:\Users\sarma\OneDrive\Documents\Visual Studio\ERP_Sample\ERPEntities\bin\Debug\ERPEntities.pdb
+C:\Users\sarma\OneDrive\Documents\Visual Studio\ERP_Sample\ERPEntities\obj\Debug\ERPEntities.dll
+C:\Users\sarma\OneDrive\Documents\Visual Studio\ERP_Sample\ERPEntities\obj\Debug\ERPEntities.pdb
+C:\Users\sarma\OneDrive\Documents\Visual Studio\ERP_Sample\ERPEntities\bin\Debug\ERPEntities.dll.config
+C:\Users\sarma\OneDrive\Documents\Visual Studio\ERP_Sample\ERPEntities\obj\Debug\ERPEntities.csprojResolveAssemblyReference.cache
