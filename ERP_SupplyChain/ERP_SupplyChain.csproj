@@ -440,7 +440,6 @@
     <Content Include="Views\ManageUser\View1.cshtml" />
     <Content Include="Views\Accounts\Login.cshtml" />
     <Content Include="Views\Shared\_UserInfo.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Dashboard\HR_Index.cshtml" />
     <Content Include="Views\Shared\_HRLayout.cshtml" />
     <Content Include="Views\Shared\_PharmLayout.cshtml" />
@@ -449,7 +448,6 @@
     <Content Include="Views\Dashboard\Doctor_Index.cshtml" />
     <Content Include="Views\Dashboard\Pharm_Index.cshtml" />
     <Content Include="Views\Dashboard\FD_Index.cshtml" />
-=======
     <Content Include="Views\ManageAttendance\AddAttendance.cshtml" />
     <Content Include="Views\ManageAttendance\AttendanceDetails.cshtml" />
     <Content Include="Views\ManageAttendance\UpdateAttendance.cshtml" />
@@ -466,7 +464,6 @@
     <Content Include="Views\ManageVendor\UpdateVendor.cshtml" />
     <Content Include="Views\ManageVendor\VendorDetails.cshtml" />
     <Content Include="Views\ManageVendor\ViewVendor.cshtml" />
->>>>>>> db6666cc8e62d46f7539fe4b2e985ff139f19fb2
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
