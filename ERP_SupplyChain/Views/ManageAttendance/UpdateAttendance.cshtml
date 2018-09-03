@@ -1,0 +1,76 @@
+﻿@model ERPEntities.Models.AttendanceModel
+
+@{
+     ViewBag.Title = "Update Attendance";
+    }
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8 col-md-8">
+                    <div class="card">
+                        <div class="card-header card-header-info card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">assignment</i>
+                            </div>
+                            <h4 class="card-title">@ViewBag.Title</h4>
+                        </div>
+                        
+                        <div class="content">
+                            @using (Html.BeginForm("", "", FormMethod.Post, new { method = "post", action = "/ManageAttendance/UpdateAttendance?id="+ @Html.DisplayFor(attendance => attendance.AttendanceID) }))
+                            { @Html.ValidationSummary(true)
+                                @Html.AntiForgeryToken()
+
+                                <div class="row">
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>@Html.LabelFor(model => model.AttendanceID)</label>
+                                            @Html.TextBoxFor(model => model.AttendanceID, new { @class = "form-control border-input", name = "AttendanceID", value = @Html.DisplayFor(attendance => attendance.AttendanceID) })
+                                            <div>@Html.ValidationMessageFor(model => model.AttendanceID)</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>@Html.LabelFor(model => model.EmployeeID)</label>
+                                            @Html.TextBoxFor(model => model.EmployeeID, new { @class = "form-control border-input", name = "EmployeeID", value = @Html.DisplayFor(attendance => attendance.EmployeeID) })
+                                            <div>@Html.ValidationMessageFor(model => model.EmployeeID)</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>@Html.LabelFor(model => model.Month)</label>
+                                            @Html.TextBoxFor(model => model.Month, new { @class = "form-control border-input", name = "Month", value = @Html.DisplayFor(attendance => attendance.Month) })
+                                            <div>@Html.ValidationMessageFor(model => model.Month)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>@Html.LabelFor(model => model.WorkingDays)</label>
+                                            @Html.TextBoxFor(model => model.WorkingDays, new { @class = "form-control border-input", name = "WorkingDays", value = @Html.DisplayFor(attendance => attendance.WorkingDays) })
+                                            <div>@Html.ValidationMessageFor(model => model.WorkingDays)</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>@Html.LabelFor(model => model.Absents)</label>
+                                            @Html.TextBoxFor(model => model.Absents, new { @class = "form-control border-input", name = "Absents", value = @Html.DisplayFor(attendance => attendance.Absents) })
+                                            <div>@Html.ValidationMessageFor(model => model.Absents)</div>
+                                        </div>
+                                    </div>
+                                 </div>
+                           <div class="text-center">
+                                    <input type="submit" class="btn btn-info btn-fill btn-wd" value="Submit" />
+                                </div>
+                                <div class="clearfix"></div>
+                            }
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-2"></div>
+            </div>
+        </div>
+    </div>

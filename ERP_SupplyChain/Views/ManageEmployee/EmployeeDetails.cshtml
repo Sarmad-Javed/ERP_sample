@@ -1,0 +1,105 @@
+﻿@model IEnumerable<ERPEntities.Models.EmployeeModel>
+
+@{
+     ViewBag.Title = "Employee Details";
+}
+<div class="content">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8 col-md-8">
+            <div class="card">
+                <div class="card-header card-header-info card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons">assignment</i>
+                    </div>
+                    <h4 class="card-title">@ViewBag.Title</h4>
+                </div>
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-4 form-group">
+                                <div class="detail-item">
+                                    <label>@Html.DisplayNameFor(model => model.EmployeeID)</label>
+                                </div>
+                                <div class="detail-item">
+                                    <label>@Html.DisplayNameFor(model => model.EmpName)</label>
+                                </div>
+                                <div class="detail-item">
+                                    <label>@Html.DisplayNameFor(model => model.EmpAddress)</label>
+                                </div>
+                                <div class="detail-item">
+                                    <label>@Html.DisplayNameFor(model => model.EmpContact)</label>
+                                </div>
+                                <div class="detail-item">
+                                    <label>@Html.DisplayNameFor(model => model.EmpEmail)</label>
+                                </div>
+                                <div class="detail-item">
+                                    <label>@Html.DisplayNameFor(model => model.EmpCNIC)</label>
+                                </div>
+                                <div class="detail-item">
+                                    <label>@Html.DisplayNameFor(model => model.EmpDOB)</label>
+                                </div>
+                                <div class="detail-item">
+                                    <label>@Html.DisplayNameFor(model => model.EmpDepartment)</label>
+                                </div>
+                                <div class="detail-item">
+                                    <label>@Html.DisplayNameFor(model => model.EmpDesignation)</label>
+                                </div>
+                                <div class="detail-item">
+                                    <label>@Html.DisplayNameFor(model => model.EmpRating)</label>
+                                </div>
+                               </div>
+                            @foreach (var employee in Model)
+                            {
+                                <div class="col-lg-4 form-group">
+
+                                    <div class="detail-value">
+                                        <label class="">@Html.DisplayFor(modelItem => employee.EmployeeID)</label>
+                                    </div>
+                                    <div class="detail-value">
+                                        <label class="">@Html.DisplayFor(modelItem => employee.EmpName)</label>
+                                    </div>
+                                    <div class="detail-value">
+                                        <label class="">@Html.DisplayFor(modelItem => employee.EmpAddress)</label>
+                                    </div>
+                                    <div class="detail-value">
+                                        <label class="">@Html.DisplayFor(modelItem => employee.EmpContact)</label>
+                                    </div>
+                                    <div class="detail-value">
+                                        <label class="">@Html.DisplayFor(modelItem => employee.EmpEmail)</label>
+                                    </div>
+                                    <div class="detail-value">
+                                        <label class="">@Html.DisplayFor(modelItem => employee.EmpCNIC)</label>
+                                    </div>
+                                    <div class="detail-value">
+                                        <label class="">@Html.DisplayFor(modelItem => employee.EmpDOB)</label>
+                                    </div>
+                                    <div class="detail-value">
+                                        <label class="">@Html.DisplayFor(modelItem => employee.EmpDepartment)</label>
+                                    </div>
+                                    <div class="detail-value">
+                                        <label class="">@Html.DisplayFor(modelItem => employee.EmpDesignation)</label>
+                                    </div>
+                                    <div class="detail-value">
+                                        <label class="">@Html.DisplayFor(modelItem => employee.EmpRating)</label>
+                                    </div>
+                                  </div>
+
+                                <div class="footer">
+                                    <div class="text-center">
+                                        <a class="btn btn-info btn-fill btn-wd" href="/ManageEmployee/UpdateEmployee?id=@Html.DisplayFor(modelItem => employee.EmployeeID)">Edit</a>
+                                        <a class="btn btn-info btn-fill btn-wd" href="/ManageEmployee/DeleteEmployee?id=@Html.DisplayFor(modelItem => employee.EmployeeID)">Delete</a>
+                                        <a class="btn btn-info btn-fill btn-wd" href="/ManageEmployee/ViewEmployee">Close</a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+</div>
+    </div>

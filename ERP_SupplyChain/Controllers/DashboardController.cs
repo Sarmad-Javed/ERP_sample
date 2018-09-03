@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace ERP_SupplyChain.Controllers
 {
+<<<<<<< HEAD
     public class DashboardController : Controller
     {
         AccountLogic Accounts = new AccountLogic();
@@ -98,5 +99,38 @@ namespace ERP_SupplyChain.Controllers
             }
         }
        
+=======
+	public class DashboardController : Controller
+	{
+		AccountLogic Accounts = new AccountLogic();
+		List<AuthenticatedUser> User = new List<AuthenticatedUser>();
+		//
+		// GET: /Dashboard/
+		public ActionResult Index()
+		{
+			if (Session["Userinfo"] != null)
+			{
+				User = Session["Userinfo"] as List<AuthenticatedUser>;
+				return View(User);
+			}
+			else
+			{
+				return Redirect("/Accounts/Login");
+			}
+		}
+		public ActionResult Admin()
+		{   
+			if(Session["Userinfo"] != null)
+			  {
+				  User = Session["Userinfo"] as List<AuthenticatedUser>;
+				  return View(User);
+			  }
+			else
+			{
+				return Redirect("/Accounts/Login");
+			}
+		}
+	   
+>>>>>>> db6666cc8e62d46f7539fe4b2e985ff139f19fb2
 	}
 }

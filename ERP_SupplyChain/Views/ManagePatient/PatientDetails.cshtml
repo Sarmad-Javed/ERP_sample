@@ -1,0 +1,81 @@
+﻿@model IEnumerable<ERPEntities.Models.PatientModel>
+
+@{
+     ViewBag.Title = "Patient Details";
+}
+<div class="content">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8 col-md-8">
+            <div class="card">
+                <div class="card-header card-header-info card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons">assignment</i>
+                    </div>
+                    <h4 class="card-title">@ViewBag.Title</h4>
+                </div>
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-4 form-group">
+                                <div class="detail-item">
+                                    <label>@Html.DisplayNameFor(model => model.PatientID)</label>
+                                </div>
+                                <div class="detail-item">
+                                    <label>@Html.DisplayNameFor(model => model.PatientName)</label>
+                                </div>
+                                <div class="detail-item">
+                                    <label>@Html.DisplayNameFor(model => model.PatientAddress)</label>
+                                </div>
+                                <div class="detail-item">
+                                    <label>@Html.DisplayNameFor(model => model.PatientContact)</label>
+                                </div>
+                                <div class="detail-item">
+                                    <label>@Html.DisplayNameFor(model => model.PatientEmail)</label>
+                                </div>
+                                <div class="detail-item">
+                                    <label>@Html.DisplayNameFor(model => model.ZIPCode)</label>
+                                </div>
+                               </div>
+                            @foreach (var patient in Model)
+                            {
+                                <div class="col-lg-4 form-group">
+
+                                    <div class="detail-value">
+                                        <label class="">@Html.DisplayFor(modelItem => patient.PatientID)</label>
+                                    </div>
+                                    <div class="detail-value">
+                                        <label class="">@Html.DisplayFor(modelItem => patient.PatientName)</label>
+                                    </div>
+                                    <div class="detail-value">
+                                        <label class="">@Html.DisplayFor(modelItem => patient.PatientAddress)</label>
+                                    </div>
+                                    <div class="detail-value">
+                                        <label class="">@Html.DisplayFor(modelItem => patient.PatientContact)</label>
+                                    </div>
+                                    <div class="detail-value">
+                                        <label class="">@Html.DisplayFor(modelItem => patient.PatientEmail)</label>
+                                    </div>
+                                    <div class="detail-value">
+                                        <label class="">@Html.DisplayFor(modelItem => patient.ZIPCode)</label>
+                                    </div>
+                                 </div>
+
+                                <div class="footer">
+                                    <div class="text-center">
+                                        <a class="btn btn-info btn-fill btn-wd" href="/ManagePatient/UpdatePatient?id=@Html.DisplayFor(modelItem => patient.PatientID)">Edit</a>
+                                        <a class="btn btn-info btn-fill btn-wd" href="/ManagePatient/DeletePatient?id=@Html.DisplayFor(modelItem => patient.PatientID)">Delete</a>
+                                        <a class="btn btn-info btn-fill btn-wd" href="/ManagePatient/ViewPatient">Close</a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+</div>
+    </div>

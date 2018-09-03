@@ -1,0 +1,68 @@
+﻿@model ERPEntities.Models.VendorModel
+
+@{
+ViewBag.Title = "Add Vendor";
+    ViewBag.isActive = "active";
+}
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8 col-md-8">
+                <div class="card">
+                    <div class="card-header card-header-info card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">assignment</i>
+                        </div>
+                        <h4 class="card-title">@ViewBag.Title</h4>
+                    </div>
+                    <div class="content">
+                        @using (Html.BeginForm("", "", FormMethod.Post, new { method = "post", action = "/ManageVendor/AddVendor?id=" + @Html.DisplayFor(vendor => vendor.VendorID) }))
+                        { @Html.ValidationSummary(true)
+                            @Html.AntiForgeryToken()
+
+                            <div class="row">
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>@Html.LabelFor(model => model.VendorName)</label>
+                                        @Html.TextBoxFor(model => model.VendorName, new { @class = "form-control border-input", name = "VendorName" })
+                                        <div>@Html.ValidationMessageFor(model => model.VendorName)</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>@Html.LabelFor(model => model.VendorAddress)</label>
+                                        @Html.TextBoxFor(model => model.VendorAddress, new { @class = "form-control border-input", name = "VendorAddress" })
+                                        <div>@Html.ValidationMessageFor(model => model.VendorAddress)</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>@Html.LabelFor(model => model.VendorContact)</label>
+                                        @Html.TextBoxFor(model => model.VendorContact, new { @class = "form-control border-input", name = "VendorContact" })
+                                        <div>@Html.ValidationMessageFor(model => model.VendorContact)</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>@Html.LabelFor(model => model.ZIPCode)</label>
+                                        @Html.TextBoxFor(model => model.ZIPCode, new { @class = "form-control border-input", name = "ZIPCode" })
+                                        <div>@Html.ValidationMessageFor(model => model.ZIPCode)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="text-center">
+                                <input type="submit" class="btn btn-info btn-fill btn-wd" value="Submit" />
+                            </div>
+                            <div class="clearfix"></div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+</div>
