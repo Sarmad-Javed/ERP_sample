@@ -418,7 +418,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="packages.config" />
-    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Dashboard\SC_Index.cshtml" />
     <Content Include="Views\Inventory\AddItem.cshtml" />
     <Content Include="Views\Shared\_SClayout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -436,6 +436,14 @@
     <Content Include="Views\ManageUser\View1.cshtml" />
     <Content Include="Views\Accounts\Login.cshtml" />
     <Content Include="Views\Shared\_UserInfo.cshtml" />
+    <Content Include="Views\Dashboard\HR_Index.cshtml" />
+    <Content Include="Views\Shared\_HRLayout.cshtml" />
+    <Content Include="Views\Shared\_PharmLayout.cshtml" />
+    <Content Include="Views\Shared\_DoctorLayout.cshtml" />
+    <Content Include="Views\Shared\_FDLayout.cshtml" />
+    <Content Include="Views\Dashboard\Doctor_Index.cshtml" />
+    <Content Include="Views\Dashboard\Pharm_Index.cshtml" />
+    <Content Include="Views\Dashboard\FD_Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

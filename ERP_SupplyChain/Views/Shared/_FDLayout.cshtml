@@ -55,15 +55,14 @@
                 </a>
             </div>
             <div class="sidebar-wrapper">
-               <!-- User Info -->
-              
-                   @Html.Partial("_UserInfo",Model)
-               
+                <!-- User Info -->
+                @Html.Partial("_UserInfo", Model)
+
                 <!-- User Info End -->
-               
+
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="/Dashboard/Admin">
+                        <a class="nav-link" href="dashboard.html">
                             <i class="material-icons">dashboard</i>
                             <p> Dashboard </p>
                         </a>
@@ -79,13 +78,13 @@
                         <div class="collapse" id="pagesExamples">
                             <ul class="nav">
                                 <li class="nav-item item active ">
-                                    <a class="nav-link" href="/Dashboard/AddItems">
+                                    <a class="nav-link" href="additems.html">
                                         <span class="sidebar-mini"> P </span>
                                         <span class="sidebar-normal"> Add User </span>
                                     </a>
                                 </li>
                                 <li class="nav-item item active">
-                                    <a class="nav-link" href="/Dashboard/ViewItems">
+                                    <a class="nav-link" href="viewitems.html">
                                         <span class="sidebar-mini"> RS </span>
                                         <span class="sidebar-normal">View User</span>
                                     </a>
@@ -94,13 +93,35 @@
                         </div>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" data-toggle="collapse" href="/Accounts/Logout">
-                            <i class="material-icons">image</i>
+                        <a class="nav-link" data-toggle="collapse" href="#tablesExamples">
+                            <i class="material-icons">grid_on</i>
                             <p>
-                                Logout
+                                Tables
                                 <b class="caret"></b>
                             </p>
                         </a>
+                        <div class="collapse" id="tablesExamples">
+                            <ul class="nav">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="tables/regular.html">
+                                        <span class="sidebar-mini"> RT </span>
+                                        <span class="sidebar-normal"> Regular Tables </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="tables/extended.html">
+                                        <span class="sidebar-mini"> ET </span>
+                                        <span class="sidebar-normal"> Extended Tables </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="tables/datatables.net.html">
+                                        <span class="sidebar-mini"> DT </span>
+                                        <span class="sidebar-normal"> DataTables.net </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
                 </ul>
             </div>
