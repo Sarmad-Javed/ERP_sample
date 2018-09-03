@@ -1,0 +1,75 @@
+﻿@model IEnumerable<ERPEntities.Models.VendorModel>
+
+@{
+    ViewBag.Title = "Vendor Details";
+}
+<div class="content">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8 col-md-8">
+            <div class="card">
+                <div class="card-header card-header-info card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons">assignment</i>
+                    </div>
+                    <h4 class="card-title">@ViewBag.Title</h4>
+                </div>
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-4 form-group">
+                                <div class="detail-item">
+                                    <label>@Html.DisplayNameFor(model => model.VendorID)</label>
+                                </div>
+                                <div class="detail-item">
+                                    <label>@Html.DisplayNameFor(model => model.VendorName)</label>
+                                </div>
+                                <div class="detail-item">
+                                    <label>@Html.DisplayNameFor(model => model.VendorAddress)</label>
+                                </div>
+                                <div class="detail-item">
+                                    <label>@Html.DisplayNameFor(model => model.VendorContact)</label>
+                                </div>
+                                <div class="detail-item">
+                                    <label>@Html.DisplayNameFor(model => model.ZIPCode)</label>
+                                </div>
+                               </div>
+                            @foreach (var vendor in Model)
+                            {
+                                <div class="col-lg-4 form-group">
+
+                                    <div class="detail-value">
+                                        <label class="">@Html.DisplayFor(modelItem => vendor.VendorID)</label>
+                                    </div>
+                                    <div class="detail-value">
+                                        <label class="">@Html.DisplayFor(modelItem => vendor.VendorName)</label>
+                                    </div>
+                                    <div class="detail-value">
+                                        <label class="">@Html.DisplayFor(modelItem => vendor.VendorAddress)</label>
+                                    </div>
+                                    <div class="detail-value">
+                                        <label class="">@Html.DisplayFor(modelItem => vendor.VendorContact)</label>
+                                    </div>
+                                    <div class="detail-value">
+                                        <label class="">@Html.DisplayFor(modelItem => vendor.ZIPCode)</label>
+                                    </div>
+                                 </div>
+
+                                <div class="footer">
+                                    <div class="text-center">
+                                        <a class="btn btn-info btn-fill btn-wd" href="/ManageVendor/UpdateVendor?id=@Html.DisplayFor(modelItem => vendor.VendorID)">Edit</a>
+                                        <a class="btn btn-info btn-fill btn-wd" href="/ManageVendor/DeleteVendor?id=@Html.DisplayFor(modelItem => vendor.VendorID)">Delete</a>
+                                        <a class="btn btn-info btn-fill btn-wd" href="/ManageVendor/ViewVendor">Close</a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+</div>
+    </div>

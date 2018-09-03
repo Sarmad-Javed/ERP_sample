@@ -7,3 +7,12 @@ C:\Users\sarma\OneDrive\Documents\Visual Studio\ERP_Sample\BusinessLogicLayer\bi
 C:\Users\sarma\OneDrive\Documents\Visual Studio\ERP_Sample\BusinessLogicLayer\bin\Debug\ERPEntities.pdb
 C:\Users\sarma\OneDrive\Documents\Visual Studio\ERP_Sample\BusinessLogicLayer\bin\Debug\DataAccessLayer.dll
 C:\Users\sarma\OneDrive\Documents\Visual Studio\ERP_Sample\BusinessLogicLayer\bin\Debug\DataAccessLayer.pdb
+C:\Users\Ijlal Nasir\Documents\GitHub\ERP_sample\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.csprojResolveAssemblyReference.cache
+C:\Users\Ijlal Nasir\Documents\GitHub\ERP_sample\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.dll
+C:\Users\Ijlal Nasir\Documents\GitHub\ERP_sample\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.pdb
+C:\Users\Ijlal Nasir\Documents\GitHub\ERP_sample\BusinessLogicLayer\bin\Debug\BusinessLogicLayer.dll
+C:\Users\Ijlal Nasir\Documents\GitHub\ERP_sample\BusinessLogicLayer\bin\Debug\BusinessLogicLayer.pdb
+C:\Users\Ijlal Nasir\Documents\GitHub\ERP_sample\BusinessLogicLayer\bin\Debug\DataAccessLayer.dll
+C:\Users\Ijlal Nasir\Documents\GitHub\ERP_sample\BusinessLogicLayer\bin\Debug\ERPEntities.dll
+C:\Users\Ijlal Nasir\Documents\GitHub\ERP_sample\BusinessLogicLayer\bin\Debug\DataAccessLayer.pdb
+C:\Users\Ijlal Nasir\Documents\GitHub\ERP_sample\BusinessLogicLayer\bin\Debug\ERPEntities.pdb

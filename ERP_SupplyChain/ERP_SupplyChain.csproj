@@ -407,7 +407,11 @@
     <Compile Include="Controllers\Accounts\AccountsController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\Inventory\InventoryController.cs" />
+    <Compile Include="Controllers\ManageAttendance\ManageAttendanceController.cs" />
+    <Compile Include="Controllers\ManageEmployee\ManageEmployeeController.cs" />
+    <Compile Include="Controllers\ManagePatient\ManagePatientController.cs" />
     <Compile Include="Controllers\ManageUser\ManageUserController.cs" />
+    <Compile Include="Controllers\ManageVendor\ManageVendorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -436,6 +440,22 @@
     <Content Include="Views\ManageUser\View1.cshtml" />
     <Content Include="Views\Accounts\Login.cshtml" />
     <Content Include="Views\Shared\_UserInfo.cshtml" />
+    <Content Include="Views\ManageAttendance\AddAttendance.cshtml" />
+    <Content Include="Views\ManageAttendance\AttendanceDetails.cshtml" />
+    <Content Include="Views\ManageAttendance\UpdateAttendance.cshtml" />
+    <Content Include="Views\ManageAttendance\ViewAttendance.cshtml" />
+    <Content Include="Views\ManageEmployee\AddEmployee.cshtml" />
+    <Content Include="Views\ManageEmployee\EmployeeDetails.cshtml" />
+    <Content Include="Views\ManageEmployee\UpdateEmployee.cshtml" />
+    <Content Include="Views\ManageEmployee\ViewEmployee.cshtml" />
+    <Content Include="Views\ManagePatient\AddPatient.cshtml" />
+    <Content Include="Views\ManagePatient\PatientDetails.cshtml" />
+    <Content Include="Views\ManagePatient\UpdatePatient.cshtml" />
+    <Content Include="Views\ManagePatient\ViewPatient.cshtml" />
+    <Content Include="Views\ManageVendor\AddVendor.cshtml" />
+    <Content Include="Views\ManageVendor\UpdateVendor.cshtml" />
+    <Content Include="Views\ManageVendor\VendorDetails.cshtml" />
+    <Content Include="Views\ManageVendor\ViewVendor.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

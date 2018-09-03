@@ -1,0 +1,75 @@
+﻿@model IEnumerable<ERPEntities.Models.AttendanceModel>
+
+@{
+     ViewBag.Title = "Attendance Details";
+}
+<div class="content">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8 col-md-8">
+            <div class="card">
+                <div class="card-header card-header-info card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons">assignment</i>
+                    </div>
+                    <h4 class="card-title">@ViewBag.Title</h4>
+                </div>
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-4 form-group">
+                                <div class="detail-item">
+                                    <label>@Html.DisplayNameFor(model => model.AttendanceID)</label>
+                                </div>
+                                <div class="detail-item">
+                                    <label>@Html.DisplayNameFor(model => model.EmployeeID)</label>
+                                </div>
+                                <div class="detail-item">
+                                    <label>@Html.DisplayNameFor(model => model.Month)</label>
+                                </div>
+                                <div class="detail-item">
+                                    <label>@Html.DisplayNameFor(model => model.WorkingDays)</label>
+                                </div>
+                                <div class="detail-item">
+                                    <label>@Html.DisplayNameFor(model => model.Absents)</label>
+                                </div>
+                               </div>
+                            @foreach (var attendance in Model)
+                            {
+                                <div class="col-lg-4 form-group">
+
+                                    <div class="detail-value">
+                                        <label class="">@Html.DisplayFor(modelItem => attendance.AttendanceID)</label>
+                                    </div>
+                                    <div class="detail-value">
+                                        <label class="">@Html.DisplayFor(modelItem => attendance.EmployeeID)</label>
+                                    </div>
+                                    <div class="detail-value">
+                                        <label class="">@Html.DisplayFor(modelItem => attendance.Month)</label>
+                                    </div>
+                                    <div class="detail-value">
+                                        <label class="">@Html.DisplayFor(modelItem => attendance.WorkingDays)</label>
+                                    </div>
+                                    <div class="detail-value">
+                                        <label class="">@Html.DisplayFor(modelItem => attendance.Absents)</label>
+                                    </div>
+                                 </div>
+
+                                <div class="footer">
+                                    <div class="text-center">
+                                        <a class="btn btn-info btn-fill btn-wd" href="/ManageAttendance/UpdateAttendance?id=@Html.DisplayFor(modelItem => attendance.AttendanceID)">Edit</a>
+                                        <a class="btn btn-info btn-fill btn-wd" href="/ManageAttendance/DeleteAttendance?id=@Html.DisplayFor(modelItem => attendance.AttendanceID)">Delete</a>
+                                        <a class="btn btn-info btn-fill btn-wd" href="/ManageAttendance/ViewAttendance">Close</a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+</div>
+    </div>

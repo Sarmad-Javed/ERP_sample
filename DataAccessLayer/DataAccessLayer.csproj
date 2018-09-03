@@ -79,6 +79,10 @@
   <ItemGroup>
     <Compile Include="DAL_Logic\Accounts\AuthenticateUserDAL.cs" />
     <Compile Include="DAL_Logic\Admin\ManageUser\UserDAL.cs" />
+    <Compile Include="DAL_Logic\Employee\ManageAttendance\AttendanceDAL.cs" />
+    <Compile Include="DAL_Logic\Employee\ManageEmployee\EmployeeDAL.cs" />
+    <Compile Include="DAL_Logic\Patient\ManagePatient\PatientDAL.cs" />
+    <Compile Include="DAL_Logic\SupplyChain\ManageVendor\VendorDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>

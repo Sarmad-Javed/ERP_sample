@@ -1,0 +1,75 @@
+﻿@model ERPEntities.Models.PatientModel
+
+@{
+ ViewBag.Title = "Add Patient";
+    ViewBag.isActive = "active";
+}
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8 col-md-8">
+                <div class="card">
+                    <div class="card-header card-header-info card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">assignment</i>
+                        </div>
+                        <h4 class="card-title">@ViewBag.Title</h4>
+                    </div>
+                    <div class="content">
+                        @using (Html.BeginForm("", "", FormMethod.Post, new { method = "post", action = "/ManagePatient/AddPatient?id=" + @Html.DisplayFor(patient => patient.PatientID) }))
+                        { @Html.ValidationSummary(true)
+                            @Html.AntiForgeryToken()
+
+                            <div class="row">
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>@Html.LabelFor(model => model.PatientName)</label>
+                                        @Html.TextBoxFor(model => model.PatientName, new { @class = "form-control border-input", name = "PatientName" })
+                                        <div>@Html.ValidationMessageFor(model => model.PatientName)</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>@Html.LabelFor(model => model.PatientAddress)</label>
+                                        @Html.TextBoxFor(model => model.PatientAddress, new { @class = "form-control border-input", name = "PatientAddress" })
+                                        <div>@Html.ValidationMessageFor(model => model.PatientAddress)</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>@Html.LabelFor(model => model.PatientContact)</label>
+                                        @Html.TextBoxFor(model => model.PatientContact, new { @class = "form-control border-input", name = "PatientContact" })
+                                        <div>@Html.ValidationMessageFor(model => model.PatientContact)</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>@Html.LabelFor(model => model.PatientEmail)</label>
+                                        @Html.TextBoxFor(model => model.PatientEmail, new { @class = "form-control border-input", name = "PatientEmail" })
+                                        <div>@Html.ValidationMessageFor(model => model.PatientEmail)</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>@Html.LabelFor(model => model.ZIPCode)</label>
+                                        @Html.TextBoxFor(model => model.ZIPCode, new {@class = "form-control border-input", name = "ZIPCode"})
+                                        <div>@Html.ValidationMessageFor(model => model.ZIPCode)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="text-center">
+                                <input type="submit" class="btn btn-info btn-fill btn-wd" value="Submit" />
+                            </div>
+                            <div class="clearfix"></div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+</div>

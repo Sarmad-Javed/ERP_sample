@@ -1,0 +1,117 @@
+﻿@model ERPEntities.Models.EmployeeModel
+
+@{
+    ViewBag.Title = "Update Employee";
+    }
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8 col-md-8">
+                    <div class="card">
+                        <div class="card-header card-header-info card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">assignment</i>
+                            </div>
+                            <h4 class="card-title">@ViewBag.Title</h4>
+                        </div>
+                        
+                        <div class="content">
+                            @using (Html.BeginForm("", "", FormMethod.Post, new { method = "post", action = "/ManageEmployee/UpdateEmployee?id=" + @Html.DisplayFor(employee => employee.EmployeeID) }))
+                            { @Html.ValidationSummary(true)
+                                @Html.AntiForgeryToken()
+
+                                <div class="row">
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>@Html.LabelFor(model => model.EmployeeID)</label>
+                                            @Html.TextBoxFor(model => model.EmployeeID, new { @class = "form-control border-input", name = "EmployeeID", value = @Html.DisplayFor(employee => employee.EmployeeID) })
+                                            <div>@Html.ValidationMessageFor(model => model.EmployeeID)</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>@Html.LabelFor(model => model.EmpName)</label>
+                                            @Html.TextBoxFor(model => model.EmpName, new { @class = "form-control border-input", name = "Name", value = @Html.DisplayFor(employee => employee.EmpName) })
+                                            <div>@Html.ValidationMessageFor(model => model.EmpName)</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>@Html.LabelFor(model => model.EmpAddress)</label>
+                                            @Html.TextBoxFor(model => model.EmpAddress, new { @class = "form-control border-input", name = "Address", value = @Html.DisplayFor(employee => employee.EmpAddress) })
+                                            <div>@Html.ValidationMessageFor(model => model.EmpAddress)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>@Html.LabelFor(model => model.EmpContact)</label>
+                                            @Html.TextBoxFor(model => model.EmpContact, new { @class = "form-control border-input", name = "Contact", value = @Html.DisplayFor(employee => employee.EmpContact) })
+                                            <div>@Html.ValidationMessageFor(model => model.EmpContact)</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>@Html.LabelFor(model => model.EmpEmail)</label>
+                                            @Html.TextBoxFor(model => model.EmpEmail, new { @class = "form-control border-input", name = "Email", value = @Html.DisplayFor(employee => employee.EmpEmail) })
+                                            <div>@Html.ValidationMessageFor(model => model.EmpEmail)</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>@Html.LabelFor(model => model.EmpCNIC)</label>
+                                            @Html.TextBoxFor(model => model.EmpCNIC, new { @class = "form-control border-input", name = "CNIC", value = @Html.DisplayFor(employee => employee.EmpCNIC) })
+                                            <div>@Html.ValidationMessageFor(model => model.EmpCNIC)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>@Html.LabelFor(model => model.EmpDOB)</label>
+                                            @Html.TextBoxFor(model => model.EmpDOB, new { @class = "form-control border-input", name = "DOB", value = @Html.DisplayFor(employee => employee.EmpDOB) })
+                                            <div>@Html.ValidationMessageFor(model => model.EmpDOB)</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>@Html.LabelFor(model => model.EmpDepartment)</label>
+                                            @Html.TextBoxFor(model => model.EmpDepartment, new { @class = "form-control border-input", name = "Department", value = @Html.DisplayFor(employee => employee.EmpDepartment) })
+                                            <div>@Html.ValidationMessageFor(model => model.EmpDepartment)</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>@Html.LabelFor(model => model.EmpDesignation)</label>
+                                            @Html.TextBoxFor(model => model.EmpDesignation, new { @class = "form-control border-input", name = "Designation", value = @Html.DisplayFor(employee => employee.EmpDesignation) })
+                                            <div>@Html.ValidationMessageFor(model => model.EmpDesignation)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>@Html.LabelFor(model => model.EmpRating)</label>
+                                            @Html.TextBoxFor(model => model.EmpRating, new { @class = "form-control border-input", name = "Rating", value = @Html.DisplayFor(employee => employee.EmpRating) })
+                                            <div>@Html.ValidationMessageFor(model => model.EmpRating)</div>
+                                        </div>
+                                    </div>
+                                   </div>
+                           <div class="text-center">
+                                    <input type="submit" class="btn btn-info btn-fill btn-wd" value="Submit" />
+                                </div>
+                                <div class="clearfix"></div>
+                            }
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-2"></div>
+            </div>
+        </div>
+    </div>
