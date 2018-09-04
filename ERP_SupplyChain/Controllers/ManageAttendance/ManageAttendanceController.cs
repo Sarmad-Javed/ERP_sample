@@ -8,6 +8,7 @@ using ERPEntities.Models;
 
 namespace ERP_SupplyChain.Controllers.ManageAttendance
 {
+    [SessionCheck]
 	public class ManageAttendanceController : Controller
 	{
 		//

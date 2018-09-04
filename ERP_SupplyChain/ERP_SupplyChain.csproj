@@ -180,6 +180,9 @@
     <Content Include="assets\scss\bootstrap\scss\bootstrap-grid.css" />
     <Content Include="assets\scss\bootstrap\scss\bootstrap-reboot.css" />
     <Content Include="assets\scss\bootstrap\scss\bootstrap.css" />
+    <Content Include="Resources\Public\UserImage\avatar.jpg" />
+    <Content Include="Resources\Public\UserImage\user1.jpg" />
+    <Content Include="Resources\Public\UserImage\marc.jpg" />
     <Content Include="Global.asax" />
     <Content Include="assets\.DS_Store" />
     <Content Include="assets\css\.DS_Store" />
@@ -412,6 +415,7 @@
     <Compile Include="Controllers\ManagePatient\ManagePatientController.cs" />
     <Compile Include="Controllers\ManageUser\ManageUserController.cs" />
     <Compile Include="Controllers\ManageVendor\ManageVendorController.cs" />
+    <Compile Include="Controllers\SessionCheck.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -422,7 +426,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="packages.config" />
-    <Content Include="Views\Dashboard\SC_Index.cshtml" />
+    <Content Include="Views\Dashboard\SupplyChain.cshtml" />
     <Content Include="Views\Inventory\AddItem.cshtml" />
     <Content Include="Views\Shared\_SClayout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -440,14 +444,14 @@
     <Content Include="Views\ManageUser\View1.cshtml" />
     <Content Include="Views\Accounts\Login.cshtml" />
     <Content Include="Views\Shared\_UserInfo.cshtml" />
-    <Content Include="Views\Dashboard\HR_Index.cshtml" />
+    <Content Include="Views\Dashboard\HRIndex.cshtml" />
     <Content Include="Views\Shared\_HRLayout.cshtml" />
     <Content Include="Views\Shared\_PharmLayout.cshtml" />
     <Content Include="Views\Shared\_DoctorLayout.cshtml" />
     <Content Include="Views\Shared\_FDLayout.cshtml" />
-    <Content Include="Views\Dashboard\Doctor_Index.cshtml" />
-    <Content Include="Views\Dashboard\Pharm_Index.cshtml" />
-    <Content Include="Views\Dashboard\FD_Index.cshtml" />
+    <Content Include="Views\Dashboard\DoctorPanel.cshtml" />
+    <Content Include="Views\Dashboard\Pharmacy.cshtml" />
+    <Content Include="Views\Dashboard\FrontDesk.cshtml" />
     <Content Include="Views\ManageAttendance\AddAttendance.cshtml" />
     <Content Include="Views\ManageAttendance\AttendanceDetails.cshtml" />
     <Content Include="Views\ManageAttendance\UpdateAttendance.cshtml" />
@@ -464,6 +468,7 @@
     <Content Include="Views\ManageVendor\UpdateVendor.cshtml" />
     <Content Include="Views\ManageVendor\VendorDetails.cshtml" />
     <Content Include="Views\ManageVendor\ViewVendor.cshtml" />
+    <Content Include="Views\Inventory\_ViewStart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

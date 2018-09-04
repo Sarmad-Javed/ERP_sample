@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ERPEntities.Models.AuthenticatedUser>
+﻿
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,7 +57,7 @@
             <div class="sidebar-wrapper">
                <!-- User Info -->
               
-                   @Html.Partial("_UserInfo",Model)
+                   @Html.Partial("_UserInfo")
                
                 <!-- User Info End -->
                
@@ -69,23 +69,23 @@
                         </a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" data-toggle="collapse" href="#pagesExamples">
+                        <a class="nav-link" data-toggle="collapse" href="#User">
                             <i class="material-icons">image</i>
                             <p>
                                 Manage User
                                 <b class="caret"></b>
                             </p>
                         </a>
-                        <div class="collapse" id="pagesExamples">
+                        <div class="collapse" id="User">
                             <ul class="nav">
                                 <li class="nav-item item active ">
-                                    <a class="nav-link" href="/Dashboard/AddItems">
+                                    <a class="nav-link" href="/ManageUser/AddUser">
                                         <span class="sidebar-mini"> P </span>
                                         <span class="sidebar-normal"> Add User </span>
                                     </a>
                                 </li>
                                 <li class="nav-item item active">
-                                    <a class="nav-link" href="/Dashboard/ViewItems">
+                                    <a class="nav-link" href="/ManageUser/ViewUser">
                                         <span class="sidebar-mini"> RS </span>
                                         <span class="sidebar-normal">View User</span>
                                     </a>
@@ -94,8 +94,8 @@
                         </div>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" data-toggle="collapse" href="/Accounts/Logout">
-                            <i class="material-icons">image</i>
+                        <a class="nav-link" href="/Accounts/Logout">
+                            <i class="material-icons">grid_ons</i>
                             <p>
                                 Logout
                                 <b class="caret"></b>

@@ -13,7 +13,7 @@ namespace DataAccessLayer.DAL_Logic.Patient.ManagePatient
     {
         List<PatientModel> PatientList = new List<PatientModel>();
         PatientModel patient = new PatientModel();
-        SqlConnection Sqlcon = new SqlConnection("Data Source=Ijlal07-PC;Initial Catalog=ERP;Integrated Security=True");
+        SqlConnection Sqlcon = new SqlConnection("Data Source=pc-sarmad;Initial Catalog=ERP;Integrated Security=True");
         public void addPatient(AddPatientModel patient)
         {
             if (Sqlcon.State == ConnectionState.Closed)

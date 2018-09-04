@@ -55,41 +55,10 @@
                 </a>
             </div>
             <div class="sidebar-wrapper">
-                <div class="user">
-                    <div class="photo">
-                        <img src="../assets/img/faces/avatar.jpg" />
-                    </div>
-                    <div class="user-info">
-                        <a data-toggle="collapse" href="#collapseExample" class="username">
-                            <span>
-                                Tania Andrew
-                                <b class="caret"></b>
-                            </span>
-                        </a>
-                        <div class="collapse" id="collapseExample">
-                            <ul class="nav">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">
-                                        <span class="sidebar-mini"> MP </span>
-                                        <span class="sidebar-normal"> My Profile </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">
-                                        <span class="sidebar-mini"> EP </span>
-                                        <span class="sidebar-normal"> Edit Profile </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">
-                                        <span class="sidebar-mini"> S </span>
-                                        <span class="sidebar-normal"> Settings </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <!-- User Info -->
+                @Html.Partial("_UserInfo")
+
+                <!-- User Info End -->
                 <ul class="nav">
                     <li class="nav-item">
                         <a class="nav-link" href="dashboard.html">
@@ -98,60 +67,72 @@
                         </a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" data-toggle="collapse" href="#pagesExamples">
+                        <a class="nav-link" data-toggle="collapse" href="#inventory">
                             <i class="material-icons">image</i>
                             <p>
                                 Inventory
                                 <b class="caret"></b>
                             </p>
                         </a>
-                        <div class="collapse" id="pagesExamples">
+                        <div class="collapse" id="inventory">
                             <ul class="nav">
                                 <li class="nav-item item active ">
-                                    <a class="nav-link" href="additems.html">
-                                        <span class="sidebar-mini"> P </span>
+                                    <a class="nav-link" href="/Inventory/AddItems">
+                                        <span class="sidebar-mini"> A </span>
                                         <span class="sidebar-normal"> Add Items </span>
                                     </a>
                                 </li>
                                 <li class="nav-item item active">
-                                    <a class="nav-link" href="viewitems.html">
-                                        <span class="sidebar-mini"> RS </span>
+                                    <a class="nav-link" href="/Inentory/ViewItems">
+                                        <span class="sidebar-mini"> V </span>
                                         <span class="sidebar-normal">View Items </span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" data-toggle="collapse" href="#tablesExamples">
-                            <i class="material-icons">grid_on</i>
+                    <li class="nav-item active">
+                        <a class="nav-link" data-toggle="collapse" href="#vendor">
+                            <i class="material-icons">grid</i>
                             <p>
-                                Tables
+                                manage Vendor
                                 <b class="caret"></b>
                             </p>
                         </a>
-                        <div class="collapse" id="tablesExamples">
+                        <div class="collapse" id="vendor">
                             <ul class="nav">
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="tables/regular.html">
-                                        <span class="sidebar-mini"> RT </span>
-                                        <span class="sidebar-normal"> Regular Tables </span>
+                                <li class="nav-item item active ">
+                                    <a class="nav-link" href="/ManageVendor/AddVendor">
+                                        <span class="sidebar-mini"> A </span>
+                                        <span class="sidebar-normal"> Add Vendor </span>
                                     </a>
                                 </li>
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="tables/extended.html">
-                                        <span class="sidebar-mini"> ET </span>
-                                        <span class="sidebar-normal"> Extended Tables </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="tables/datatables.net.html">
-                                        <span class="sidebar-mini"> DT </span>
-                                        <span class="sidebar-normal"> DataTables.net </span>
+                                <li class="nav-item item active">
+                                    <a class="nav-link" href="/ManageVendor/ViewVendor">
+                                        <span class="sidebar-mini"> V </span>
+                                        <span class="sidebar-normal">View Vendor </span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link"  href="#pagesExamples">
+                            <i class="material-icons">grid</i>
+                            <p>
+                                Place Order
+                                <b class="caret"></b>
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/Accounts/Logout">
+                            <i class="material-icons">grid_on</i>
+                            <p>
+                                Logout
+                                <b class="caret"></b>
+                            </p>
+                        </a>
                     </li>
                 </ul>
             </div>

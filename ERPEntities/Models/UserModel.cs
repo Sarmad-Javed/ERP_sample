@@ -24,10 +24,13 @@ namespace ERPEntities.Models
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Email required")]
-        public String Email { get; set; }
+        public string Email { get; set; }
 
         [Required(ErrorMessage = "RoleID required")]
         public int RoleID { get; set; }
+
+        [Required(ErrorMessage = "Image required")]
+        public string UserImage { get; set; }
     }
 
     public class AddUserModel
@@ -42,10 +45,12 @@ namespace ERPEntities.Models
 
         public string Password { get; set; }
 
-        public String Email { get; set; }
+        public string Email { get; set; }
 
         [Required(ErrorMessage = "RoleID required")]
         public int RoleID { get; set; }
+
+        public string UserImage { get; set; }
     }
 
     public class LoginModel
@@ -59,8 +64,7 @@ namespace ERPEntities.Models
 
     public class AuthenticatedUser
     {
-        
-         public int AuthenticatedUserID { get; set; }
+        public int AuthenticatedUserID { get; set; }
 
         public string FirstName { get; set; }
 
@@ -70,11 +74,30 @@ namespace ERPEntities.Models
 
         public string Password { get; set; }
 
-        public String Email { get; set; }
+        public string Email { get; set; }
 
         public int RoleID { get; set; }
 
-        public string RoleName{get;set;}
+        public string RoleName { get; set; }
+
+        public string UserImage { get; set; }
+
+    }
+
+    public class EditProfile
+    {
+        public int AuthenticatedUserID { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string UserName { get; set; }
+
+        public string Email { get; set; }
+
+        public string UserImage { get; set; }
+
 
     }
 }

@@ -13,7 +13,7 @@ namespace DataAccessLayer.DAL_Logic.SupplyChain.ManageVendor
     {
         List<VendorModel> VendorList= new List<VendorModel>();
         VendorModel vendor = new VendorModel();
-        SqlConnection Sqlcon = new SqlConnection("Data Source=Ijlal07-PC;Initial Catalog=ERP;Integrated Security=True");
+        SqlConnection Sqlcon = new SqlConnection("Data Source=pc-sarmad;Initial Catalog=ERP;Integrated Security=True");
         public void addVendor(AddVendorModel vendor)
         {
             if (Sqlcon.State == ConnectionState.Closed)

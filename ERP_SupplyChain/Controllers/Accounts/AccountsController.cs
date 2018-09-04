@@ -33,25 +33,34 @@ namespace ERP_SupplyChain.Controllers.Accounts
             {
                 User = Accounts.Authenticate(login);
                 string role = User.Select(x => x.RoleName).FirstOrDefault().ToString();
-                Session["Userinfo"] = User;
+                string UserName = User.Select(x => x.UserName).FirstOrDefault().ToString();
+                string UserID = User.Select(x => x.AuthenticatedUserID).FirstOrDefault().ToString();
+                string UserImage = User.Select(x => x.UserImage).FirstOrDefault().ToString();
+                Session["UserName"] = UserName;
+                Session["UserID"] = UserID;
+                Session["UserImage"] = UserImage;
                
                 if (role == "SupplyChain")
                 {
-                    return Redirect("/DashBoard/Index");
+                    return Redirect("/DashBoard/SupplyChain");
                 }
                 if (role == "Pharmacy")
                 {
                     return Redirect("/DashBoard/Pharmacy");
                 }
+                if (role == "HRManager")
+                {
+                    return Redirect("/DashBoard/HRIndex");
+                }
                 if (role == "Doctor")
                 {
-                    return Redirect("/DashBoard/Doctor");
+                    return Redirect("/DashBoard/DoctorPanel");
                 }
                 if (role == "Admin")
                 {   
                     return Redirect("/DashBoard/Admin");
                 }
-                if (role == "FrontDesk")
+                if (role == "FDManager")
                 {
                     return Redirect("/DashBoard/FrontDesk");
                 }
@@ -63,10 +72,13 @@ namespace ERP_SupplyChain.Controllers.Accounts
      
         }
 
-         public ActionResult UserDetail(List<AuthenticatedUser> User)
+        public ActionResult Logout()
         {
-            
-             return View();
+            Session["UserName"] = null;
+            Session["UserID"] = null;
+            Session["UserImage"] = null;
+               
+            return Redirect("/Accounts/Login");
         }
 	}
 }

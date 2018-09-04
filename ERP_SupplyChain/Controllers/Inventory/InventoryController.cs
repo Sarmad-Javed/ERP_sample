@@ -10,7 +10,7 @@ using System.Data;
 
 namespace ERP_SupplyChain.Controllers.Inventory
 {
-	
+	[SessionCheck]
 	public class InventoryController : Controller
 	{
 		//BLL object

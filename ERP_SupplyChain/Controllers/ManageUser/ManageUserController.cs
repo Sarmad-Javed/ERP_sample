@@ -7,10 +7,12 @@ using System.Web.Mvc;
 using BusinessLogicLayer;
 using ERPEntities.Models;
 using System.Data;
-
+using System.IO;
+using System.Web.Hosting;
 
 namespace ERP_SupplyChain.Controllers
 {
+    [SessionCheck]
     public class ManageUserController : Controller
     {
         //
@@ -53,10 +55,15 @@ namespace ERP_SupplyChain.Controllers
             return Redirect("ViewItems");
         }
         [HttpPost]
-        public ActionResult AddUser(AddUserModel user)
+        public ActionResult AddUser(AddUserModel user,HttpPostedFileBase Image)
         {
             if (ModelState.IsValid)
-            { //clalling BLL function
+            {
+                string FileName = Path.GetFileName(Image.FileName);
+                string FilePath ="~/Resources/"+FileName;
+                Image.SaveAs(Server.MapPath(FilePath));
+                user.UserImage = "../Resources/" + FileName;
+                //clalling BLL function
                 UserLogic.addUsers(user);
             }
 
@@ -68,6 +75,7 @@ namespace ERP_SupplyChain.Controllers
         {
             if (ModelState.IsValid)
             { //clalling BLL function
+                
                 UserLogic.updateUser(id,user);
             }
 

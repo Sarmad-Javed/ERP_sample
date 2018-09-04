@@ -56,41 +56,7 @@
             </div>
             <div class="sidebar-wrapper">
                 <!-- User Info -->
-                <div class="user">
-                    <div class="photo">
-                        <img src="../assets/img/faces/avatar.jpg" />
-                    </div>
-                    <div class="user-info">
-                        <a data-toggle="collapse" href="#collapseExample" class="username">
-                            <span>
-                                Tania Andrew
-                                <b class="caret"></b>
-                            </span>
-                        </a>
-                        <div class="collapse" id="collapseExample">
-                            <ul class="nav">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">
-                                        <span class="sidebar-mini"> MP </span>
-                                        <span class="sidebar-normal"> My Profile </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">
-                                        <span class="sidebar-mini"> EP </span>
-                                        <span class="sidebar-normal"> Edit Profile </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">
-                                        <span class="sidebar-mini"> S </span>
-                                        <span class="sidebar-normal"> Settings </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                @Html.Partial("_UserInfo")
 
                 <!-- User Info End -->
 
@@ -102,62 +68,66 @@
                         </a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" data-toggle="collapse" href="#pagesExamples">
+                        <a class="nav-link" data-toggle="collapse" href="#Emp">
                             <i class="material-icons">image</i>
                             <p>
-                                Manage User
+                                Manage Employee
                                 <b class="caret"></b>
                             </p>
                         </a>
-                        <div class="collapse" id="pagesExamples">
+                        <div class="collapse" id="Emp">
+                            <ul class="nav">
+                                <li class="nav-item item  ">
+                                    <a class="nav-link" href="/ManageEmployee/AddEmployee">
+                                        <span class="sidebar-mini"> A </span>
+                                        <span class="sidebar-normal"> Add Employee </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item item ">
+                                    <a class="nav-link" href="/ManageEmployee/ViewEmployee">
+                                        <span class="sidebar-mini"> V </span>
+                                        <span class="sidebar-normal">View Employee</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" data-toggle="collapse" href="#attendance">
+                            <i class="material-icons">image</i>
+                            <p>
+                                Manage Attendance
+                                <b class="caret"></b>
+                            </p>
+                        </a>
+                        <div class="collapse" id="attendance">
                             <ul class="nav">
                                 <li class="nav-item item active ">
-                                    <a class="nav-link" href="additems.html">
-                                        <span class="sidebar-mini"> P </span>
-                                        <span class="sidebar-normal"> Add User </span>
+                                    <a class="nav-link" href="/ManageAttendance/AddAttendance">
+                                        <span class="sidebar-mini"> A </span>
+                                        <span class="sidebar-normal"> Add Attendance </span>
                                     </a>
                                 </li>
                                 <li class="nav-item item active">
-                                    <a class="nav-link" href="viewitems.html">
-                                        <span class="sidebar-mini"> RS </span>
-                                        <span class="sidebar-normal">View User</span>
+                                    <a class="nav-link" href="/ManageAttendance/ViewAttendance">
+                                        <span class="sidebar-mini"> V </span>
+                                        <span class="sidebar-normal">View Attendance </span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" data-toggle="collapse" href="#tablesExamples">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/Accounts/Logout">
                             <i class="material-icons">grid_on</i>
                             <p>
-                                Tables
+                                Logout
                                 <b class="caret"></b>
                             </p>
                         </a>
-                        <div class="collapse" id="tablesExamples">
-                            <ul class="nav">
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="tables/regular.html">
-                                        <span class="sidebar-mini"> RT </span>
-                                        <span class="sidebar-normal"> Regular Tables </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="tables/extended.html">
-                                        <span class="sidebar-mini"> ET </span>
-                                        <span class="sidebar-normal"> Extended Tables </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="tables/datatables.net.html">
-                                        <span class="sidebar-mini"> DT </span>
-                                        <span class="sidebar-normal"> DataTables.net </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
                     </li>
-                </ul>
+
+</ul>
             </div>
         </div>
         <!-- sidebar Ends-->

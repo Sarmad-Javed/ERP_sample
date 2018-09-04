@@ -8,6 +8,7 @@ using ERPEntities.Models;
 
 namespace ERP_SupplyChain.Controllers.ManageVendor
 {
+    [SessionCheck]
 	public class ManageVendorController : Controller
 	{
 		//

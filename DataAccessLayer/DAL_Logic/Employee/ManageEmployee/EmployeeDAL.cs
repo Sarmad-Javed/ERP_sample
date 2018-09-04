@@ -13,7 +13,7 @@ namespace DataAccessLayer.DAL_Logic.Employee.ManageEmployee
     {
         List<EmployeeModel> EmployeeList = new List<EmployeeModel>();
         EmployeeModel employee = new EmployeeModel();
-        SqlConnection Sqlcon = new SqlConnection("Data Source=Ijlal07-PC;Initial Catalog=ERP;Integrated Security=True");
+        SqlConnection Sqlcon = new SqlConnection("Data Source=pc-sarmad;Initial Catalog=ERP;Integrated Security=True");
         public void addEmployee(AddEmployeeModel employee)
         {
             if (Sqlcon.State == ConnectionState.Closed)

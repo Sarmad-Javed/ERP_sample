@@ -30,6 +30,7 @@ namespace DataAccessLayer.DAL_Logic.Admin
                 Sqlcmd.Parameters.AddWithValue("@Password", user.Password);
                 Sqlcmd.Parameters.AddWithValue("@Email", user.Email);
                 Sqlcmd.Parameters.AddWithValue("@RoleID", user.RoleID);
+                Sqlcmd.Parameters.AddWithValue("@UserImage", user.UserImage);
 
                 Sqlcmd.ExecuteNonQuery();
                 Sqlcon.Close();

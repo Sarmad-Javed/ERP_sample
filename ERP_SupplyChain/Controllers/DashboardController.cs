@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace ERP_SupplyChain.Controllers
-{
+{   [SessionCheck]
     public class DashboardController : Controller
     {
         AccountLogic Accounts = new AccountLogic();
@@ -16,88 +16,39 @@ namespace ERP_SupplyChain.Controllers
 
         //
         // GET: /Dashboard/Supply Chain
-        public ActionResult SC_Index()
+        public ActionResult SupplyChain()
         {
-            if (Session["Userinfo"] != null)
-            {
-                User = Session["Userinfo"] as List<AuthenticatedUser>;
-                return View(User);
-            }
-            else
-            {
-                return Redirect("/Accounts/Login");
-            }
+           return View();
         }
 
         // GET: /Dashboard/Admin
         public ActionResult Admin()
         {
-            if (Session["Userinfo"] != null)
-            {
-                User = Session["Userinfo"] as List<AuthenticatedUser>;
-                return View(User);
-            }
-            else
-            {
-                return Redirect("/Accounts/Login");
-            }
+            return View();
         }
 
         // GET: /Dashboard/Pharmacy
-        public ActionResult Pharm_Index()
+        public ActionResult Pharmacy()
         {
-            if (Session["Userinfo"] != null)
-            {
-                User = Session["Userinfo"] as List<AuthenticatedUser>;
-                return View(User);
-            }
-            else
-            {
-                return Redirect("/Accounts/Login");
-            }
+            return View();
         }
 
         // GET: /Dashboard/HR_Index
-        public ActionResult HR_Index()
+        public ActionResult HRIndex()
         {
-            if (Session["Userinfo"] != null)
-            {
-                User = Session["Userinfo"] as List<AuthenticatedUser>;
-                return View(User);
-            }
-            else
-            {
-                return Redirect("/Accounts/Login");
-            }
-
+            return View();
         }
 
         // GET: /Dashboard/FD_Index
-        public ActionResult FD_Index()
+        public ActionResult FrontDesk()
         {
-            if (Session["Userinfo"] != null)
-            {
-                User = Session["Userinfo"] as List<AuthenticatedUser>;
-                return View(User);
-            }
-            else
-            {
-                return Redirect("/Accounts/Login");
-            }
+            return View();
         }
 
         // GET: /Dashboard/Doctor_Index
-        public ActionResult Doctor_Index()
+        public ActionResult DoctorPanel()
         {
-            if (Session["Userinfo"] != null)
-            {
-                User = Session["Userinfo"] as List<AuthenticatedUser>;
-                return View(User);
-            }
-            else
-            {
-                return Redirect("/Accounts/Login");
-            }
+            return View();
         }
 
     }

@@ -8,6 +8,7 @@ using ERPEntities.Models;
 
 namespace ERP_SupplyChain.Controllers.ManageEmployee
 {
+    [SessionCheck]
 	public class ManageEmployeeController : Controller
 	{
 		//

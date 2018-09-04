@@ -8,6 +8,7 @@ using ERPEntities.Models;
 
 namespace ERP_SupplyChain.Controllers.ManagePatient
 {
+    [SessionCheck]
 	public class ManagePatientController : Controller
 	{
 		//

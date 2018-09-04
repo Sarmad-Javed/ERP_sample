@@ -12,17 +12,37 @@
                 <div class="card">
                     <div class="card-header card-header-info card-header-icon">
                         <div class="card-icon">
-                            <i class="material-icons">assignment</i>
+                            <i class="material-icons">perm_identity</i>
                         </div>
                         <h4 class="card-title">@ViewBag.Title</h4>
                     </div>
                     <div class="content">
-                        @using (Html.BeginForm("", "", FormMethod.Post, new { method = "post", action = "/ManageUser/AddUser" }))
+                        @using (Html.BeginForm("", "", FormMethod.Post, new { method = "post",enctype = "multipart/form-data" , action = "/ManageUser/AddUser" }))
                         { @Html.ValidationSummary(true)
                             @Html.AntiForgeryToken()
 
+                             <div class="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4">
+                                    <div>
+                                        <label>@Html.LabelFor(model => model.UserImage)</label>
+                                        <div class=" card-profile">
+                                            <br />
+                                            <div class="card-avatar">
+                                                <a href="#pablo">
+                                                    <img id="img" class="img" src="../../assets/img/faces/marc.jpg" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <input name="Image"  id="Image"  type="file"  onchange="PreviewImage();" />
+                                        <div>@Html.ValidationMessageFor(model => model.LastName)</div>
+                                        <br />
+                                   </div>        
+                                 </div>
+                                <div class="col-md-4"></div>
+                            </div>
                             <div class="row">
-
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>@Html.LabelFor(model => model.FirstName)</label>
@@ -83,3 +103,15 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+
+    function PreviewImage() {
+        var oFReader = new FileReader();
+        oFReader.readAsDataURL(document.getElementById("Image").files[0]);
+
+        oFReader.onload = function (oFREvent) {
+            document.getElementById("img").src = oFREvent.target.result;
+        };
+    };
+
+</script>

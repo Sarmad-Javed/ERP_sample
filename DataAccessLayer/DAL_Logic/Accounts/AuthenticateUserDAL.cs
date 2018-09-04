@@ -30,8 +30,11 @@ namespace DataAccessLayer.DAL_Logic.Accounts
                                FirstName = u.FirstName,
                                LastName = u.LastName,
                                UserName = u.UserName,
+                               UserImage = u.UserImage,
                                Email = u.Email,
-                               RoleName = r.RoleName
+                               RoleName = r.RoleName,
+                               
+                               
                            };
                 foreach (var v in data)
                 {
@@ -39,6 +42,7 @@ namespace DataAccessLayer.DAL_Logic.Accounts
                     User.FirstName = v.FirstName;
                     User.LastName = v.LastName;
                     User.UserName = v.UserName;
+                    User.UserImage = v.UserImage;
                     User.Email = v.Email;
                     User.RoleName = v.RoleName;
                     UserList.Add(User);
