@@ -99,7 +99,9 @@
     <Content Include="assets\assets-for-demo\js\vendor\split.min.js" />
     <Content Include="assets\assets-for-demo\js\vertical-nav.js" />
     <Content Include="assets\assets-for-demo\modernizr.js" />
+    <Content Include="assets\css\bootstrap.min.css" />
     <Content Include="assets\css\custom-dashboard.css" />
+    <Content Include="assets\css\demo.css" />
     <Content Include="assets\css\inventory-detail.css" />
     <Content Include="assets\css\inventory-main.css" />
     <Content Include="assets\css\material-dashboard.css" />
@@ -442,7 +444,7 @@
     <Content Include="Views\ManageUser\Details.cshtml" />
     <Content Include="Views\ManageUser\Update.cshtml" />
     <Content Include="Views\ManageUser\View1.cshtml" />
-    <Content Include="Views\Accounts\Login.cshtml" />
+    <Content Include="Views\Accounts\Login1.cshtml" />
     <Content Include="Views\Shared\_UserInfo.cshtml" />
     <Content Include="Views\Dashboard\HRIndex.cshtml" />
     <Content Include="Views\Shared\_HRLayout.cshtml" />
@@ -469,6 +471,7 @@
     <Content Include="Views\ManageVendor\VendorDetails.cshtml" />
     <Content Include="Views\ManageVendor\ViewVendor.cshtml" />
     <Content Include="Views\Inventory\_ViewStart.cshtml" />
+    <Content Include="Views\Accounts\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

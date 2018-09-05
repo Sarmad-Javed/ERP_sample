@@ -4173,7 +4173,7 @@ select.bs-select-hidden, select.selectpicker {
 
 .select-with-transition {
   border: 0 !important;
-  background-image: linear-gradient(#00bcd4, #00bcd4), linear-gradient(#D2D2D2, #D2D2D2);
+  background-image: linear-gradient(#9c27b0, #9c27b0), linear-gradient(#D2D2D2, #D2D2D2);
   background-size: 0 2px, 100% 1px;
   background-repeat: no-repeat;
   background-position: center bottom, center calc(100% - 1px);
@@ -4191,7 +4191,7 @@ select.bs-select-hidden, select.selectpicker {
 
 .btn-group.bootstrap-select.show-tick.open .select-with-transition {
   outline: none !important;
-  background-image: linear-gradient(#00bcd4, #00bcd4), linear-gradient(#D2D2D2, #D2D2D2) !important;
+  background-image: linear-gradient(#9c27b0, #9c27b0), linear-gradient(#D2D2D2, #D2D2D2) !important;
   background-size: 100% 2px, 100% 1px !important;
   box-shadow: none;
   transition-duration: 0.3s !important; }
@@ -5450,7 +5450,7 @@ output {
 .label.label-inverse {
   background-color: #212121; }
 .label.label-primary {
-  background-color: #00bcd4; }
+  background-color: #9c27b0; }
 .label.label-success {
   background-color: #4caf50; }
 .label.label-info {
@@ -5464,7 +5464,7 @@ output {
 
 .form-control, .form-group .form-control {
   border: 0;
-  background-image: linear-gradient(#00bcd4, #00bcd4), linear-gradient(#D2D2D2, #D2D2D2);
+  background-image: linear-gradient(#9c27b0, #9c27b0), linear-gradient(#D2D2D2, #D2D2D2);
   background-size: 0 2px, 100% 1px;
   background-repeat: no-repeat;
   background-position: center bottom, center calc(100% - 1px);
@@ -5506,12 +5506,12 @@ output {
   background-image: linear-gradient(#4caf50, #4caf50), linear-gradient(#D2D2D2, #D2D2D2); }
 .form-group.is-focused .form-control {
   outline: none;
-  background-image: linear-gradient( #00bcd4,  #00bcd4), linear-gradient(#D2D2D2, #D2D2D2);
+  background-image: linear-gradient(#9c27b0, #9c27b0), linear-gradient(#D2D2D2, #D2D2D2);
   background-size: 100% 2px, 100% 1px;
   box-shadow: none;
   transition-duration: 0.3s; }
 .form-group.is-focused .form-control .material-input:after {
-  background-color:#00bcd4; }
+  background-color: #9c27b0; }
 .form-group.is-focused.form-info .form-control {
   background-image: linear-gradient(#00bcd4, #00bcd4), linear-gradient(#D2D2D2, #D2D2D2); }
 .form-group.is-focused.form-success .form-control {
@@ -6981,8 +6981,8 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   color: #999999;
   text-align: center; }
 .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
-  background-color: #00bcd4;
-  border-color: #00bcd4;
+  background-color: #9c27b0;
+  border-color: #9c27b0;
   color: #FFFFFF;
   box-shadow: 0 4px 5px 0 rgba(156, 39, 176, 0.14), 0 1px 10px 0 rgba(156, 39, 176, 0.12), 0 2px 4px -1px rgba(156, 39, 176, 0.2); }
 .pagination.pagination-info > .active > a, .pagination.pagination-info > .active > a:focus, .pagination.pagination-info > .active > a:hover, .pagination.pagination-info > .active > span, .pagination.pagination-info > .active > span:focus, .pagination.pagination-info > .active > span:hover {
@@ -7171,7 +7171,6 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   top: 2px;
   margin-top: -4px;
   margin-right: 4px; }
-  
 .navbar .navbar-nav > li > .dropdown-menu {
   -webkit-transform: translate3d(0, -20px, 0);
   -moz-transform: translate3d(0, -20px, 0);

@@ -20,6 +20,11 @@ namespace ERP_SupplyChain.Controllers.Accounts
             return View();
         }
 
+        public ActionResult View1()
+        {
+            return View();
+        }
+
         public ActionResult Admin()
         {
             return View(User);
