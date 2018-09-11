@@ -20,6 +20,10 @@ namespace ERP_SupplyChain.Controllers
         {
            return View();
         }
+        public ActionResult Calender()
+        {
+            return View();
+        }
 
         // GET: /Dashboard/Admin
         public ActionResult Admin()
