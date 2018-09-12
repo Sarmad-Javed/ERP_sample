@@ -51,6 +51,9 @@ namespace ERPEntities.DataContext
     partial void InsertVendor(Vendor instance);
     partial void UpdateVendor(Vendor instance);
     partial void DeleteVendor(Vendor instance);
+    partial void InsertSchedule(Schedule instance);
+    partial void UpdateSchedule(Schedule instance);
+    partial void DeleteSchedule(Schedule instance);
     #endregion
 		
 		public ERPDataContext() : 
@@ -136,6 +139,14 @@ namespace ERPEntities.DataContext
 			get
 			{
 				return this.GetTable<Vendor>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Schedule> Schedules
+		{
+			get
+			{
+				return this.GetTable<Schedule>();
 			}
 		}
 	}
@@ -1582,6 +1593,212 @@ namespace ERPEntities.DataContext
 					this._ZIPCode = value;
 					this.SendPropertyChanged("ZIPCode");
 					this.OnZIPCodeChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Schedule")]
+	public partial class Schedule : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _EventID;
+		
+		private string _Subject;
+		
+		private string _Description;
+		
+		private System.DateTime _Start;
+		
+		private System.Nullable<System.DateTime> _End;
+		
+		private string _Theme;
+		
+		private bool _IsFullDay;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnEventIDChanging(int value);
+    partial void OnEventIDChanged();
+    partial void OnSubjectChanging(string value);
+    partial void OnSubjectChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnStartChanging(System.DateTime value);
+    partial void OnStartChanged();
+    partial void OnEndChanging(System.Nullable<System.DateTime> value);
+    partial void OnEndChanged();
+    partial void OnThemeChanging(string value);
+    partial void OnThemeChanged();
+    partial void OnIsFullDayChanging(bool value);
+    partial void OnIsFullDayChanged();
+    #endregion
+		
+		public Schedule()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int EventID
+		{
+			get
+			{
+				return this._EventID;
+			}
+			set
+			{
+				if ((this._EventID != value))
+				{
+					this.OnEventIDChanging(value);
+					this.SendPropertyChanging();
+					this._EventID = value;
+					this.SendPropertyChanged("EventID");
+					this.OnEventIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Subject", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string Subject
+		{
+			get
+			{
+				return this._Subject;
+			}
+			set
+			{
+				if ((this._Subject != value))
+				{
+					this.OnSubjectChanging(value);
+					this.SendPropertyChanging();
+					this._Subject = value;
+					this.SendPropertyChanged("Subject");
+					this.OnSubjectChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(300)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Start", DbType="DateTime NOT NULL")]
+		public System.DateTime Start
+		{
+			get
+			{
+				return this._Start;
+			}
+			set
+			{
+				if ((this._Start != value))
+				{
+					this.OnStartChanging(value);
+					this.SendPropertyChanging();
+					this._Start = value;
+					this.SendPropertyChanged("Start");
+					this.OnStartChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[End]", Storage="_End", DbType="DateTime")]
+		public System.Nullable<System.DateTime> End
+		{
+			get
+			{
+				return this._End;
+			}
+			set
+			{
+				if ((this._End != value))
+				{
+					this.OnEndChanging(value);
+					this.SendPropertyChanging();
+					this._End = value;
+					this.SendPropertyChanged("End");
+					this.OnEndChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Theme", DbType="NVarChar(15)")]
+		public string Theme
+		{
+			get
+			{
+				return this._Theme;
+			}
+			set
+			{
+				if ((this._Theme != value))
+				{
+					this.OnThemeChanging(value);
+					this.SendPropertyChanging();
+					this._Theme = value;
+					this.SendPropertyChanged("Theme");
+					this.OnThemeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsFullDay", DbType="Bit NOT NULL")]
+		public bool IsFullDay
+		{
+			get
+			{
+				return this._IsFullDay;
+			}
+			set
+			{
+				if ((this._IsFullDay != value))
+				{
+					this.OnIsFullDayChanging(value);
+					this.SendPropertyChanging();
+					this._IsFullDay = value;
+					this.SendPropertyChanged("IsFullDay");
+					this.OnIsFullDayChanged();
 				}
 			}
 		}

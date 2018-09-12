@@ -90,6 +90,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="DAL_Logic\SupplyChain\LoadInventory\ItemDAL.cs" />
+    <Compile Include="DAL_Logic\DoctorPanel\SchdeuleDAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -109,6 +110,7 @@
       <Name>ERPEntities</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

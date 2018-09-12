@@ -51,5 +51,11 @@
         <elementListCompartment Id="b1008f47-6793-4aa9-9ea4-39af8426681d" absoluteBounds="3.14, 4.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="c9eecd6b-05a0-48fa-9930-e3a8ddcdcf4b" isExpanded="false" absoluteBounds="3.875, 2.5, 2, 0.45">
+      <DataClassMoniker Name="/ERPDataContext/Schedule" />
+      <nestedChildShapes>
+        <elementListCompartment Id="34b6f4e2-f8f6-4ff9-93f0-69d76b59fbfd" absoluteBounds="3.8899999999999997, 2.96, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

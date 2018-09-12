@@ -10,3 +10,7 @@ C:\Users\Ijlal Nasir\Documents\GitHub\ERP_sample\ERPEntities\bin\Debug\ERPEntiti
 C:\Users\Ijlal Nasir\Documents\GitHub\ERP_sample\ERPEntities\obj\Debug\ERPEntities.csprojResolveAssemblyReference.cache
 C:\Users\Ijlal Nasir\Documents\GitHub\ERP_sample\ERPEntities\obj\Debug\ERPEntities.dll
 C:\Users\Ijlal Nasir\Documents\GitHub\ERP_sample\ERPEntities\obj\Debug\ERPEntities.pdb
+C:\Users\sarma\OneDrive\Documents\Visual Studio\ERP_Sample\ERPEntities\bin\Debug\EntityFramework.dll
+C:\Users\sarma\OneDrive\Documents\Visual Studio\ERP_Sample\ERPEntities\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\sarma\OneDrive\Documents\Visual Studio\ERP_Sample\ERPEntities\bin\Debug\EntityFramework.xml
+C:\Users\sarma\OneDrive\Documents\Visual Studio\ERP_Sample\ERPEntities\bin\Debug\EntityFramework.SqlServer.xml
