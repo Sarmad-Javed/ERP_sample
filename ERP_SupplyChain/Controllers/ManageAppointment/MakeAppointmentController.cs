@@ -12,6 +12,7 @@ using System.Globalization;
 
 namespace ERP_SupplyChain.Controllers
 {
+    [PSessionCheck]
     public class MakeAppointmentController : Controller
     {
         //

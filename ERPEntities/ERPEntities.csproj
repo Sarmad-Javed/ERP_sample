@@ -65,6 +65,7 @@
     <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Models\ItemsModel.cs" />
     <Compile Include="Models\PatientModel.cs" />
+    <Compile Include="Models\PatientloginModel.cs" />
     <Compile Include="Models\ScheduleModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\VendorModel.cs" />

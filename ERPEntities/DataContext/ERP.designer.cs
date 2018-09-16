@@ -39,9 +39,6 @@ namespace ERPEntities.DataContext
     partial void InsertItem(Item instance);
     partial void UpdateItem(Item instance);
     partial void DeleteItem(Item instance);
-    partial void InsertPatient(Patient instance);
-    partial void UpdatePatient(Patient instance);
-    partial void DeletePatient(Patient instance);
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
@@ -60,6 +57,9 @@ namespace ERPEntities.DataContext
     partial void InsertDoctorSchedule(DoctorSchedule instance);
     partial void UpdateDoctorSchedule(DoctorSchedule instance);
     partial void DeleteDoctorSchedule(DoctorSchedule instance);
+    partial void InsertPatient(Patient instance);
+    partial void UpdatePatient(Patient instance);
+    partial void DeletePatient(Patient instance);
     #endregion
 		
 		public ERPDataContext() : 
@@ -116,14 +116,6 @@ namespace ERPEntities.DataContext
 			}
 		}
 		
-		public System.Data.Linq.Table<Patient> Patients
-		{
-			get
-			{
-				return this.GetTable<Patient>();
-			}
-		}
-		
 		public System.Data.Linq.Table<User> Users
 		{
 			get
@@ -169,6 +161,14 @@ namespace ERPEntities.DataContext
 			get
 			{
 				return this.GetTable<DoctorSchedule>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Patient> Patients
+		{
+			get
+			{
+				return this.GetTable<Patient>();
 			}
 		}
 	}
@@ -862,188 +862,6 @@ namespace ERPEntities.DataContext
 					this._LeadTime = value;
 					this.SendPropertyChanged("LeadTime");
 					this.OnLeadTimeChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Patient")]
-	public partial class Patient : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _PatientID;
-		
-		private string _PatientName;
-		
-		private string _PatientAddress;
-		
-		private string _PatientContact;
-		
-		private string _PatientEmail;
-		
-		private string _ZIPCode;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnPatientIDChanging(int value);
-    partial void OnPatientIDChanged();
-    partial void OnPatientNameChanging(string value);
-    partial void OnPatientNameChanged();
-    partial void OnPatientAddressChanging(string value);
-    partial void OnPatientAddressChanged();
-    partial void OnPatientContactChanging(string value);
-    partial void OnPatientContactChanged();
-    partial void OnPatientEmailChanging(string value);
-    partial void OnPatientEmailChanged();
-    partial void OnZIPCodeChanging(string value);
-    partial void OnZIPCodeChanged();
-    #endregion
-		
-		public Patient()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int PatientID
-		{
-			get
-			{
-				return this._PatientID;
-			}
-			set
-			{
-				if ((this._PatientID != value))
-				{
-					this.OnPatientIDChanging(value);
-					this.SendPropertyChanging();
-					this._PatientID = value;
-					this.SendPropertyChanged("PatientID");
-					this.OnPatientIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientName", DbType="VarChar(50)")]
-		public string PatientName
-		{
-			get
-			{
-				return this._PatientName;
-			}
-			set
-			{
-				if ((this._PatientName != value))
-				{
-					this.OnPatientNameChanging(value);
-					this.SendPropertyChanging();
-					this._PatientName = value;
-					this.SendPropertyChanged("PatientName");
-					this.OnPatientNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientAddress", DbType="VarChar(MAX)")]
-		public string PatientAddress
-		{
-			get
-			{
-				return this._PatientAddress;
-			}
-			set
-			{
-				if ((this._PatientAddress != value))
-				{
-					this.OnPatientAddressChanging(value);
-					this.SendPropertyChanging();
-					this._PatientAddress = value;
-					this.SendPropertyChanged("PatientAddress");
-					this.OnPatientAddressChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientContact", DbType="VarChar(50)")]
-		public string PatientContact
-		{
-			get
-			{
-				return this._PatientContact;
-			}
-			set
-			{
-				if ((this._PatientContact != value))
-				{
-					this.OnPatientContactChanging(value);
-					this.SendPropertyChanging();
-					this._PatientContact = value;
-					this.SendPropertyChanged("PatientContact");
-					this.OnPatientContactChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientEmail", DbType="VarChar(100)")]
-		public string PatientEmail
-		{
-			get
-			{
-				return this._PatientEmail;
-			}
-			set
-			{
-				if ((this._PatientEmail != value))
-				{
-					this.OnPatientEmailChanging(value);
-					this.SendPropertyChanging();
-					this._PatientEmail = value;
-					this.SendPropertyChanged("PatientEmail");
-					this.OnPatientEmailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZIPCode", DbType="VarChar(50)")]
-		public string ZIPCode
-		{
-			get
-			{
-				return this._ZIPCode;
-			}
-			set
-			{
-				if ((this._ZIPCode != value))
-				{
-					this.OnZIPCodeChanging(value);
-					this.SendPropertyChanging();
-					this._ZIPCode = value;
-					this.SendPropertyChanged("ZIPCode");
-					this.OnZIPCodeChanged();
 				}
 			}
 		}
@@ -2251,6 +2069,284 @@ namespace ERPEntities.DataContext
 						this._EventID = default(int);
 					}
 					this.SendPropertyChanged("Schedule");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Patient")]
+	public partial class Patient : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _PatientID;
+		
+		private string _PatientName;
+		
+		private string _PatientAddress;
+		
+		private string _PatientContact;
+		
+		private string _PatientEmail;
+		
+		private string _UserName;
+		
+		private string _Password;
+		
+		private string _ZIPCode;
+		
+		private string _PatientImage;
+		
+		private bool _isAvailable;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPatientIDChanging(int value);
+    partial void OnPatientIDChanged();
+    partial void OnPatientNameChanging(string value);
+    partial void OnPatientNameChanged();
+    partial void OnPatientAddressChanging(string value);
+    partial void OnPatientAddressChanged();
+    partial void OnPatientContactChanging(string value);
+    partial void OnPatientContactChanged();
+    partial void OnPatientEmailChanging(string value);
+    partial void OnPatientEmailChanged();
+    partial void OnUserNameChanging(string value);
+    partial void OnUserNameChanged();
+    partial void OnPasswordChanging(string value);
+    partial void OnPasswordChanged();
+    partial void OnZIPCodeChanging(string value);
+    partial void OnZIPCodeChanged();
+    partial void OnPatientImageChanging(string value);
+    partial void OnPatientImageChanged();
+    partial void OnisAvailableChanging(bool value);
+    partial void OnisAvailableChanged();
+    #endregion
+		
+		public Patient()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int PatientID
+		{
+			get
+			{
+				return this._PatientID;
+			}
+			set
+			{
+				if ((this._PatientID != value))
+				{
+					this.OnPatientIDChanging(value);
+					this.SendPropertyChanging();
+					this._PatientID = value;
+					this.SendPropertyChanged("PatientID");
+					this.OnPatientIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientName", DbType="VarChar(50)")]
+		public string PatientName
+		{
+			get
+			{
+				return this._PatientName;
+			}
+			set
+			{
+				if ((this._PatientName != value))
+				{
+					this.OnPatientNameChanging(value);
+					this.SendPropertyChanging();
+					this._PatientName = value;
+					this.SendPropertyChanged("PatientName");
+					this.OnPatientNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientAddress", DbType="VarChar(MAX)")]
+		public string PatientAddress
+		{
+			get
+			{
+				return this._PatientAddress;
+			}
+			set
+			{
+				if ((this._PatientAddress != value))
+				{
+					this.OnPatientAddressChanging(value);
+					this.SendPropertyChanging();
+					this._PatientAddress = value;
+					this.SendPropertyChanged("PatientAddress");
+					this.OnPatientAddressChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientContact", DbType="VarChar(50)")]
+		public string PatientContact
+		{
+			get
+			{
+				return this._PatientContact;
+			}
+			set
+			{
+				if ((this._PatientContact != value))
+				{
+					this.OnPatientContactChanging(value);
+					this.SendPropertyChanging();
+					this._PatientContact = value;
+					this.SendPropertyChanged("PatientContact");
+					this.OnPatientContactChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientEmail", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string PatientEmail
+		{
+			get
+			{
+				return this._PatientEmail;
+			}
+			set
+			{
+				if ((this._PatientEmail != value))
+				{
+					this.OnPatientEmailChanging(value);
+					this.SendPropertyChanging();
+					this._PatientEmail = value;
+					this.SendPropertyChanged("PatientEmail");
+					this.OnPatientEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this.OnUserNameChanging(value);
+					this.SendPropertyChanging();
+					this._UserName = value;
+					this.SendPropertyChanged("UserName");
+					this.OnUserNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Password
+		{
+			get
+			{
+				return this._Password;
+			}
+			set
+			{
+				if ((this._Password != value))
+				{
+					this.OnPasswordChanging(value);
+					this.SendPropertyChanging();
+					this._Password = value;
+					this.SendPropertyChanged("Password");
+					this.OnPasswordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZIPCode", DbType="VarChar(50)")]
+		public string ZIPCode
+		{
+			get
+			{
+				return this._ZIPCode;
+			}
+			set
+			{
+				if ((this._ZIPCode != value))
+				{
+					this.OnZIPCodeChanging(value);
+					this.SendPropertyChanging();
+					this._ZIPCode = value;
+					this.SendPropertyChanged("ZIPCode");
+					this.OnZIPCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientImage", DbType="VarChar(MAX)")]
+		public string PatientImage
+		{
+			get
+			{
+				return this._PatientImage;
+			}
+			set
+			{
+				if ((this._PatientImage != value))
+				{
+					this.OnPatientImageChanging(value);
+					this.SendPropertyChanging();
+					this._PatientImage = value;
+					this.SendPropertyChanged("PatientImage");
+					this.OnPatientImageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isAvailable", DbType="Bit NOT NULL")]
+		public bool isAvailable
+		{
+			get
+			{
+				return this._isAvailable;
+			}
+			set
+			{
+				if ((this._isAvailable != value))
+				{
+					this.OnisAvailableChanging(value);
+					this.SendPropertyChanging();
+					this._isAvailable = value;
+					this.SendPropertyChanged("isAvailable");
+					this.OnisAvailableChanged();
 				}
 			}
 		}

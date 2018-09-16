@@ -204,6 +204,7 @@
     <Content Include="assets\scss\bootstrap\scss\bootstrap-grid.css" />
     <Content Include="assets\scss\bootstrap\scss\bootstrap-reboot.css" />
     <Content Include="assets\scss\bootstrap\scss\bootstrap.css" />
+    <Content Include="Resources\Public\PatientImage\patient01.jpg" />
     <Content Include="Resources\Public\UserImage\avatar.jpg" />
     <Content Include="Resources\Public\UserImage\user1.jpg" />
     <Content Include="Resources\Public\UserImage\marc.jpg" />
@@ -432,6 +433,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\Accounts\AccountsController.cs" />
+    <Compile Include="Controllers\Accounts\PatientAccountsController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\Inventory\InventoryController.cs" />
     <Compile Include="Controllers\ManageAppointment\MakeAppointmentController.cs" />
@@ -499,6 +501,10 @@
     <Content Include="Views\MakeAppointment\AppointmentIndex.cshtml" />
     <Content Include="Views\MakeAppointment\AvailableDoctor.cshtml" />
     <Content Include="Views\Shared\_AppointmentLayout.cshtml" />
+    <Content Include="Views\Shared\_PatientLayout.cshtml" />
+    <Content Include="Views\Dashboard\Patient.cshtml" />
+    <Content Include="Views\PatientAccounts\PatientLogin.cshtml" />
+    <Content Include="Views\Shared\_Patient.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

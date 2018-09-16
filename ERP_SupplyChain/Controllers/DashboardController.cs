@@ -1,5 +1,4 @@
 ﻿using BusinessLogicLayer;
-
 using ERPEntities.Models;
 using System;
 using DataAccessLayer;
@@ -11,7 +10,7 @@ using System.Web.Mvc;
 using ERPEntities;
 
 namespace ERP_SupplyChain.Controllers
-{   [SessionCheck]
+{   
     public class DashboardController : Controller
     {
         AccountLogic Accounts = new AccountLogic();
@@ -55,6 +54,12 @@ namespace ERP_SupplyChain.Controllers
 
         // GET: /Dashboard/Doctor_Index
         public ActionResult DoctorPanel()
+        {
+            return View();
+        }
+
+        //GET : /Dashboard/Patient
+        public ActionResult Patient()
         {
             return View();
         }

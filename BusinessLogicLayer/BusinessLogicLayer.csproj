@@ -43,6 +43,7 @@
     <Compile Include="AttendanceLogic.cs" />
     <Compile Include="EmployeeLogic.cs" />
     <Compile Include="ItemsLogic.cs" />
+    <Compile Include="PatientAccountLogic.cs" />
     <Compile Include="PatientLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsersLogic.cs" />

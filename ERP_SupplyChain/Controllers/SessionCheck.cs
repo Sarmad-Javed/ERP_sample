@@ -21,5 +21,20 @@ namespace ERP_SupplyChain.Controllers
             }
         }
     }
+    public class PSessionCheck : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            HttpSessionStateBase Session = filterContext.HttpContext.Session;
+            if (Session["PatientName"] == null && Session["P_loginID"] == null && Session["PatientImage"] == null)
+            {
+                filterContext.Result = new RedirectToRouteResult(
+                new RouteValueDictionary {
+                                       { "Controller", "PatientAccounts" },
+                                       { "Action", "PatientLogin" }
+                                       });
+            }
+        }
+    }
 } 
   
