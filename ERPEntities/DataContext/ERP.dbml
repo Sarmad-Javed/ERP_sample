@@ -86,6 +86,27 @@
       <Column Name="[End]" Member="End" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Theme" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
       <Column Name="IsFullDay" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Schedule_DoctorSchedule" Member="DoctorSchedules" ThisKey="EventID" OtherKey="EventID" Type="DoctorSchedule" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Doctor" Member="Doctors">
+    <Type Name="Doctor">
+      <Column Name="DoctorID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Department" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Designation" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Image" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="Doctor_DoctorSchedule" Member="DoctorSchedules" ThisKey="DoctorID" OtherKey="DoctorID" Type="DoctorSchedule" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DoctorSchedule" Member="DoctorSchedules">
+    <Type Name="DoctorSchedule">
+      <Column Name="[Doc-ScheduleID]" Member="Doc_ScheduleID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DoctorID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EventID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Doctor_DoctorSchedule" Member="Doctor" ThisKey="DoctorID" OtherKey="DoctorID" Type="Doctor" IsForeignKey="true" />
+      <Association Name="Schedule_DoctorSchedule" Member="Schedule" ThisKey="EventID" OtherKey="EventID" Type="Schedule" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

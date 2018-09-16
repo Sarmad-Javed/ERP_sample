@@ -1,0 +1,161 @@
+﻿@model IEnumerable<ERPEntities.Models.DocScheduleStatus>
+    @{
+        Layout = "~/Views/Shared/_AppointmentLayout.cshtml";
+        ViewBag.Title = "Availible Doctor";
+
+    }
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class=" col-lg-8 col-md-8">
+                    <div class="card">
+                        <div class="card-header card-header-info card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">av_timer</i>
+                            </div>
+                            <h4 class="card-title">Check for Available Doctor</h4>
+                        </div>
+                        <div class="content">
+                            <form method="POST" action="/MakeAppointment/AvailableDoctor">
+                                <div class="row">
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="label-control">Date</label>
+                                            <div class="input-group" id="dtp2">
+                                                <input type="text" id="txtEnd" name="Date" class="form-control datepicker" />
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Theme Color</label>
+                                            <select class="selectpicker form-control" name="Department" data-style="select-with-transition" id="ddThemeColor">
+                                                <option value="">Default</option>
+                                                <option value="Cardiology">Cardiology</option>
+                                                <option value="Neurology">Neurology</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2"></div>
+                                </div>
+                                <div class="text-center">
+                                    <input type="submit" class="btn btn-info btn-fill btn-wd" value="Check" />
+                                </div>
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
+                        <div class="content">
+                            <div class=" container-fluid">
+                                <div class="row">
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-lg-6">
+                                        <div class="card">
+                                            <div class="card-header card-header-success">
+                                                <h4 class="card-title">@ViewBag.Title</h4>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="card-body table-responsive">
+                                                    <table class="table table-striped table-no-bordered table-full-width">
+                                                        <thead class="text-success">
+                                                        <th>@Html.DisplayNameFor(model => model.DoctorName)</th>
+                                                        <th>@Html.DisplayNameFor(model => model.type)</th>
+                                                        <th class="disabled-sorting text-right">Actions</th>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach (var item in Model)
+                                                            {
+                                                                <tr>
+                                                                    <td>@Html.DisplayFor(modelItem => item.DoctorName)</td>
+                                                                    <td>@Html.DisplayFor(modelItem => item.type)</td>
+                                                                    <td class="text-center">
+                                                                        <a href="/MakeAppointment/BookAppointment" class="btn btn-warning btn-fill btn-wd ">Book</a>
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+      </div>
+   </div>
+
+
+    @section Scripts{
+        <script src="../../assets/js/moment.min.js"></script>
+        <script src="../../assets/js/fullcalendar.min.js"></script>
+        <script src="../../assets/js/sweetalert2.js"></script>
+        <script src="../../assets/js/bootstrap-datetimepicker.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                initFormExtendedDatetimepickers();
+                $('#dtp1,#dtp2').datetimepicker({
+                    format: 'MM/DD/YYYY HH:mm A'
+                });
+                function initFormExtendedDatetimepickers() {
+                    $('.datetimepicker').datetimepicker({
+                        format: 'MM/DD/YYYY HH:mm A',
+                        icons: {
+                            time: "fa fa-clock-o",
+                            date: "fa fa-calendar",
+                            up: "fa fa-chevron-up",
+                            down: "fa fa-chevron-down",
+                            previous: 'fa fa-chevron-left',
+                            next: 'fa fa-chevron-right',
+                            today: 'fa fa-screenshot',
+                            clear: 'fa fa-trash',
+                            close: 'fa fa-remove'
+                        }
+
+                    });
+
+                    $('.datepicker').datetimepicker({
+                        format: 'MM/DD/YYYY',
+                        icons: {
+                            time: "fa fa-clock-o",
+                            date: "fa fa-calendar",
+                            up: "fa fa-chevron-up",
+                            down: "fa fa-chevron-down",
+                            previous: 'fa fa-chevron-left',
+                            next: 'fa fa-chevron-right',
+                            today: 'fa fa-screenshot',
+                            clear: 'fa fa-trash',
+                            close: 'fa fa-remove'
+                        }
+                    });
+
+                    $('.timepicker').datetimepicker({
+                        //          format: 'H:mm',    // use this format if you want the 24hours timepicker
+                        format: 'h:mm A',    //use this format if you want the 12hours timpiecker with AM/PM toggle
+                        icons: {
+                            time: "fa fa-clock-o",
+                            date: "fa fa-calendar",
+                            up: "fa fa-chevron-up",
+                            down: "fa fa-chevron-down",
+                            previous: 'fa fa-chevron-left',
+                            next: 'fa fa-chevron-right',
+                            today: 'fa fa-screenshot',
+                            clear: 'fa fa-trash',
+                            close: 'fa fa-remove'
+                        }
+                    });
+                }
+            })
+        </script>
+    }

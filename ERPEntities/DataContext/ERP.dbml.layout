@@ -45,10 +45,10 @@
         <classShapeMoniker Id="289469eb-1eac-41c2-aede-05474f01cc04" />
       </nodes>
     </associationConnector>
-    <classShape Id="c42ddda0-a2a6-49a0-803b-a1c6279a7409" isExpanded="false" absoluteBounds="3.125, 4.25, 2, 0.45">
+    <classShape Id="c42ddda0-a2a6-49a0-803b-a1c6279a7409" isExpanded="false" absoluteBounds="0.5, 5, 2, 0.45">
       <DataClassMoniker Name="/ERPDataContext/Vendor" />
       <nestedChildShapes>
-        <elementListCompartment Id="b1008f47-6793-4aa9-9ea4-39af8426681d" absoluteBounds="3.14, 4.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="b1008f47-6793-4aa9-9ea4-39af8426681d" absoluteBounds="0.51500000000000012, 5.46, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="c9eecd6b-05a0-48fa-9930-e3a8ddcdcf4b" isExpanded="false" absoluteBounds="3.875, 2.5, 2, 0.45">
@@ -57,5 +57,31 @@
         <elementListCompartment Id="34b6f4e2-f8f6-4ff9-93f0-69d76b59fbfd" absoluteBounds="3.8899999999999997, 2.96, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="f9ef5d94-89d7-4cb7-bc64-1dd04caf39d5" isExpanded="false" absoluteBounds="3.75, 5, 2, 0.45">
+      <DataClassMoniker Name="/ERPDataContext/Doctor" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0642883c-906d-4470-ad22-a6f398254222" absoluteBounds="3.7649999999999997, 5.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6bf43246-b642-4fa4-8c01-7bd1eefe9364" isExpanded="false" absoluteBounds="3.875, 3.375, 2, 0.45">
+      <DataClassMoniker Name="/ERPDataContext/DoctorSchedule" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9d6de31b-6e34-47c1-8eb7-ef4e3f3e9803" absoluteBounds="3.8899999999999997, 3.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4.32812125 : 5); (4.32812125 : 3.825)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ERPDataContext/Doctor/Doctor_DoctorSchedule" />
+      <nodes>
+        <classShapeMoniker Id="f9ef5d94-89d7-4cb7-bc64-1dd04caf39d5" />
+        <classShapeMoniker Id="6bf43246-b642-4fa4-8c01-7bd1eefe9364" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.875 : 2.95); (4.875 : 3.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ERPDataContext/Schedule/Schedule_DoctorSchedule" />
+      <nodes>
+        <classShapeMoniker Id="c9eecd6b-05a0-48fa-9930-e3a8ddcdcf4b" />
+        <classShapeMoniker Id="6bf43246-b642-4fa4-8c01-7bd1eefe9364" />
+      </nodes>
+    </associationConnector>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

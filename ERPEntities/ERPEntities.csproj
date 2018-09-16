@@ -55,6 +55,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ERP.dbml</DependentUpon>
     </Compile>
+    <Compile Include="ERP1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ERP1.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AppointmentModel.cs" />
     <Compile Include="Models\AttendanceModel.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Models\ItemsModel.cs" />
@@ -76,6 +82,11 @@
       <LastGenOutput>ERP.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
+    <None Include="ERP1.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>ERP1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -89,6 +100,11 @@
   <ItemGroup>
     <None Include="DataContext\ERP.dbml.layout">
       <DependentUpon>ERP.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ERP1.dbml.layout">
+      <DependentUpon>ERP1.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

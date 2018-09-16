@@ -434,6 +434,7 @@
     <Compile Include="Controllers\Accounts\AccountsController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\Inventory\InventoryController.cs" />
+    <Compile Include="Controllers\ManageAppointment\MakeAppointmentController.cs" />
     <Compile Include="Controllers\ManageAttendance\ManageAttendanceController.cs" />
     <Compile Include="Controllers\ManageEmployee\ManageEmployeeController.cs" />
     <Compile Include="Controllers\ManagePatient\ManagePatientController.cs" />
@@ -495,6 +496,9 @@
     <Content Include="Views\Inventory\_ViewStart.cshtml" />
     <Content Include="Views\Accounts\Login.cshtml" />
     <Content Include="Views\Dashboard\Calender.cshtml" />
+    <Content Include="Views\MakeAppointment\AppointmentIndex.cshtml" />
+    <Content Include="Views\MakeAppointment\AvailableDoctor.cshtml" />
+    <Content Include="Views\Shared\_AppointmentLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

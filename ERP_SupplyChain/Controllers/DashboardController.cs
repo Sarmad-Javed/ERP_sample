@@ -1,5 +1,5 @@
 ﻿using BusinessLogicLayer;
-using ERPEntities.DataContext;
+
 using ERPEntities.Models;
 using System;
 using DataAccessLayer;
@@ -8,6 +8,7 @@ using System.Data.Linq;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ERPEntities;
 
 namespace ERP_SupplyChain.Controllers
 {   [SessionCheck]
@@ -60,7 +61,7 @@ namespace ERP_SupplyChain.Controllers
 
         public JsonResult GetEvents()
         {
-            using (ERPDataContext dc = new ERPDataContext())
+            using (ERP1DataContext dc = new ERP1DataContext())
             {
                 var events = dc.Schedules.ToList();
 
@@ -72,7 +73,7 @@ namespace ERP_SupplyChain.Controllers
         public JsonResult SaveEvent(Schedule s)
         {
             var status = false;
-            using (ERPDataContext dc = new ERPDataContext())
+            using (ERP1DataContext dc = new ERP1DataContext())
             {
                 if (s.EventID > 0)
                 {
@@ -103,7 +104,7 @@ namespace ERP_SupplyChain.Controllers
         public JsonResult deleteEvent(int eventID)
         {
             var status = false;
-            using (ERPDataContext dc = new ERPDataContext())
+            using (ERP1DataContext dc = new ERP1DataContext())
             {
                 var v = dc.Schedules.Where(a => a.EventID == eventID).FirstOrDefault();
                 if (v != null)
