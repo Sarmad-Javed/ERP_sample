@@ -46,7 +46,7 @@ namespace ERP_SupplyChain.Controllers.Inventory
 		public ActionResult Delete(int id)
 		{
 			ItemLogic.DeleteItem(id);
-			return Redirect("ViewItems");
+			return Redirect("ViewUser");
 		}
 
 		// GET: /Inventory/ViewItem

@@ -1,9 +1,12 @@
-﻿
+﻿@model ERPEntities.Models.DocScheduleQuery
 @{
     Layout = "~/Views/Shared/_PatientLayout.cshtml";
     ViewBag.Title = "Availible Doctor";
 
 }
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -22,30 +25,35 @@
                                 <div class="col-sm-1"></div>
                                 <div class="col-md-5">
                                     <div class="form-group">
-                                        <label class="label-control">Date</label>
-                                        <div class="input-group" id="dtp2">
-                                            <input type="text" id="txtEnd" name="Date" class="form-control datepicker" />
-
-                                        </div>
+                                        @Html.LabelFor(model => model.Date)
+                                        @Html.TextBoxFor(model => model.Date, new { @class = "form-control datepicker", type = "text", id = "date", name = "Date" })
+                                        <div class="text-danger">@Html.ValidationMessageFor(model => model.Date)</div>
+                                       
                                     </div>
                                 </div>
                                 <div class="col-md-5">
                                     <div class="form-group">
-                                        <label>Department</label>
-                                        <select class="selectpicker form-control" name="Department" data-style="select-with-transition" id="ddThemeColor">
-                                            <option value="">Default</option>
-                                            <option value="Cardiology">Cardiology</option>
-                                            <option value="Neurology">Neurology</option>
-                                        </select>
+                                        @Html.LabelFor(model => model.Department)
+                                        @{
+                                            List<SelectListItem> listItems = new List<SelectListItem> {
+                                                        new SelectListItem { Text = "Cardiology", Value = "Cardiology" },
+                                                        new SelectListItem { Text = "Neurology", Value = "Neurology" },
+                                                         };
+                                        }
+                                        @Html.DropDownListFor(model => model.Department, listItems, "-Select TimeSlot-",
+                                                             new { @class = "selectpicker form-control ", name = "Department", id = "Slot" })
+                                        <div class="text-danger">@Html.ValidationMessageFor(model => model.Department)</div>
                                     </div>
                                 </div>
                                 <div class="col-sm-1"></div>
                             </div>
+                           
                             <div class="text-center">
                                 <input type="submit" class="btn btn-info btn-fill btn-wd" value="Check" />
                             </div>
                             <div class="clearfix"></div>
                         </form>
+                       
                     </div>
                 </div>
             </div>

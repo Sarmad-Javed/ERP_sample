@@ -14,3 +14,4 @@ C:\Users\sarma\OneDrive\Documents\Visual Studio\ERP_Sample\ERPEntities\bin\Debug
 C:\Users\sarma\OneDrive\Documents\Visual Studio\ERP_Sample\ERPEntities\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\sarma\OneDrive\Documents\Visual Studio\ERP_Sample\ERPEntities\bin\Debug\EntityFramework.xml
 C:\Users\sarma\OneDrive\Documents\Visual Studio\ERP_Sample\ERPEntities\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\sarma\OneDrive\Documents\Visual Studio\ERP_Sample\ERPEntities\bin\Debug\Newtonsoft.Json.dll

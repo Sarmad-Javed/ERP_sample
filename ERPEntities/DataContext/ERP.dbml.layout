@@ -63,14 +63,14 @@
         <elementListCompartment Id="9d6de31b-6e34-47c1-8eb7-ef4e3f3e9803" absoluteBounds="3.2649999999999997, 3.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4.25 : 4.25); (4.25 : 3.825)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.25 : 4.25); (4.25 : 3.825)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ERPDataContext/Doctor/Doctor_DoctorSchedule" />
       <nodes>
         <classShapeMoniker Id="f9ef5d94-89d7-4cb7-bc64-1dd04caf39d5" />
         <classShapeMoniker Id="6bf43246-b642-4fa4-8c01-7bd1eefe9364" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(4.25 : 2.95); (4.25 : 3.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.25 : 2.95); (4.25 : 3.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ERPDataContext/Schedule/Schedule_DoctorSchedule" />
       <nodes>
         <classShapeMoniker Id="c9eecd6b-05a0-48fa-9930-e3a8ddcdcf4b" />
@@ -81,6 +81,12 @@
       <DataClassMoniker Name="/ERPDataContext/Patient" />
       <nestedChildShapes>
         <elementListCompartment Id="7d6efc22-09ae-4aec-9af3-41bf36575dbb" absoluteBounds="3.2649999999999997, 2.335, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7bd21fd5-82b9-4944-9a23-b4930ce0ac64" absoluteBounds="5.625, 0.625, 2, 1.9631982421875">
+      <DataClassMoniker Name="/ERPDataContext/Appointment" />
+      <nestedChildShapes>
+        <elementListCompartment Id="894ec61f-b106-477e-9027-d40e77025793" absoluteBounds="5.64, 1.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

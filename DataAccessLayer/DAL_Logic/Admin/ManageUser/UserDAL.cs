@@ -17,7 +17,7 @@ namespace DataAccessLayer.DAL_Logic.Admin
         List<UserModel> UserList= new List<UserModel>();
         UserModel user = new UserModel();
         SqlConnection Sqlcon = new SqlConnection("Data Source=pc-sarmad;Initial Catalog=ERP;Integrated Security=True");
-        public void addUser(AddUserModel user)
+        public void addUser(UserModel user)
         {
             if (Sqlcon.State == ConnectionState.Closed)
             {
@@ -134,7 +134,7 @@ namespace DataAccessLayer.DAL_Logic.Admin
         {
             if (Sqlcon.State == ConnectionState.Closed)
             {
-                Sqlcon.Open();
+                
                 SqlCommand Sqlcmd = new SqlCommand("SP_Delete_User", Sqlcon);
                 Sqlcmd.CommandType = CommandType.StoredProcedure;
                 Sqlcmd.Parameters.AddWithValue("@UserID",id);

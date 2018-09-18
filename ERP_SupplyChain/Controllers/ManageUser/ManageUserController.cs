@@ -1,5 +1,4 @@
 ﻿using System;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,6 +8,7 @@ using ERPEntities.Models;
 using System.Data;
 using System.IO;
 using System.Web.Hosting;
+using ERPEntities;
 
 namespace ERP_SupplyChain.Controllers
 {
@@ -16,6 +16,7 @@ namespace ERP_SupplyChain.Controllers
     public class ManageUserController : Controller
     {
         //
+        ERP1DataContext dc = new ERP1DataContext();
         UsersLogic UserLogic = new UsersLogic();
         UserModel UserModel = new UserModel();
         List<UserModel> UserList = new List<UserModel>();
@@ -54,15 +55,29 @@ namespace ERP_SupplyChain.Controllers
             UserLogic.deleteUser(id);
             return Redirect("ViewItems");
         }
+       
+        //Json Method to validate UserName
+        public JsonResult CheckUserName(string UserName)
+        {
+            return Json(!dc.Users.Any( x => x.UserName == UserName) , JsonRequestBehavior.AllowGet);
+        }
+
+        //Json Method to validate Email
+        public JsonResult CheckEmail(string Email)
+        {
+            return Json(!dc.Users.Any(x => x.Email == Email), JsonRequestBehavior.AllowGet);
+        }
+        
+        //Post Add User
         [HttpPost]
-        public ActionResult AddUser(AddUserModel user,HttpPostedFileBase Image)
+        public ActionResult AddUser(UserModel user,HttpPostedFileBase Image)
         {
             if (ModelState.IsValid)
             {
                 string FileName = Path.GetFileName(Image.FileName);
-                string FilePath ="~/Resources/"+FileName;
+                string FilePath = "~//Resources//Public/UserImage/" + FileName;
                 Image.SaveAs(Server.MapPath(FilePath));
-                user.UserImage = "../Resources/" + FileName;
+                user.UserImage = "../Resources//Public/UserImage/" + FileName;
                 //clalling BLL function
                 UserLogic.addUsers(user);
             }

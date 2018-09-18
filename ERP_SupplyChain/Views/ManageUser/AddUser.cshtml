@@ -1,9 +1,12 @@
-﻿@model ERPEntities.Models.AddUserModel
+﻿@model ERPEntities.Models.UserModel
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
      ViewBag.Title = "Add Users";
     ViewBag.isActive = "active";
 }
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -29,14 +32,14 @@
                                         <div class=" card-profile">
                                             <br />
                                             <div class="card-avatar">
-                                                <a href="#pablo">
-                                                    <img id="img" class="img" src="../../assets/img/faces/marc.jpg" />
+                                                <a>
+                                                    <img id="img" class="img" src="../../resources/Public/UserImage/default-user.png" />
                                                 </a>
                                             </div>
                                         </div>
                                         <br />
-                                        <input name="Image"  id="Image"  type="file"  onchange="PreviewImage();" />
-                                        <div>@Html.ValidationMessageFor(model => model.LastName)</div>
+                                        @Html.TextBoxFor(model => model.Image, new { name="Image" , id="Image" , type="file" , onchange="PreviewImage();"})
+                                        @Html.ValidationMessageFor(model => model.Image)
                                         <br />
                                    </div>        
                                  </div>
@@ -47,47 +50,46 @@
                                     <div class="form-group">
                                         <label>@Html.LabelFor(model => model.FirstName)</label>
                                         @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control border-input", name = "FirstName" })
-                                        <div>@Html.ValidationMessageFor(model => model.FirstName)</div>
+                                        <div class="text-danger">@Html.ValidationMessageFor(model => model.FirstName)</div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>@Html.LabelFor(model => model.LastName)</label>
                                         @Html.TextBoxFor(model => model.LastName, new { @class = "form-control border-input", name = "LastName" })
-                                        <div>@Html.ValidationMessageFor(model => model.LastName)</div>
+                                        <div class="text-danger">@Html.ValidationMessageFor(model => model.LastName)</div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>@Html.LabelFor(model => model.UserName)</label>
                                         @Html.TextBoxFor(model => model.UserName, new { @class = "form-control border-input", name = "UserName" })
-                                        <div>@Html.ValidationMessageFor(model => model.UserName)</div>
+                                        <div class="text-danger">@Html.ValidationMessageFor(model => model.UserName)</div>
                                     </div>
-                                </div>
+                                </div>                                  
                             </div>
                             <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>@Html.LabelFor(model => model.Password)</label>
-                                        @Html.TextBoxFor(model => model.Password, new { @class = "form-control border-input", name = "Password" })
-                                        <div>@Html.ValidationMessageFor(model => model.Password)</div>
-                                    </div>
-                                </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>@Html.LabelFor(model => model.Email)</label>
                                         @Html.TextBoxFor(model => model.Email, new { @class = "form-control border-input", name = "Email" })
-                                        <div>@Html.ValidationMessageFor(model => model.Email)</div>
+                                        <div class="text-danger">@Html.ValidationMessageFor(model => model.Email)</div>
                                     </div>
                                 </div>
-                               
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>@Html.LabelFor(model => model.Password)</label>
+                                        @Html.TextBoxFor(model => model.Password, new { @class = "form-control border-input", name = "Password" , type = "Password" })
+                                        <div class="text-danger">@Html.ValidationMessageFor(model => model.Password)</div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>@Html.LabelFor(model => model.RoleID)</label>
                                         @Html.TextBoxFor(model => model.RoleID, new { @class = "form-control border-input", name = "RoleID" })
-                                        <div>@Html.ValidationMessageFor(model => model.RoleID)</div>
+                                        <div class="text-danger">@Html.ValidationMessageFor(model => model.RoleID)</div>
                                     </div>
                                 </div>
                             </div>
@@ -103,6 +105,7 @@
         </div>
     </div>
 </div>
+   
 <script type="text/javascript">
 
     function PreviewImage() {
@@ -113,5 +116,21 @@
             document.getElementById("img").src = oFREvent.target.result;
         };
     };
+
+</script>
+<script runat="server">
+
+    void SubmitButton_Click(Object sender, EventArgs e) {
+       if (File1.PostedFile != null) {
+          try {
+             File1.PostedFile.SaveAs("C:\\Uploads\\uploadedfile.txt");
+             Span1.InnerHtml = "Upload Successful!";
+          }
+          catch (Exception ex) {
+             Span1.InnerHtml = "Error saving file <b>C:\\" +
+                File1.Value + "</b><br>" + ex.ToString();
+          }
+       }
+    }
 
 </script>

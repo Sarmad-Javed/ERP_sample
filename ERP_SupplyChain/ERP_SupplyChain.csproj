@@ -206,6 +206,7 @@
     <Content Include="assets\scss\bootstrap\scss\bootstrap.css" />
     <Content Include="Resources\Public\PatientImage\patient01.jpg" />
     <Content Include="Resources\Public\UserImage\avatar.jpg" />
+    <Content Include="Resources\Public\UserImage\default-user.png" />
     <Content Include="Resources\Public\UserImage\user1.jpg" />
     <Content Include="Resources\Public\UserImage\marc.jpg" />
     <Content Include="Global.asax" />
@@ -505,6 +506,7 @@
     <Content Include="Views\Dashboard\Patient.cshtml" />
     <Content Include="Views\PatientAccounts\PatientLogin.cshtml" />
     <Content Include="Views\Shared\_Patient.cshtml" />
+    <Content Include="Views\MakeAppointment\BookAppointment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

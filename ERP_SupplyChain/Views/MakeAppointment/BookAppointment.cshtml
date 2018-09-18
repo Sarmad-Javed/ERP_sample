@@ -1,0 +1,235 @@
+﻿@model ERPEntities.Models.AppointmentModel
+@{
+    Layout = "~/Views/Shared/_PatientLayout.cshtml";
+    ViewBag.Title = "Book";
+
+}
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class=" col-lg-10 col-md-10">
+                <div class="card">
+                    <div class="card-header card-header-info card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">av_timer</i>
+                        </div>
+                        <h4 class="card-title">Check for Available Doctor</h4>
+                    </div>
+                    <div class="content">
+                        <form method="POST" action="/MakeAppointment/BookAppointment?Docid=@ViewBag.DoctorID&PID=@Session["PatientID"].ToString()">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="label-control">Doctor Name</label>
+                                        <div class="input-group">
+                                            <input type="text" id="name" name="DoctorName" class="form-control disabled" value=@ViewBag.DoctorName />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="label-control">@Html.LabelFor(model => model.Date)</label>
+                                        <div class="input-group">
+                                            @*<input type="text" id="date" name="Date" class="form-control disabled" value=@ViewBag.Date />*@
+                                            @Html.TextBoxFor(model => model.Date, new { @class = "form-control disabled", type = "text", id = "date", name = "Date", value = @ViewBag.Date })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @*<label>Time Slots</label>
+                                        <select class="selectpicker form-control" name="TimeSlot" data-style="select-with-transition" id="Slot">
+                                            
+                                        </select>*@
+
+                                        @Html.LabelFor(model => model.TimeSlot)
+                                              @{
+                                                List<SelectListItem> listItems = new List<SelectListItem> {
+                                                        new SelectListItem { Text = "8:00-8:15", Value = "8:00-8:15" },
+                                                        new SelectListItem { Text = "8:15-8:30", Value = "8:15-8:30" },
+                                                        new SelectListItem { Text = "8:30-8:45", Value = "8:30-8:45" },
+                                                        new SelectListItem { Text = "8:45-9:00", Value = "8:45-9:00" },
+                                                        new SelectListItem { Text = "9:00-9:15", Value = "9:00-9:15" },
+                                                        new SelectListItem { Text = "9:15-9:30", Value = "9:15-9:30" },
+                                                        new SelectListItem { Text = "9:30-9:45", Value = "9:30-9:45" },
+                                                        new SelectListItem { Text = "9:45-10:00", Value = "9:45-10:00" },
+                                                        new SelectListItem { Text = "10:00-10:15", Value = "10:00-10:15" },
+                                                        new SelectListItem { Text = "10:15-10:30", Value = "10:15-10:30" },
+                                                        new SelectListItem { Text = "10:30-10:45", Value = "10:30-10:45" },
+                                                        new SelectListItem { Text = "10:45-11:00", Value = "10:45-11:00" },
+                                                        new SelectListItem { Text = "11:15-11:30", Value ="11:15-11:30" },
+                                                        new SelectListItem { Text = "11:30-11:45", Value = "11:30-11:45" },
+                                                        new SelectListItem { Text = "11:45-12:00", Value = "11:45-12:00"}
+
+                                                         };
+                                            }
+                                            @Html.DropDownListFor(model => model.TimeSlot, listItems, "-Select TimeSlot-",
+                                                             new { @class = "selectpicker form-control ", name = "TimeSlot", id = "Slot" })
+                                            <div class="text-danger">@Html.ValidationMessageFor(model => model.TimeSlot)</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @*<label class="label-control">Description</label>*@
+                                        @*<div class="input-group" >
+                                            <textarea id="desc" rows="3" name="Description" class="form-control"></textarea>
+                                        </div>*@
+                                        <label class="label-control">@Html.LabelFor(model => model.Description)</label>
+                                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control ", type = "text", id = "Desc", name = "Description"})
+                                        <div class="text-danger">@Html.ValidationMessageFor(model => model.Description)</div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="text-center">
+                                <input type="submit" id="btnSave" class="btn btn-info btn-fill btn-wd" value="Book" />
+                            </div>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                    <div><label id="msg" class="text-danger">@ViewBag.ErrorMessage</label></div>
+                   
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="../../assets/js/moment.min.js"></script>
+    <script src="../../assets/js/fullcalendar.min.js"></script>
+    <script src="../../assets/js/sweetalert2.js"></script>
+    <script src="../../assets/js/bootstrap-datetimepicker.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            initFormExtendedDatetimepickers();
+            $('#dtp1,#dtp2').datetimepicker({
+                format: 'MM/DD/YYYY HH:mm A'
+            });
+            
+            $('#Slot').on('Change', function () {
+                var data = $('#Slot').val();
+                CheckTimeslot(data);
+            })
+
+            function checkTimeSlot(data) {
+
+                $.ajax({
+                    type: "GET",
+                    url: "/MakeAppointment/CheckSlot",
+                    data: data,
+                    success: function (data) {
+
+                        $("#msg").text('Slot available');
+                        $("#msg").on("change", function () {
+                            $("label.txt12Red")
+                                .addClass("text-warning")
+                                .removeClass("text-danger");
+                        });
+                    },
+                    error: function (error) {
+
+                        $("#msg").text('Time Slot Already Booked');
+
+                    }
+                })
+            }
+
+            function initFormExtendedDatetimepickers() {
+                $('.datetimepicker').datetimepicker({
+                    format: 'MM/DD/YYYY HH:mm A',
+                    icons: {
+                        time: "fa fa-clock-o",
+                        date: "fa fa-calendar",
+                        up: "fa fa-chevron-up",
+                        down: "fa fa-chevron-down",
+                        previous: 'fa fa-chevron-left',
+                        next: 'fa fa-chevron-right',
+                        today: 'fa fa-screenshot',
+                        clear: 'fa fa-trash',
+                        close: 'fa fa-remove'
+                    }
+
+                });
+
+                $('.datepicker').datetimepicker({
+                    format: 'MM/DD/YYYY',
+                    icons: {
+                        time: "fa fa-clock-o",
+                        date: "fa fa-calendar",
+                        up: "fa fa-chevron-up",
+                        down: "fa fa-chevron-down",
+                        previous: 'fa fa-chevron-left',
+                        next: 'fa fa-chevron-right',
+                        today: 'fa fa-screenshot',
+                        clear: 'fa fa-trash',
+                        close: 'fa fa-remove'
+                    }
+                });
+
+                $('.timepicker').datetimepicker({
+                    //          format: 'H:mm',    // use this format if you want the 24hours timepicker
+                    format: 'h:mm A',    //use this format if you want the 12hours timpiecker with AM/PM toggle
+                    icons: {
+                        time: "fa fa-clock-o",
+                        date: "fa fa-calendar",
+                        up: "fa fa-chevron-up",
+                        down: "fa fa-chevron-down",
+                        previous: 'fa fa-chevron-left',
+                        next: 'fa fa-chevron-right',
+                        today: 'fa fa-screenshot',
+                        clear: 'fa fa-trash',
+                        close: 'fa fa-remove'
+                    }
+                });
+            }
+
+            
+
+        })
+
+        $(document).on('click', 'form button[type=submit]', function (e) {
+            var isValid = $(e.target).parents('form').isValid();
+            if (!isValid) {
+                     e.preventDefault(); //prevent the default action
+                    if ($('#desc').val().trim() == "") {
+                        $("#msg").text('desc requiret')
+                        $("#msg").on("change", function () {
+                            $("label.txt12Red")
+                                .addClass("text-warning")
+                                .removeClass("text-danger");
+                        });
+                        return;
+                    }
+                    if ($('#Slot').val().trim() == "") {
+                        $("#msg").text('desc requiret')
+                        $("#msg").on("change", function () {
+                            $("label.txt12Red")
+                                .addClass("text-warning")
+                                .removeClass("text-danger");
+                        });
+                        return;
+                    }
+
+                    
+                    
+                    //Validation/
+               
+            }
+            
+           })
+        
+    </script>
+}

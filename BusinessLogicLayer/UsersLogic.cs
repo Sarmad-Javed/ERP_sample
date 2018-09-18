@@ -19,7 +19,7 @@ namespace BusinessLogicLayer
 
 
         //add record
-        public void addUsers(AddUserModel User)
+        public void addUsers(UserModel User)
         {
             UserDAL.addUser(User);
         }
