@@ -1,0 +1,101 @@
+﻿@model IEnumerable<ERPEntities.Models.AppointmentDetails>
+@{
+    ViewBag.Title = "Appointments";
+    Layout = Layout = "~/Views/Shared/_PatientLayout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    @foreach(var item in Model)
+                    { 
+                    <div class="card-body">
+
+                        <hr style="margin:0px; "/>
+
+                        <div class="row">
+                            <div class="col-sm-2">
+                            </div>
+                            <div class="col-sm-2">
+                                <span class="text-center"></span>
+                            </div>
+                            <div class="col-sm-8">
+                                <p style="text-align: right">Appointment ID : @Html.DisplayFor(modelItem => item.AppointmentID)</p>
+                            </div>
+                        </div>
+
+                        <hr style="margin: 0px; margin-bottom: 25px;" />
+
+                        <div class="row">
+                            <br />
+                            <!--Doctor info-->
+                            <div class="col-md-4">
+                                <div class=" card-profile" style="margin-top: -20px; margin-bottom:10px;">
+                                    <div class=" card-avatar" style="margin: 0px; margin-left: 10px;">
+                                        <a>
+                                            <img id="img" class="img" src="@Html.DisplayFor(modelItem => item.DoctorImage)" />
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="card-info">
+                                    <a href="" class="card-name" target="_blank">@Html.DisplayFor(modelItem => item.DoctorName)</a>
+                                    <div class="card-text">@Html.DisplayFor(modelItem => item.Designation)</div>
+                                    <div class="card-text">@Html.DisplayFor(modelItem => item.DoctorEmail)</div>
+                                </div>
+                            </div>
+                            <!-- Timings-->
+                            <div class="col-md-4">
+                                <div class="appointment-date">
+                                    <i class="fa fa-calendar"></i><span>@Html.DisplayFor(modelItem => item.Date)</span>
+                                </div>
+                                <div>
+                                    <i class="fa fa-hourglass-o"></i><span>At @Html.DisplayFor(modelItem => item.TimeSlot)</span>
+                                </div>
+                            </div>
+                            <!-- Patientinfo-->
+                            <div class="col-md-4">
+                                <div class=" card-profile" style="margin-top: -20px; margin-bottom:10px;">
+                                    <div class=" card-avatar" style="margin: 0px; margin-left: 10px;">
+                                        <a>
+                                            <img id="img" class="img" src="@Html.DisplayFor(modelItem => item.PatientImage)" />
+                                        </a>
+                                    </div>
+                                </div>
+                                <a href="" class="patient-name" target="_blank">
+                                    <i class="fa fa-user-o"></i> @Html.DisplayFor(modelItem => item.PatientName)
+                                </a>
+                                <p class="patient-other">
+                                    <i class="fa fa-envelope-o"></i>
+                                    @Html.DisplayFor(modelItem => item.PatientEmail)
+                                </p>
+                                <p class="patient-other">
+                                    <i class="fa fa-phone"></i>
+                                    @Html.DisplayFor(modelItem => item.PatientContact)
+                                </p>
+                            </div>
+                        </div>
+
+                        <hr style="margin:0px;" />
+
+                        <div class="row">
+                            <div class="col-sm-8"></div>
+                            <div class="col-sm-4">
+                                <div class="text-right">
+                                    <a href="/MakeAppoinment/Details" class="btn btn-link btn-info btn-just-icon like"><i class="material-icons">favorite</i></a>
+                                    <a href="#" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">dvr</i></a>
+                                    <a href="#" class="btn btn-link btn-danger btn-just-icon remove"><i class="material-icons">close</i></a>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <hr style="margin:0px;" />
+
+                    </div>
+                    }
+               </div>
+            </div>
+        </div>
+    </div>
+</div>

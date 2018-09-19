@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using BusinessLogicLayer;
 using ERPEntities.Models;
-using System;
 using ERPEntities.DataContext;
 using DataAccessLayer;
-using System.Collections.Generic;
 using System.Data.Linq;
 using System.Linq;
 using System.Web;
@@ -29,6 +27,17 @@ namespace ERP_SupplyChain.Controllers
         {
             return View();
         }
+
+        // GET: /MakeAppointment/
+        public ActionResult Appointments( )
+        {
+            AppointmentDAL AppDAL = new AppointmentDAL();
+            int ID = int.Parse(Session["PatientID"].ToString());
+            List<AppointmentDetails> details = AppDAL.getAppointmentDetails(ID);
+
+            return View(details);
+        }
+
         // GET: /MakeAppointment/
         public ActionResult BookAppointment(int id,string DoctorName,string Date)
         {
