@@ -62,10 +62,21 @@ namespace ERPEntities.Models
         public string UserImage { get; set; }
     }
 
+    [MetadataType(typeof(LoginMetaData))]
     public class LoginModel
     {
+        public string UserName { get; set; }
+        
+        public string Password { get; set; }
+
+    }
+    public class LoginMetaData
+    {
+        [Remote("CheckUserName", "Accounts", ErrorMessage = "Username not found")]
         [Required(ErrorMessage = "UserName required")]
         public string UserName { get; set; }
+
+         [Remote("CheckPassword", "Accounts", ErrorMessage = "Wrong Password")]
         [Required(ErrorMessage = "Password required")]
         public string Password { get; set; }
 

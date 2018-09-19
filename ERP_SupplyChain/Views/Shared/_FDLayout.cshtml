@@ -56,74 +56,35 @@
             </div>
             <div class="sidebar-wrapper">
                 <!-- User Info -->
-                @Html.Partial("_UserInfo", Model)
+                @Html.Partial("_UserInfo")
 
                 <!-- User Info End -->
 
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="dashboard.html">
+                        <a class="nav-link" href="DashBoard/FrontDesk">
                             <i class="material-icons">dashboard</i>
                             <p> Dashboard </p>
                         </a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" data-toggle="collapse" href="#pagesExamples">
+                        <a class="nav-link" data-toggle="collapse" href="DashBoard/FrontDesk">
                             <i class="material-icons">image</i>
                             <p>
-                                Manage User
-                                <b class="caret"></b>
+                                Manage Bills
+                                
                             </p>
                         </a>
-                        <div class="collapse" id="pagesExamples">
-                            <ul class="nav">
-                                <li class="nav-item item active ">
-                                    <a class="nav-link" href="additems.html">
-                                        <span class="sidebar-mini"> P </span>
-                                        <span class="sidebar-normal"> Add User </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item item active">
-                                    <a class="nav-link" href="viewitems.html">
-                                        <span class="sidebar-mini"> RS </span>
-                                        <span class="sidebar-normal">View User</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
                     </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" data-toggle="collapse" href="#tablesExamples">
-                            <i class="material-icons">grid_on</i>
+                    <li class="nav-item active">
+                        <a class="nav-link" data-toggle="collapse" href="#">
+                            <i class="material-icons">image</i>
                             <p>
-                                Tables
-                                <b class="caret"></b>
+                                View Appointments
+
                             </p>
                         </a>
-                        <div class="collapse" id="tablesExamples">
-                            <ul class="nav">
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="tables/regular.html">
-                                        <span class="sidebar-mini"> RT </span>
-                                        <span class="sidebar-normal"> Regular Tables </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="tables/extended.html">
-                                        <span class="sidebar-mini"> ET </span>
-                                        <span class="sidebar-normal"> Extended Tables </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="tables/datatables.net.html">
-                                        <span class="sidebar-mini"> DT </span>
-                                        <span class="sidebar-normal"> DataTables.net </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
+                    </li></ul>
             </div>
         </div>
         <!-- sidebar Ends-->

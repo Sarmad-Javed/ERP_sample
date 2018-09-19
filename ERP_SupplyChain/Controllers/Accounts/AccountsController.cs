@@ -1,4 +1,5 @@
 ﻿using BusinessLogicLayer;
+using ERPEntities;
 using ERPEntities.Models;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,40 @@ namespace ERP_SupplyChain.Controllers.Accounts
         public ActionResult Admin()
         {
             return View(User);
+        }
+
+        public JsonResult CheckUserName(string UserName)
+        {
+            using (ERP1DataContext dc = new ERP1DataContext())
+            {
+                var result = dc.Users.Where(x => x.UserName == UserName).FirstOrDefault();
+
+                if (result != null)
+                {
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                return Json(false, JsonRequestBehavior.AllowGet);
+
+
+            }
+        }
+
+        public JsonResult CheckPassword(string Password)
+        {
+            using (ERP1DataContext dc = new ERP1DataContext())
+            {
+                var result = dc.Users.Where(x => x.Password == Password).FirstOrDefault();
+
+                if (result != null)
+                {
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                return Json(false, JsonRequestBehavior.AllowGet);
+
+
+            }
         }
 
         //POST:/Accounts/Login

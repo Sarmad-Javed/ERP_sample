@@ -1,5 +1,4 @@
-﻿
-@model ERPEntities.Models.LoginModel
+﻿@model ERPEntities.Models.PatientRegistrationModel
 @{
     Layout = null;
 }
@@ -45,6 +44,9 @@
     <link href="../../assets/css/material-dashboard98f3.css?v=1.3.0" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="../../assets/css/demo.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
@@ -86,11 +88,10 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                   
-                    <li class="">
-                        <a href="/PatientAccounts/PatientRegistration/">
-                            <i class="material-icons">person_add</i>
-                            Register
+                    <li>
+                        <a href="../dashboard.html">
+                            <i class="material-icons">lock_outline</i>
+                            Login
                         </a>
                     </li>
                 </ul>
@@ -119,10 +120,21 @@
                                                 <i class="material-icons">email</i>
                                             </span>
                                             <div class="form-group">
+                                                @Html.LabelFor(model => model.Email, new { @class = "control-label" })
+                                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", name = "Email" })
+                                                <div class="text-danger">@Html.ValidationMessageFor(model => model.Email)</div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="material-icons">person_add</i>
+                                                
+                                            </span>
+                                            <div class="form-group">
                                                 @Html.LabelFor(model => model.UserName, new { @class = "control-label" })
                                                 <br />
-                                                @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
-                                                @Html.ValidationMessageFor(model => model.UserName)
+                                                @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", name = "UserName" })
+                                                <div class="text-danger">@Html.ValidationMessageFor(model => model.UserName)</div>
 
                                             </div>
                                         </div>
@@ -132,13 +144,13 @@
                                             </span>
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.Password, new { @class = "control-label" })
-                                                @Html.TextBoxFor(model => model.Password, new { @class = "form-control" })
-                                                @Html.ValidationMessageFor(model => model.Password)
+                                                @Html.TextBoxFor(model => model.Password, new { @class = "form-control", type = "Password", name = "Password" })
+                                                <div class="text-danger">@Html.ValidationMessageFor(model => model.Password)</div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="footer text-center">
-                                        <input type="submit" class="btn btn-info btn-fill btn-wd" value="Login" />
+                                        <input type="submit" class="btn btn-info btn-fill btn-wd" value="Register" />
                                     </div>
                                 </div>
 
