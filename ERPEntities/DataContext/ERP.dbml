@@ -23,20 +23,6 @@
       <Column Name="EmpRating" Type="System.Double" DbType="Float" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Items" Member="Items">
-    <Type Name="Item">
-      <Column Name="ItemID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="VendorID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CategoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ItemName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="MfgDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="ExpDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="UnitPrice" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="PurchasePrice" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="Unit_of_Measure" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="LeadTime" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Users" Member="Users">
     <Type Name="User">
       <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -56,15 +42,6 @@
       <Column Name="RoleName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="RoleDisc" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Association Name="Role_User" Member="User" ThisKey="RoleID" OtherKey="UserID" Type="User" Cardinality="One" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Vendor" Member="Vendors">
-    <Type Name="Vendor">
-      <Column Name="VendorID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="VendorName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="VendorAddress" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="VendorContact" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ZIPCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Schedule" Member="Schedules">
@@ -121,6 +98,65 @@
       <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="TimeSlot" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Description" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Items" Member="Items">
+    <Type Name="Item">
+      <Column Name="ItemID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="VendorID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CategoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ItemName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="MfgDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ExpDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="UnitPrice" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PurchasePrice" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Unit_of_Measure" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LeadTime" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Vendor_Item" Member="Vendor" ThisKey="VendorID" OtherKey="VendorID" Type="Vendor" IsForeignKey="true" />
+      <Association Name="Category_Item" Member="Category" ThisKey="CategoryID" OtherKey="CategoryID" Type="Category" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Vendor" Member="Vendors">
+    <Type Name="Vendor">
+      <Column Name="VendorID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="VendorName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="VendorAddress" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="VendorContact" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ZIPCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Vendor_Item" Member="Items" ThisKey="VendorID" OtherKey="VendorID" Type="Item" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Category" Member="Categories">
+    <Type Name="Category">
+      <Column Name="CategoryID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CategoryName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Category_Item" Member="Items" ThisKey="CategoryID" OtherKey="CategoryID" Type="Item" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Order]" Member="Orders">
+    <Type Name="Order">
+      <Column Name="OrderId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="VendorName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OrderDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TotalAmount" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OrderStatus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Payment" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Association Name="Order_OrderDetail" Member="OrderDetails" ThisKey="OrderId" OtherKey="OrderID" Type="OrderDetail" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OrderDetail" Member="OrderDetails">
+    <Type Name="OrderDetail">
+      <Column Name="OrderDetailID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="OrderID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ItemID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="VendorID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ItemName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="VendorName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Category" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(12,2)" CanBeNull="true" />
+      <Column Name="TotalAmount" Type="System.Decimal" DbType="Decimal(12,2)" CanBeNull="true" />
+      <Association Name="Order_OrderDetail" Member="Order" ThisKey="OrderID" OtherKey="OrderId" Type="Order" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

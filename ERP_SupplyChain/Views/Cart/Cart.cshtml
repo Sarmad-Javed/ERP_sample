@@ -1,0 +1,49 @@
+﻿@model ERPEntities.Models.CartViewModel
+
+<div class="card" style="background-color:;">
+    <div class="card-header card-header-info">
+
+        <h4 class="card-title">Items List</h4>
+    </div>
+    <div class="content">
+        <div class="row">
+            <div class="content table-responsive table-full-width">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.ProductName)</th>
+                            <th>Html.DisplayNameFor(model => model.Price)</th>
+                            <th>@Html.DisplayNameFor(model => model.Price)</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@Html.DisplayFor(model => model.ProductName)</td>
+                            <td>@Html.DisplayFor(model => model.Quantity)</td>
+                            <td>Rs@Html.DisplayFor(model => model.Price)</td>
+                            <td>
+                                <a href=""> + </a>
+                                <a href=""> - </a>
+                                <a href="">Remove</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <b>@Html.DisplayNameFor(model => model.Total):</b><span>@Html.DisplayFor(model => model.Total)</span>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <a class="btn btn-info btn-fill btn-wd">PlaceOrder</a>
+        </div>
+    </div>
+</div>

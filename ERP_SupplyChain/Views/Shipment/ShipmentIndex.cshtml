@@ -1,0 +1,268 @@
+﻿@model IEnumerable<ERPEntities.Models.ShipmentVM>
+@{
+    Layout = "~/Views/Shared/_SCLayout.cshtml";
+    ViewBag.Title = "Pending Orders";
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/assets/js/moment.min.js"></script>
+<div class="content">
+    <div class="container-fluid">
+       
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header card-header-warning">
+                        <h4 style="display:inline">Awaiting Shipment</h4>
+                    </div>
+                    <div class="content">
+
+                        <div class="row">
+                            <div class="content table-responsive ">
+                                <table class="table table-striped">
+                                    <thead class=" text-warning">
+                                        <tr>
+                                            <th>OrderID</th>
+                                            <th>OrderDate</th>
+                                            <th>OrderStatus</th> 
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach(var item in Model)
+                                        {
+                                           <tr>
+                                               <td>@Html.DisplayFor(modelItem => item.OrderID)</td>
+                                               <td>@Html.DisplayFor(modelItem => item.OrderDate)</td>
+                                               <td>@Html.DisplayFor(modelItem => item.OrderStatus)</td> 
+                                           </tr> 
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="text-center">
+                            <a href="#" class="btn btn-warning btn-fill btn-wd" id="Approve">View More</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header card-header-info card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">assignment</i>
+                        </div>
+                        <h4 class="card-title">Update Log</h4>
+                        <hr/>
+                        <span class="text-info"><b>Note: </b>Enter recieved  order's <b>OrderID</b> and <b>Date</b> to confirm order's delivery!</span>
+                    </div>
+                    <div class="content">
+                        <div class="col-lg-12">
+                            <label>Enter OrderID</label>
+                            <input type="text" id="OrderID" name="Date" class="form-control" />
+                            <span class="error" style=" visibility:hidden;"> ID doesn't exsist!</span>
+                        </div>
+                        <div class="col-lg-12">
+                            <label>Recieved Date</label>
+                            <input type="text" id="Date" name="Qty" class="form-control datepicker" />
+                            <span class="error" style=" visibility:hidden;"> Required field !</span>
+                        </div> 
+                        <div class="text-center">
+                            <a href="#" class="btn btn-info btn-fill btn-wd" id="Update">Update</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header card-header-success">
+                        <h4 style="display:inline">New Arrival</h4><br />
+                        <span>Shipment Log</span>
+                    </div>
+                    <div class="content">
+
+                        <div class="row">
+                            <div class="content table-responsive " id="OrderList">
+
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="text-center">
+                            <a href="#" class="btn btn-success btn-fill btn-wd" id="Approve">Add to Stock</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../../assets/js/moment.min.js"></script>
+<script src="../../assets/js/fullcalendar.min.js"></script>
+<script src="../../assets/js/sweetalert2.js"></script>
+<script src="../../assets/js/bootstrap-datetimepicker.js"></script>
+
+<script>
+    // datepicker
+    $(document).ready(function () {
+        initFormExtendedDatetimepickers();
+        $('#dtp1,#dtp2').datetimepicker({
+            format: 'MM/dd/yyyy HH:mm A'
+        });
+        function initFormExtendedDatetimepickers() {
+            $('.datetimepicker').datetimepicker({
+                format: 'MM/dd/yyyy HH:mm A',
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-chevron-up",
+                    down: "fa fa-chevron-down",
+                    previous: 'fa fa-chevron-left',
+                    next: 'fa fa-chevron-right',
+                    today: 'fa fa-screenshot',
+                    clear: 'fa fa-trash',
+                    close: 'fa fa-remove'
+                }
+
+            });
+
+            $('.datepicker').datetimepicker({
+                format: 'MM/DD/YYYY',
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-chevron-up",
+                    down: "fa fa-chevron-down",
+                    previous: 'fa fa-chevron-left',
+                    next: 'fa fa-chevron-right',
+                    today: 'fa fa-screenshot',
+                    clear: 'fa fa-trash',
+                    close: 'fa fa-remove'
+                }
+            });
+
+            $('.timepicker').datetimepicker({
+                //          format: 'H:mm',    // use this format if you want the 24hours timepicker
+                format: 'h:mm A',    //use this format if you want the 12hours timpiecker with AM/PM toggle
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-chevron-up",
+                    down: "fa fa-chevron-down",
+                    previous: 'fa fa-chevron-left',
+                    next: 'fa fa-chevron-right',
+                    today: 'fa fa-screenshot',
+                    clear: 'fa fa-trash',
+                    close: 'fa fa-remove'
+                }
+            });
+        }
+    })
+
+    $(document).ready(function () {
+        var NewArrival = [];
+        GetDeleiveredOrders();
+        //get DeliveredOrders
+        function GetDeleiveredOrders() {
+            $.get("/Shipment/GetDeleiveredOrders", function (data) {
+                $.each(data, function (index, row) {
+                    alert(row.OrderID)
+                    NewArrival.push({
+                        OrderID: row.OrderID,
+                        OrderStatus: row.OrderStatus,
+                        OrderDate: row.OrderDate,
+                    });
+                    GeneratedItemsTable();
+                })
+
+            })
+        }
+        //Update log
+        $("#Update").on("click", function () {
+           CheckOrderID();
+           
+        })
+        
+        //CheckID
+        function CheckOrderID() {
+            alert("id check");
+            var OrderID = parseInt($("#OrderID").val());
+            var OrderDate = $("#Date").val();
+            var data = {
+                OrderID: OrderID,
+                
+            }
+            alert(OrderID);
+            alert(OrderDate);
+            $.ajax({
+                url: '/Shipment/CheckOrderID',
+                type: "POST",
+                data: JSON.stringify(data),
+                dataType: "JSON",
+                contentType: "application/json",
+                success: function (d) {
+                    //check is successfully save to database 
+                    if (d.status == true) {
+                        //will send status from server side
+                        alert("id exist");
+                        isValidItem = true;
+                        if (d.status == true) {
+                            alert("log update");
+                            //Updating Status
+                            $.get("/Shipment/UpdateLog", {orderID:OrderID,orderDate: OrderDate }, function (data) {
+                                $.each(data, function (index, row) {
+                                    alert(row.OrderID)
+                                    NewArrival.push({
+                                        OrderID: row.OrderID,
+                                        OrderStatus: row.OrderStatus,
+                                        OrderDate : row.OrderDate,
+                                    });
+                                    GeneratedItemsTable();
+                                })
+                            })
+                        }
+                        //clear form
+
+                    }
+                    else {
+                        alert("id doesn't exist");
+                        isValidItem = false;
+                    }
+                },
+                error: function () {
+                    alert('Error. Please try again.');
+                    $('#submit').val('Save');
+                }
+            });
+        }
+
+        //generate table
+        function GeneratedItemsTable() {
+            if (NewArrival.length > 0) {
+                var $table = $('<table/>').addClass("table table-striped");
+                $table.append('<thead><tr><th>Item</th><th>Quantity</th><th>Rate</th></tr></thead>');
+                var $tbody = $('<tbody/>');
+                $.each(NewArrival, function (i, val) {
+                    var $row = $('<tr/>');
+                    $row.append($('<td/>').html(val.OrderID));
+                    $row.append($('<td/>').html(val.OrderDate));
+                    $row.append($('<td/>').html(val.OrderStatus));
+                    $tbody.append($row);
+                });
+                console.log("current", NewArrival);
+                $table.append($tbody);
+                $('#OrderList').html($table);
+            }
+            else {
+                $('#orderItems').html('');
+            }
+        }
+    })
+</script>
+
+

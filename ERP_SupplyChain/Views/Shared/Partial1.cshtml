@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ERPEntities.Models.CartViewModel>
+
+@if (ViewBag.message != null)
+{
+    <b>ViewBag.message</b>
+}
+else
+{
+    <div class="card" style="background-color:;">
+    <div class="card-header card-header-info">
+
+        <h4 class="card-title">Items List</h4>
+    </div>
+    <div class="content">
+        <div class="row">
+            <div class="content table-responsive table-full-width">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.ProductName)</th>
+                            <th>Html.DisplayNameFor(model => model.Price)</th>
+                            <th>@Html.DisplayNameFor(model => model.Price)</th>
+                            <th>Action</th>
+                            <th>@Html.DisplayNameFor(model => model.Total)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var item in Model)
+                        {
+                            <tr>
+                            <td>@Html.DisplayFor(model => item.ProductName)</td>
+                            <td>@Html.DisplayFor(model => item.Quantity)</td>
+                            <td>Rs @Html.DisplayFor(model => item.Price)</td>
+                            <td>
+                                <a href=""> + </a>
+                                <a href=""> - </a>
+                                <a href="">Remove</a>
+                            </td>
+                            <td>@Html.DisplayFor(model => item.Total)</td>
+                        </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Total:  ViewBag.GrandTotal</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <a class="btn btn-info btn-fill btn-wd">PlaceOrder</a>
+        </div>
+    </div>
+</div>
+
+}

@@ -1,0 +1,40 @@
+﻿@model ERPEntities.Models.VendorItemView
+@{
+    Layout = null;
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<div class="content">
+
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="">
+                @if (ViewBag.VendorList != null)
+                {   @Html.LabelFor(model => model.VendorID)
+                    @Html.DropDownListFor(model => model.VendorID, ViewBag.VendorList as SelectList, "--Select Vendor--", new { @class = " form-control ", name = "SelectVendor", id = "VendorId" })
+                }
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="">
+                @Html.LabelFor(model => model.ItemID)
+                @Html.DropDownListFor(model => model.ItemID, new SelectList(" "), "--Select Item--", new { @class = " form-control ", name = "SelectItem", id = "ItemId" })
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#VendorId").change(function () {
+            $.get("/PlaceOrder/GetItem", { VendorId: $("#VendorId").val() }, function (data) {
+
+                $.each(data, function (index, row) {
+                    $("#ItemId").append("<option value='" + row.ItemId + "'>" + row.ItemName + "</option>")
+                });
+            });
+        })
+    });
+
+</script>
+ 

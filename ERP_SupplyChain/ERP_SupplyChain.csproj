@@ -449,12 +449,16 @@
     <Compile Include="Controllers\Inventory\InventoryController.cs" />
     <Compile Include="Controllers\ManageAppointment\MakeAppointmentController.cs" />
     <Compile Include="Controllers\ManageAttendance\ManageAttendanceController.cs" />
-    <Compile Include="Controllers\ManageBills\ManageBillsController.cs" />
+    <Compile Include="Controllers\ManageEmployee\ManageBills\ManageBillsController.cs" />
     <Compile Include="Controllers\ManageEmployee\ManageEmployeeController.cs" />
+    <Compile Include="Controllers\ManageOrder\CartController.cs" />
+    <Compile Include="Controllers\ManageOrder\PendingOrderController.cs" />
+    <Compile Include="Controllers\ManageOrder\PlaceOrderController.cs" />
     <Compile Include="Controllers\ManagePatient\ManagePatientController.cs" />
     <Compile Include="Controllers\ManageUser\ManageUserController.cs" />
     <Compile Include="Controllers\ManageVendor\ManageVendorController.cs" />
     <Compile Include="Controllers\SessionCheck.cs" />
+    <Compile Include="Controllers\ShipmentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -522,6 +526,14 @@
     <Content Include="Views\ManageBills\Invoice.cshtml" />
     <Content Include="Views\PatientAccounts\PatientRegistration.cshtml" />
     <Content Include="Views\PatientAccounts\PatientInfo.cshtml" />
+    <Content Include="Views\PlaceOrder\OrderIndex.cshtml" />
+    <Content Include="Views\PlaceOrder\Porder.cshtml" />
+    <Content Include="Views\Cart\Cart.cshtml" />
+    <Content Include="Views\Shared\Partial1.cshtml" />
+    <Content Include="Views\PendingOrder\Orders.cshtml" />
+    <Content Include="Views\PendingOrder\OrderDetails.cshtml" />
+    <Content Include="Views\Shipment\ShipmentIndex.cshtml" />
+    <Content Include="Views\Shipment\UpdateStock.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
