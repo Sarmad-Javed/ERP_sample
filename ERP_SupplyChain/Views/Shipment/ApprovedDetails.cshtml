@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ERPEntities.Models.OrderDetailVM>
+﻿@model IEnumerable<ERPEntities.Models.ApprovedDetailsVM>
 @{
     Layout = "~/Views/Shared/_SCLayout.cshtml";
     ViewBag.Title = "Pending Orders";
@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header card-header-rose card-header-icon">
+                    <div class="card-header card-header-warning card-header-icon">
                         <div class="card-icon">
                             <i class="material-icons">receipt</i>
                         </div>
@@ -46,13 +46,11 @@
                 </div>
             </div>
         </div>
-        @foreach (var item in Model)
-        {
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8 card">
                 <div class="card">
-                    <div class="card-header card-header-rose">
+                    <div class="card-header card-header-warning">
                         <h4 style="display:inline">Order Items</h4>
                     </div>
                     <div class="content">
@@ -60,7 +58,7 @@
                         <div class="row">
                             <div class="content table-responsive table-full-width ">
                                 <table class="table table-striped">
-                                    <thead class=" text-rose">
+                                    <thead class=" text-warning">
                                         <tr>
                                             <th>Product Name</th>
                                             <th>Vendor</th>
@@ -72,15 +70,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach (var item in Model)
+                                        {
                                             <tr>
                                                 <td>@Html.DisplayFor(modelItem => item.ItemName)</td>
                                                 <td>@Html.DisplayFor(modelItem => item.VendorName)</td>
                                                 <td>@Html.DisplayFor(modelItem => item.Category)</td>
                                                 <td>@Html.DisplayFor(modelItem => item.Quanitity)</td>
                                                 <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                                                <td id="ExpDate"></td>
                                                 <td>@Html.DisplayFor(modelItem => item.TotalAmount)</td>
                                             </tr>
-                                       
+                                        }
                                     </tbody>
                                 </table>
 
@@ -89,12 +90,19 @@
 
                         <hr />
                         <div class="row">
-                            <div class="col-md-6"></div>
+                            <div class="col-lg-8"></div>
+                            <div class="col-lg-4 text-left">
+                                <label><b>Grand Total:</b><span>@ViewData["GTotal"].ToString()</span></label>
+                                <hr />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-9"></div>
                             <div class="col-md-3">
                                 <div class="text-center">
-                                    <a href="#" class="btn btn-rose btn-fill btn-wd" id="Approve">Add to Stock</a>
+                                    <a href="/Shipment/ShipmentIndex" class="btn btn-warning btn-fill btn-wd">Back</a>
                                 </div>
-                            </div> 
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -104,7 +112,6 @@
             <input style="visibility:hidden;" type="text" id="id" value=@ViewData["OrderId"].ToString() />
 
         </div>
-        }
     </div>
 </div>
 
@@ -116,25 +123,5 @@
 <script src="../../assets/js/bootstrap-datetimepicker.js"></script>
 
 <script>
-    // datepicker
-    $(document).ready(function () {
-        $('#Approve').on("click", function () {
-            var id = parseInt($("#id").val());
-            alert(id);
-
-            $.get("/PendingOrder/ApproveOrder", { OrderID: id }, function (data) {
-                if (data != null) {
-                    alert("data is true");
-                    $.each(data, function (i, row) {
-
-                        alert(status);
-                    })
-                }
-                else {
-                    alert("failed");
-                }
-            });
-        })
-    });
-
+    
 </script>  

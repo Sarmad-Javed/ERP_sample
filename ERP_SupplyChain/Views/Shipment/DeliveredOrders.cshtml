@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ERPEntities.Models.DeliveredOrderVM>
+@{
+    Layout = "~/Views/Shared/_SCLayout.cshtml";
+    ViewBag.Title = "Pending Orders";
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/assets/js/moment.min.js"></script>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-success card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">assignment</i>
+                        </div>
+                        <h4 class="card-title">Delivered Orders</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="toolbar">
+                            <!--        Here you can write extra buttons/actions for the toolbar              -->
+                        </div>
+                        <div class="material-datatables">
+                            <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                                <thead class="thead">
+                                    <tr>
+                                        <th>@Html.DisplayNameFor(model => model.OrderId)</th>
+                                        <th>@Html.DisplayNameFor(model => model.OrderDate)</th>
+                                        <th>@Html.DisplayNameFor(model => model.TotalAmount)</th>
+                                        <th>@Html.DisplayNameFor(model => model.OrderStatus)</th>
+                                        <th>@Html.DisplayNameFor(model => model.Payment)</th>
+                                        <th class="disabled-sorting text-center">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@Html.DisplayFor(modelItem => item.OrderId)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.OrderDate)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.TotalAmount)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.OrderStatus)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Payment)</td>
+                                            <td class="text-right">
+                                                <a href="/Shipment/DeliveredDetails?id=@Html.DisplayFor(modelItem => item.OrderId)&status=@Html.DisplayFor(modelItem => item.OrderStatus)&total=@Html.DisplayFor(modelItem => item.TotalAmount)&date=@Html.DisplayFor(modelItem => item.OrderDate)" class=" btn btn-simple btn-link btn-success btn-just-icon like">
+                                                    <i class="ti-pencil-alt"></i>
+                                                </a>   `
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- end content-->
+                </div>
+                <!--  end card  -->
+            </div>
+            <!-- end col-md-12 -->
+        </div>
+    </div>
+</div>
+

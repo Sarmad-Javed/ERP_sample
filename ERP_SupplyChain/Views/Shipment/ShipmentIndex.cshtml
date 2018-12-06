@@ -44,7 +44,7 @@
                         </div>
                         <hr />
                         <div class="text-center">
-                            <a href="#" class="btn btn-warning btn-fill btn-wd" id="Approve">View More</a>
+                            <a href="/Shipment/ApprovedOrders" class="btn btn-warning btn-fill btn-wd" id="Approve">View More</a>
                         </div>
                     </div>
                 </div>
@@ -92,7 +92,7 @@
                         </div>
                         <hr />
                         <div class="text-center">
-                            <a href="#" class="btn btn-success btn-fill btn-wd" id="Approve">Add to Stock</a>
+                            <a href="/Shipment/DeliveredOrders" class="btn btn-success btn-fill btn-wd" id="Approve">Add to Stock</a>
                         </div>
                     </div>
                 </div>
@@ -215,6 +215,8 @@
                             alert("log update");
                             //Updating Status
                             $.get("/Shipment/UpdateLog", {orderID:OrderID,orderDate: OrderDate }, function (data) {
+                                $('#orderItems').html('');
+                                NewArrival = [];
                                 $.each(data, function (index, row) {
                                     alert(row.OrderID)
                                     NewArrival.push({

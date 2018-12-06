@@ -38,21 +38,7 @@ namespace ERP_SupplyChain.Controllers
             return View(OrderList);
         }
 
-        [HttpPost]
-        //Get Shipment/CheckOrderID
-        public JsonResult CheckOrderID(int orderID)
-        {
-             bool status = false;
-             var orders = dc.Orders.Where(x => x.OrderId == orderID).Take(5);
-             if( orders != null)
-                 {
-                     status = true;
-                    return new JsonResult { Data = new { status = status } };
-                 }
-                 return new JsonResult { Data = new { status = status } };
-        }
-
-        //Get DeliveredOrders
+        //GetDeliveredOrders
         public JsonResult GetDeleiveredOrders()
         {
             List<ShipmentVM> NewArrival = new List<ShipmentVM>(5);
@@ -73,6 +59,20 @@ namespace ERP_SupplyChain.Controllers
                 return Json(NewArrival, JsonRequestBehavior.AllowGet);
             }
             return Json(NewArrival, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        //Get Shipment/CheckOrderID
+        public JsonResult CheckOrderID(int orderID)
+        {
+             bool status = false;
+             var orders = dc.Orders.Where(x => x.OrderId == orderID).Take(5);
+             if( orders != null)
+                 {
+                     status = true;
+                    return new JsonResult { Data = new { status = status } };
+                 }
+                 return new JsonResult { Data = new { status = status } };
         }
 
         //Get DeliveredOrders
@@ -113,6 +113,274 @@ namespace ERP_SupplyChain.Controllers
             AlertMessage.Add("OrderID or Date is null!");
             //return the status
             return Json(AlertMessage, JsonRequestBehavior.AllowGet);
+        }
+
+        //Get DeliveredOrders
+        public ActionResult ApprovedOrders()
+        {
+            var result = dc.Orders.Where(x => x.OrderStatus == "Approved").ToList();
+
+            List<ApprovedOrderVM> OrderList = new List<ApprovedOrderVM>();
+            if (result != null)
+            {
+                foreach (var v in result)
+                {
+                    ApprovedOrderVM POrders = new ApprovedOrderVM();
+                    POrders.OrderId = v.OrderId;
+                    DateTime OrderDate = (DateTime)v.OrderDate;
+                    string date = OrderDate.ToString("MM/dd/yyyy");
+                    POrders.OrderDate = date;
+                    POrders.TotalAmount = v.TotalAmount;
+                    POrders.OrderStatus = v.OrderStatus;
+                    POrders.Payment = v.Payment;
+
+                    OrderList.Add(POrders);
+                }
+
+                return View(OrderList);
+            }
+            return View(ViewBag.ErrorMessage);
+        }
+
+        //Get DeliveredOrders
+        public ActionResult DeliveredOrders()
+        {
+            var result = dc.Orders.Where(x => x.OrderStatus == "Delivered").ToList();
+
+            List<DeliveredOrderVM> OrderList = new List<DeliveredOrderVM>();
+            if (result != null)
+            {
+                foreach (var v in result)
+                {
+                    DeliveredOrderVM POrders = new DeliveredOrderVM();
+                    POrders.OrderId = v.OrderId;
+                    DateTime OrderDate = (DateTime)v.OrderDate;
+                    string date = OrderDate.ToString("MM/dd/yyyy");
+                    POrders.OrderDate = date;
+                    POrders.TotalAmount = v.TotalAmount;
+                    POrders.OrderStatus = v.OrderStatus;
+                    POrders.Payment = v.Payment;
+
+                    OrderList.Add(POrders);
+                }
+
+                return View(OrderList);
+            }
+            return View(ViewBag.ErrorMessage);
+        }
+
+        // GET: /PendingOrder/ordersDetail/id
+        public ActionResult ApprovedDetails(int id, string status, string total, string date)
+        {
+
+            List<ApprovedDetailsVM> DetailList = new List<ApprovedDetailsVM>();
+            var details = dc.OrderDetails.Where(x => x.OrderID == id).ToList();
+            if (details != null)
+            {
+                foreach (var v in details)
+                {
+                    ApprovedDetailsVM Orderdetail = new ApprovedDetailsVM();
+                    Orderdetail.ItemId = (int)v.ItemID;
+                    Orderdetail.ItemName = v.ItemName;
+                    Orderdetail.VendorName = v.VendorName;
+                    Orderdetail.Category = v.Category;
+                    Orderdetail.Quanitity = (int)v.Quantity;
+                    Orderdetail.Price = (decimal)v.Price;
+                    Orderdetail.TotalAmount = (decimal)v.TotalAmount;
+
+                    DetailList.Add(Orderdetail);
+                }
+                ViewData["OrderId"] = id;
+                ViewData["OrderStatus"] = status;
+                ViewData["OrderDate"] = date;
+                ViewData["GTotal"] = total;
+                return View(DetailList);
+            }
+            return View(DetailList);
+
+        }
+
+        // GET: /PendingOrder/DeliveredDetails/id
+        public ActionResult DeliveredDetails(int id, string status, string total, string date)
+        {
+
+            List<DeliveredDetailsVM> DetailList = new List<DeliveredDetailsVM>();
+            var details = dc.OrderDetails.Where(x => x.OrderID == id ).ToList();
+            if (details != null)
+            {
+                foreach (var v in details)
+                {
+                    DeliveredDetailsVM Orderdetail = new DeliveredDetailsVM();
+                    Orderdetail.ItemId = (int)v.ItemID;
+                    Orderdetail.ItemName = v.ItemName;
+                    Orderdetail.VendorName = v.VendorName;
+                    Orderdetail.Category = v.Category;
+                    Orderdetail.Quanitity = (int)v.Quantity;
+                    Orderdetail.Price = (decimal)v.Price;
+                    Orderdetail.TotalAmount = (decimal)v.TotalAmount;
+
+                    DetailList.Add(Orderdetail);
+                }
+                ViewData["OrderId"] = id;
+                ViewData["OrderStatus"] = status;
+                ViewData["OrderDate"] = date;
+                ViewData["GTotal"] = total;
+                return View(DetailList);
+            }
+            return View(DetailList);
+
+        }
+
+        //Get Item Details
+        public JsonResult GetItemDetails(int orderID)
+        {
+            List<ItemsModel> itemList = new List<ItemsModel>();
+            //get itemID
+            var itemID = dc.OrderDetails.Where(x => x.OrderID == orderID).Select(x => x.ItemID).ToList();
+            List<Item> ItemDetail = new List<Item>();
+            foreach (var v in itemID)
+            {
+                //get itemDetails
+               Item Item = dc.Items.Where(x => x.ItemID == v.Value).FirstOrDefault();
+
+               ItemDetail.Add(Item);
+            }
+            if (ItemDetail != null)
+            {
+                //Add itemDetails to model
+                foreach (var value in ItemDetail)
+                {
+
+                    ItemsModel item = new ItemsModel();
+                    {
+                        item.ItemID = value.ItemID;
+                        item.CategoryID = (int)value.CategoryID;
+                        item.VendorID = (int)value.VendorID;
+                        item.ItemName = value.ItemName;
+                        item.ExpDate = (DateTime)value.ExpDate;
+                        item.MfgDate = (DateTime)value.MfgDate;
+                        item.PurchasePrice = (double)value.PurchasePrice;
+                        item.UnitPrice = (double)value.UnitPrice;
+                        item.LeadTime = (int)value.LeadTime;
+                        item.Unit_of_Measure = value.Unit_of_Measure;
+                        itemList.Add(item);
+                    }
+
+                }
+                return Json(itemList, JsonRequestBehavior.AllowGet);
+            }
+            //search for itemdetail in items
+            return Json(ViewBag.ErrorMessage, JsonRequestBehavior.AllowGet);
+        }
+
+        //Get ItemQuantity
+        public JsonResult GetItemQuantity(int orderID)
+        {
+            List<ItemQuantityVM> ItemQuantity = new List<ItemQuantityVM>();
+            //get itemQuantity
+            var Quantity = from d in dc.OrderDetails
+                           where (d.OrderID == orderID)
+                           select new
+                           {
+                               ItemID = d.ItemID,
+                               Quantity = d.Quantity
+                           };
+            foreach (var v in Quantity)
+            {
+                //SaveStock to list
+                ItemQuantityVM Q = new ItemQuantityVM();
+                Q.ItemID = (int)v.ItemID;
+                Q.Quantity = (int)v.Quantity;
+
+                ItemQuantity.Add(Q);
+            }
+
+            return Json(ItemQuantity, JsonRequestBehavior.AllowGet);
+        }
+
+        //saveStock
+        [HttpPost]
+        public JsonResult SaveStock(StockVM stock)
+        {
+            bool status = false;
+            if (stock.ItemDetails != null)
+            {
+                foreach (var value in stock.ItemDetails)
+                    {
+                        var data = dc.Stocks.Where(x => x.ItemID == value.ItemID).ToList();
+                        if(data.Count != 0)
+                        {
+                            status = true;
+                        }
+                        else
+                        {
+                            Stock S = new Stock();
+                            S.ItemID = value.ItemID;
+                            S.CategoryID = value.CategoryID;
+                            S.VendorID = value.VendorID;
+                            S.ItemName = value.ItemName;
+                            S.Quantity = 0;
+                            S.ExpDate = value.ExpDate;
+                            S.MfgDate = value.MfgDate;
+                            S.PurchasePrice = value.PurchasePrice;
+                            S.UnitPrice = value.UnitPrice;
+                            S.LeadTime = value.LeadTime;
+                            S.Unit_of_Measure = value.Unit_of_Measure;
+                            dc.Stocks.InsertOnSubmit(S);
+                        }
+                    }
+
+                    dc.SubmitChanges();
+                    status = true;
+                
+            }
+            else
+            {
+                status = false;
+            }
+            return new JsonResult { Data = new { status = status } };
+        }
+
+        //UpdateQuantity
+        [HttpPost]
+        public JsonResult UpdateQuantity(QuantityVM Q)
+        {
+            bool status = false;
+            var order = dc.Orders.Where(x => x.OrderId == Q.OrderID).ToList();
+            //Checkif item already exist
+            if (Q.ItemQuantity != null)
+            {
+                foreach (var val in Q.ItemQuantity)
+                {
+                    var data = dc.Stocks.Where(x => x.ItemID == val.ItemID).ToList();
+
+
+                    if (data != null)
+                    {   //Yes increase stock quantity
+                        foreach( Stock S  in data)
+                        {
+                            S.Quantity = S.Quantity + val.Quantity;
+                            
+                        }
+                        //SaveStock to DB
+                        dc.SubmitChanges();
+                        status = true;
+                    }
+                    
+                    //changeOrderStatus
+                    foreach (Order O in order)
+                    {
+                        O.OrderStatus = "StockAdded";
+                       
+                    }
+                    dc.SubmitChanges();
+                }
+            }
+            else
+            {
+                status = false;
+            }
+            return new JsonResult { Data = new { status = status } };
         }
 
 	}

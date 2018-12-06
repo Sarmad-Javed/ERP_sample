@@ -459,6 +459,7 @@
     <Compile Include="Controllers\ManageVendor\ManageVendorController.cs" />
     <Compile Include="Controllers\SessionCheck.cs" />
     <Compile Include="Controllers\ShipmentController.cs" />
+    <Compile Include="Controllers\StockControllerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -533,7 +534,10 @@
     <Content Include="Views\PendingOrder\Orders.cshtml" />
     <Content Include="Views\PendingOrder\OrderDetails.cshtml" />
     <Content Include="Views\Shipment\ShipmentIndex.cshtml" />
-    <Content Include="Views\Shipment\UpdateStock.cshtml" />
+    <Content Include="Views\Shipment\ApprovedOrders.cshtml" />
+    <Content Include="Views\Shipment\DeliveredOrders.cshtml" />
+    <Content Include="Views\Shipment\ApprovedDetails.cshtml" />
+    <Content Include="Views\Shipment\DeliveredDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -543,6 +547,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\StockController\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

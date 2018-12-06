@@ -72,6 +72,9 @@ namespace ERPEntities.DataContext
     partial void InsertOrderDetail(OrderDetail instance);
     partial void UpdateOrderDetail(OrderDetail instance);
     partial void DeleteOrderDetail(OrderDetail instance);
+    partial void InsertStock(Stock instance);
+    partial void UpdateStock(Stock instance);
+    partial void DeleteStock(Stock instance);
     #endregion
 		
 		public ERPDataContext() : 
@@ -213,6 +216,14 @@ namespace ERPEntities.DataContext
 			get
 			{
 				return this.GetTable<OrderDetail>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Stock> Stocks
+		{
+			get
+			{
+				return this.GetTable<Stock>();
 			}
 		}
 	}
@@ -3326,6 +3337,332 @@ namespace ERPEntities.DataContext
 						this._OrderID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Order");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Stock")]
+	public partial class Stock : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _StockID;
+		
+		private System.Nullable<int> _ItemID;
+		
+		private System.Nullable<int> _VendorID;
+		
+		private System.Nullable<int> _CategoryID;
+		
+		private string _ItemName;
+		
+		private System.Nullable<int> _Quantity;
+		
+		private System.Nullable<System.DateTime> _MfgDate;
+		
+		private System.Nullable<System.DateTime> _ExpDate;
+		
+		private System.Nullable<double> _UnitPrice;
+		
+		private System.Nullable<double> _PurchasePrice;
+		
+		private string _Unit_of_Measure;
+		
+		private System.Nullable<int> _LeadTime;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnStockIDChanging(int value);
+    partial void OnStockIDChanged();
+    partial void OnItemIDChanging(System.Nullable<int> value);
+    partial void OnItemIDChanged();
+    partial void OnVendorIDChanging(System.Nullable<int> value);
+    partial void OnVendorIDChanged();
+    partial void OnCategoryIDChanging(System.Nullable<int> value);
+    partial void OnCategoryIDChanged();
+    partial void OnItemNameChanging(string value);
+    partial void OnItemNameChanged();
+    partial void OnQuantityChanging(System.Nullable<int> value);
+    partial void OnQuantityChanged();
+    partial void OnMfgDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnMfgDateChanged();
+    partial void OnExpDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnExpDateChanged();
+    partial void OnUnitPriceChanging(System.Nullable<double> value);
+    partial void OnUnitPriceChanged();
+    partial void OnPurchasePriceChanging(System.Nullable<double> value);
+    partial void OnPurchasePriceChanged();
+    partial void OnUnit_of_MeasureChanging(string value);
+    partial void OnUnit_of_MeasureChanged();
+    partial void OnLeadTimeChanging(System.Nullable<int> value);
+    partial void OnLeadTimeChanged();
+    #endregion
+		
+		public Stock()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StockID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int StockID
+		{
+			get
+			{
+				return this._StockID;
+			}
+			set
+			{
+				if ((this._StockID != value))
+				{
+					this.OnStockIDChanging(value);
+					this.SendPropertyChanging();
+					this._StockID = value;
+					this.SendPropertyChanged("StockID");
+					this.OnStockIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemID", DbType="Int")]
+		public System.Nullable<int> ItemID
+		{
+			get
+			{
+				return this._ItemID;
+			}
+			set
+			{
+				if ((this._ItemID != value))
+				{
+					this.OnItemIDChanging(value);
+					this.SendPropertyChanging();
+					this._ItemID = value;
+					this.SendPropertyChanged("ItemID");
+					this.OnItemIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VendorID", DbType="Int")]
+		public System.Nullable<int> VendorID
+		{
+			get
+			{
+				return this._VendorID;
+			}
+			set
+			{
+				if ((this._VendorID != value))
+				{
+					this.OnVendorIDChanging(value);
+					this.SendPropertyChanging();
+					this._VendorID = value;
+					this.SendPropertyChanged("VendorID");
+					this.OnVendorIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CategoryID", DbType="Int")]
+		public System.Nullable<int> CategoryID
+		{
+			get
+			{
+				return this._CategoryID;
+			}
+			set
+			{
+				if ((this._CategoryID != value))
+				{
+					this.OnCategoryIDChanging(value);
+					this.SendPropertyChanging();
+					this._CategoryID = value;
+					this.SendPropertyChanged("CategoryID");
+					this.OnCategoryIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemName", DbType="VarChar(MAX)")]
+		public string ItemName
+		{
+			get
+			{
+				return this._ItemName;
+			}
+			set
+			{
+				if ((this._ItemName != value))
+				{
+					this.OnItemNameChanging(value);
+					this.SendPropertyChanging();
+					this._ItemName = value;
+					this.SendPropertyChanged("ItemName");
+					this.OnItemNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Quantity", DbType="Int")]
+		public System.Nullable<int> Quantity
+		{
+			get
+			{
+				return this._Quantity;
+			}
+			set
+			{
+				if ((this._Quantity != value))
+				{
+					this.OnQuantityChanging(value);
+					this.SendPropertyChanging();
+					this._Quantity = value;
+					this.SendPropertyChanged("Quantity");
+					this.OnQuantityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MfgDate", DbType="Date")]
+		public System.Nullable<System.DateTime> MfgDate
+		{
+			get
+			{
+				return this._MfgDate;
+			}
+			set
+			{
+				if ((this._MfgDate != value))
+				{
+					this.OnMfgDateChanging(value);
+					this.SendPropertyChanging();
+					this._MfgDate = value;
+					this.SendPropertyChanged("MfgDate");
+					this.OnMfgDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExpDate", DbType="Date")]
+		public System.Nullable<System.DateTime> ExpDate
+		{
+			get
+			{
+				return this._ExpDate;
+			}
+			set
+			{
+				if ((this._ExpDate != value))
+				{
+					this.OnExpDateChanging(value);
+					this.SendPropertyChanging();
+					this._ExpDate = value;
+					this.SendPropertyChanged("ExpDate");
+					this.OnExpDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UnitPrice", DbType="Float")]
+		public System.Nullable<double> UnitPrice
+		{
+			get
+			{
+				return this._UnitPrice;
+			}
+			set
+			{
+				if ((this._UnitPrice != value))
+				{
+					this.OnUnitPriceChanging(value);
+					this.SendPropertyChanging();
+					this._UnitPrice = value;
+					this.SendPropertyChanged("UnitPrice");
+					this.OnUnitPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PurchasePrice", DbType="Float")]
+		public System.Nullable<double> PurchasePrice
+		{
+			get
+			{
+				return this._PurchasePrice;
+			}
+			set
+			{
+				if ((this._PurchasePrice != value))
+				{
+					this.OnPurchasePriceChanging(value);
+					this.SendPropertyChanging();
+					this._PurchasePrice = value;
+					this.SendPropertyChanged("PurchasePrice");
+					this.OnPurchasePriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Unit_of_Measure", DbType="VarChar(50)")]
+		public string Unit_of_Measure
+		{
+			get
+			{
+				return this._Unit_of_Measure;
+			}
+			set
+			{
+				if ((this._Unit_of_Measure != value))
+				{
+					this.OnUnit_of_MeasureChanging(value);
+					this.SendPropertyChanging();
+					this._Unit_of_Measure = value;
+					this.SendPropertyChanged("Unit_of_Measure");
+					this.OnUnit_of_MeasureChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LeadTime", DbType="Int")]
+		public System.Nullable<int> LeadTime
+		{
+			get
+			{
+				return this._LeadTime;
+			}
+			set
+			{
+				if ((this._LeadTime != value))
+				{
+					this.OnLeadTimeChanging(value);
+					this.SendPropertyChanging();
+					this._LeadTime = value;
+					this.SendPropertyChanged("LeadTime");
+					this.OnLeadTimeChanged();
 				}
 			}
 		}

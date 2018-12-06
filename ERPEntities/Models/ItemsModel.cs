@@ -41,4 +41,27 @@ namespace ERPEntities.Models
         [Required(ErrorMessage = "VendorID required")]
         public int LeadTime { get; set; }
     }
+
+    public class StockModel
+    {
+        public int ItemID { get; set; }
+
+        public int VendorID { get; set; }
+
+        public int CategoryID { get; set; }
+
+        public string ItemName { get; set; }
+
+        public string MfgDate { get; set; }
+   
+        public string ExpDate { get; set; }
+
+        public double UnitPrice { get; set; }
+
+        public double PurchasePrice { get; set; }
+
+        public string Unit_of_Measure { get; set; }
+
+        public int LeadTime { get; set; }
+    }
 }

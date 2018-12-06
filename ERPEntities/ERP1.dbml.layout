@@ -46,22 +46,22 @@
         <classShapeMoniker Id="ed078e88-86d7-4847-a8f8-8d616ce3909b" />
       </nodes>
     </associationConnector>
-    <classShape Id="e93de22f-f46f-4821-a9df-47968e6284f8" isExpanded="false" absoluteBounds="0.625, 6.375, 2, 0.45">
+    <classShape Id="e93de22f-f46f-4821-a9df-47968e6284f8" isExpanded="false" absoluteBounds="0.5, 5.625, 2, 0.45">
       <DataClassMoniker Name="/ERP1DataContext/Item" />
       <nestedChildShapes>
-        <elementListCompartment Id="537d7741-c315-47c6-ad30-6d95a0b1f388" absoluteBounds="0.64000000000000012, 6.835, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="537d7741-c315-47c6-ad30-6d95a0b1f388" absoluteBounds="0.51500000000000012, 6.085, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="a0bcc57c-a580-4af4-896c-da52bd99354c" isExpanded="false" absoluteBounds="0.5, 3.875, 2, 0.45">
+    <classShape Id="a0bcc57c-a580-4af4-896c-da52bd99354c" isExpanded="false" absoluteBounds="2.875, 5.625, 2, 0.45">
       <DataClassMoniker Name="/ERP1DataContext/Vendor" />
       <nestedChildShapes>
-        <elementListCompartment Id="fa685b46-4a29-42e7-b68e-64cbc97512f6" absoluteBounds="0.51500000000000012, 4.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="fa685b46-4a29-42e7-b68e-64cbc97512f6" absoluteBounds="2.89, 6.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="2c7f479c-d0e2-4715-a776-b9a7938d6f29" isExpanded="false" absoluteBounds="2.875, 6.375, 2, 0.45">
+    <classShape Id="2c7f479c-d0e2-4715-a776-b9a7938d6f29" isExpanded="false" absoluteBounds="0.5, 6.375, 2, 0.45">
       <DataClassMoniker Name="/ERP1DataContext/Category" />
       <nestedChildShapes>
-        <elementListCompartment Id="2b163908-798c-4c74-b8ec-4553c0ee5987" absoluteBounds="2.8899999999999997, 6.835, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="2b163908-798c-4c74-b8ec-4553c0ee5987" absoluteBounds="0.51499999999999968, 6.835, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="ffbdb351-5ce6-4482-b456-c25ac60aab11" isExpanded="false" absoluteBounds="0.5, 4.875, 2, 0.45">
@@ -76,12 +76,18 @@
         <elementListCompartment Id="9155e9fa-9fc0-4dd5-9887-654f2dd0a027" absoluteBounds="2.89, 5.335, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.5 : 5.1); (2.875 : 5.1)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.5 : 5.1); (2.875 : 5.1)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ERP1DataContext/Order/Order_OrderDetail" />
       <nodes>
         <classShapeMoniker Id="ffbdb351-5ce6-4482-b456-c25ac60aab11" />
         <classShapeMoniker Id="b5931742-d0db-4703-9a18-1316aa152efd" />
       </nodes>
     </associationConnector>
+    <classShape Id="703271c3-31eb-4449-8775-6cc6467d5c34" isExpanded="false" absoluteBounds="2.875, 6.375, 2, 0.45">
+      <DataClassMoniker Name="/ERP1DataContext/Stock" />
+      <nestedChildShapes>
+        <elementListCompartment Id="31580434-7053-4e36-a58b-7f2a39c941ac" absoluteBounds="2.89, 6.835, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

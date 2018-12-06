@@ -70,7 +70,7 @@ namespace ERP_SupplyChain.Controllers.ManageOrder
          }
 
       
-        // GET: /PendingOrder/ordersDetail/id
+        // GET: /PendingOrder/ApproveOrder/id
         public JsonResult ApproveOrder(int OrderID)
         {
 

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="ERP">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.75" name="ERP">
   <DataContextMoniker Name="/ERPDataContext" />
   <nestedChildShapes>
     <classShape Id="84cedb0f-81f7-4c4c-a195-f198570f1327" isExpanded="false" absoluteBounds="3.25, 1.25, 2, 0.45">
@@ -89,7 +89,7 @@
         <elementListCompartment Id="f2f72b61-361b-4beb-aa7b-6e122e2e9544" absoluteBounds="3.3899999999999997, 4.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(3.375 : 4.5375); (2.5 : 4.5375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(3.375 : 4.5375); (2.5 : 4.5375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ERPDataContext/Vendor/Vendor_Item" />
       <nodes>
         <classShapeMoniker Id="068ffcf2-304e-4c9f-a018-08de35954c01" />
@@ -121,12 +121,18 @@
         <elementListCompartment Id="428bcbda-4936-4f47-98f8-cc5b8da6a1cb" absoluteBounds="3.3899999999999997, 5.835, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.5 : 5.6); (3.375 : 5.6)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.5 : 5.6); (3.375 : 5.6)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ERPDataContext/Order/Order_OrderDetail" />
       <nodes>
         <classShapeMoniker Id="a69e57ee-aa87-49a2-ba48-82a5a10f794c" />
         <classShapeMoniker Id="ee350c0e-2652-4ec5-8017-80c25be9e037" />
       </nodes>
     </associationConnector>
+    <classShape Id="d45be36a-a60c-449f-81b1-322ae6729c66" absoluteBounds="5.875, 5.375, 2, 3.1170068359375">
+      <DataClassMoniker Name="/ERPDataContext/Stock" />
+      <nestedChildShapes>
+        <elementListCompartment Id="993f5290-deff-4d49-9a92-952b242ed0b3" absoluteBounds="5.89, 5.835, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

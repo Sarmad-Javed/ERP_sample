@@ -1,0 +1,265 @@
+﻿@model IEnumerable<ERPEntities.Models.DeliveredDetailsVM>
+@{
+    Layout = "~/Views/Shared/_SCLayout.cshtml";
+    ViewBag.Title = "Pending Orders";
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/assets/js/moment.min.js"></script>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-success card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">receipt</i>
+                        </div>
+                        <h4 class="card-title">Pending Orders</h4>
+                    </div>
+                    <div class="content">
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-4">
+                                <label><b>Order ID  :</b>&nbsp;&nbsp;&nbsp;<span id="OrderID">@ViewData["OrderId"].ToString()</span></label>
+                            </div>
+                            <div class="col-md-4">
+                                <label><b>OrderDate :</b>&nbsp;&nbsp;&nbsp;<span>@ViewData["OrderDate"].ToString()</span></label>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-4">
+                                <label><b>Order Status :</b>&nbsp;&nbsp;&nbsp;<span>@ViewData["OrderStatus"].ToString()</span></label>
+                            </div>
+                            <div class="col-md-4">
+
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 card">
+                <div class="card">
+                    <div class="card-header card-header-success">
+                        <h4 style="display:inline">Order Items</h4>
+                    </div>
+                    <div class="content">
+
+                        <div class="row">
+                            <div class="content table-responsive table-full-width ">
+                                <table class="table table-striped">
+                                    <thead class=" text-success">
+                                        <tr>
+                                            <th>Product Name</th>
+                                            <th>Vendor</th>
+                                            <th>Category</th>
+                                            <th>Quantity</th>
+                                            <th>Price</th>
+                                            <th>ExpDate</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@Html.DisplayFor(modelItem => item.ItemName)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.VendorName)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.Category)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.Quanitity)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                                                <td id="ExpDate"></td>
+                                                <td>@Html.DisplayFor(modelItem => item.TotalAmount)</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+
+                        <hr />
+                        <div class="row">
+                            <div class="col-lg-8"></div>
+                            <div class="col-lg-4 text-left">
+                                <label><b>Grand Total:</b><span>@ViewData["GTotal"].ToString()</span></label>
+                                <hr />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6"></div>
+                            <div class="col-md-3">
+                                <div class="text-center">
+                                    <a href="#" class="btn btn-success btn-fill btn-wd" id="AddToStock">Add to Stock</a>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="text-center">
+                                    <a href="/Shipment/ShipmentIndex" class="btn btn-success btn-fill btn-wd">Back</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-2"></div>
+            <input style="visibility:hidden;" type="text" id="id" value=@ViewData["OrderId"].ToString() />
+
+        </div>
+    </div>
+</div>
+
+
+
+<script src="../../assets/js/moment.min.js"></script>
+<script src="../../assets/js/fullcalendar.min.js"></script>
+<script src="../../assets/js/sweetalert2.js"></script>
+<script src="../../assets/js/bootstrap-datetimepicker.js"></script>
+
+<script>
+   
+    $(document).ready(function () {
+        var OrderItemsDetail = [];
+        var OrderItemsQuantity = [];
+        var id = parseInt($("#id").val());
+        //onClick AddtoStock
+        $('#AddToStock').on("click", function () {
+
+            GetQuantity();
+            GetDetails();     
+        });
+
+        moment(date).format("DD/mm/YY");
+        //get details to all the items in order
+        function GetDetails()
+        {
+            var id = parseInt($("#id").val());
+            $.get("/Shipment/GetItemDetails", { OrderID: id }, function (data) {
+
+                //save itemdetails to list
+                $.each(data, function (i, val) {
+                    var exp = moment(val.ExpDate).format("MM/DD/YYYY");
+                    var mfg = moment(val.MfgDate).format("MM/DD/YYYY");
+                    alert(exp);
+                    alert(mfg);
+                    OrderItemsDetail.push({
+                        ItemID: val.ItemID,
+                        CategoryID: val.CategoryID,
+                        VendorID: val.VendorID,
+                        ItemName: val.ItemName,
+                        ExpDate: exp,
+                        MfgDate: mfg,
+                        PurchasePrice: val.PurchasePrice,
+                        UnitPrice: val.UnitPrice,
+                        LeadTime: val.LeadTime,
+                        Unit_of_Measure: val.Unit_of_Measure,
+                    });
+                });
+
+                SaveStock();
+               
+            });
+        }
+        
+        //get quantity of all the items in order
+        function GetQuantity() {
+            var id = parseInt($("#id").val());
+            $.get("/Shipment/GetItemQuantity", { OrderID: id }, function (data) {
+
+                $.each(data, function (i, val) {
+                    OrderItemsQuantity.push({
+                        ItemID: val.ItemID,
+                        Quantity: val.Quantity,
+                    });
+                });
+               
+            });
+        }
+
+        //SaveStock
+        function SaveStock() {
+
+            var data = {
+                ItemDetails: OrderItemsDetail,
+            }
+            $(this).val('Please wait...');
+            $.ajax({
+                url: '/Shipment/SaveStock',
+                type: "POST",
+                data: JSON.stringify(data),
+                dataType: "JSON",
+                contentType: "application/json",
+                success: function (d) {
+                    //check is successfully save to database 
+                    if (d.status == true) {
+                        //will send status from server side
+                        alert('Successfully done.');
+                        
+                        UpdateQuantity();
+                        //clear form
+                        OrderItemsDetail = [];
+
+                    }
+                    else {
+                        alert('Failed');
+                    }
+                    
+                },
+                error: function () {
+                    alert('Error. Please try again.');
+                    $('#submit').val('Save');
+                }
+            });
+        }
+
+        //UdateQuantity
+        function UpdateQuantity() {
+
+           
+            var data = {
+                ItemQuantity: OrderItemsQuantity,
+                OrderID: id,
+            }
+            $.ajax({
+                url: '/Shipment/UpdateQuantity',
+                type: "POST",
+                data: JSON.stringify(data),
+                dataType: "JSON",
+                contentType: "application/json",
+                success: function (d) {
+                    //check is successfully save to database 
+                    if (d.status == true) {
+                        //will send status from server side
+                        alert('Successfully done.');
+                        window.location.replace("/Shipment/ShipmentIndex");
+                        //clear form
+                        OrderItemsQunantity = [];
+
+                    }
+                    else {
+                        alert('Failed');
+                    }
+                    $('#submit').val('Save');
+                },
+                error: function () {
+                    alert('Error. Please try again.');
+                    $('#submit').val('Save');
+                }
+            });
+        }
+
+       
+    });
+
+</script>  

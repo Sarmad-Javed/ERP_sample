@@ -73,9 +73,12 @@
     </Compile>
     <Compile Include="Models\AppointmentDetails.cs" />
     <Compile Include="Models\AppointmentModel.cs" />
+    <Compile Include="Models\ApprovedOrderVM.cs" />
     <Compile Include="Models\AttendanceModel.cs" />
     <Compile Include="Models\CartViewModel.cs" />
+    <Compile Include="Models\DeliveredOrderVM.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
+    <Compile Include="Models\ItemQuantityVM.cs" />
     <Compile Include="Models\ItemsModel.cs" />
     <Compile Include="Models\OrderDetailVM.cs" />
     <Compile Include="Models\OrderVM.cs" />
@@ -84,6 +87,7 @@
     <Compile Include="Models\PendingOrderVM.cs" />
     <Compile Include="Models\ScheduleModel.cs" />
     <Compile Include="Models\ShipmentVM.cs" />
+    <Compile Include="Models\StockVM.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\VendorItemView.cs" />
     <Compile Include="Models\VendorModel.cs" />
