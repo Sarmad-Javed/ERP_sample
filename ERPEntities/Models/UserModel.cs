@@ -98,6 +98,8 @@ namespace ERPEntities.Models
 
         public int RoleID { get; set; }
 
+        public int DoctorID { get; set; }
+
         public string RoleName { get; set; }
 
         public string UserImage { get; set; }

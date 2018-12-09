@@ -1,0 +1,363 @@
+﻿@model ERPEntities.Models.AppointmentVM
+@{
+    Layout = "~/Views/Shared/_PatientLayout.cshtml";
+    ViewBag.Title = "Book";
+
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">           
+            <div class=" col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-info card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">av_timer</i>
+                        </div>
+                        <h4 class="card-title">Book Doctor</h4>
+                    </div>
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="">
+                                    <label> Select date</label>
+                                    <input type="text" id="Date" name="Qty" class="form-control datepicker" />
+                                    <span class="error" style=" visibility:hidden;"> Valid TimeSlot Required !</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="">
+                                    @if (ViewBag.Department != null)
+                                    {   @Html.LabelFor(model => model.Department)
+                                        @Html.DropDownListFor(model => model.Department, ViewBag.Department as SelectList, "--Select Department--", new { @class = " form-control ", name = "Dep", id = "Dep" })
+                                        <span class="error" style=" visibility:hidden;"> Valid TimeSlot Required !</span>
+                                    }
+                                    
+                                </div>
+                            </div>                         
+                            <div class="col-lg-3">
+                                <div class="">
+                                    @Html.LabelFor(model => model.DoctorID)
+                                    @Html.DropDownListFor(model => model.DoctorID, new SelectList("--Select Doctor--"), "--Select Doctor--", new { @class = " form-control ", name = "Doc", id = "DocID" })
+                                    <span class="error" style=" visibility:hidden;"> Valid TimeSlot Required !</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="">
+                                    @if (ViewBag.TimeSlot != null)
+                                    {   @Html.LabelFor(model => model.TimeSlot)
+                                        @Html.DropDownListFor(model => model.TimeSlot, ViewBag.TimeSlots as SelectList, "--Select Timeslot--", new { @class = " form-control ", name = "Slot", id = "Slot" })
+                                         <span class="error" style=" visibility:hidden;"> Valid TimeSlot Required !</span>
+                                    }
+                                   
+                                </div>
+                            </div>   
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="">
+                                    <label>Description</label>
+                                    <textarea id="Descp" name="Qty" class="form-control" ></textarea><span class="error" style=" visibility:hidden;"> Required field !</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="text-center">
+                                    <br>
+                                    <a href="#" class="btn btn-info btn-fill btn-wd" id="Book">Book</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="text" id="pId" style="visibility:hidden;" value="@Session["PatientID"].ToString()"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="../../assets/js/moment.min.js"></script>
+    <script src="../../assets/js/fullcalendar.min.js"></script>
+    <script src="../../assets/js/sweetalert2.js"></script>
+    <script src="../../assets/js/bootstrap-datetimepicker.js"></script>
+
+    <script>
+        //datetime
+        $(document).ready(function () {
+            initFormExtendedDatetimepickers();
+            $('#dtp1,#dtp2').datetimepicker({
+                format: 'MM/DD/YYYY HH:mm A'
+            });
+
+            $('#Slot').on('Change', function () {
+                var d = document.getElementById("Date");
+                var date = d.options[d.selectedIndex].value;
+                alert(date);
+                var t = document.getElementById("Slot");
+                var timeslot = t.options[t.selectedIndex].value;
+                alert(timeslot);
+                var data = {
+                    Date: date,
+                    TimeSlot: timeslot
+                }
+                CheckTimeslot(data);
+            })
+
+            function checkTimeSlot(data) {
+
+                $.ajax({
+                    type: "GET",
+                    url: "/MakeAppointment/CheckSlot",
+                    data: data,
+                    success: function (data) {
+
+                        $("#msg").text('Slot available');
+                        $("#msg").on("change", function () {
+                            $("label.txt12Red")
+                                .addClass("text-warning")
+                                .removeClass("text-danger");
+                        });
+                    },
+                    error: function (error) {
+
+                        $("#msg").text('Time Slot Already Booked');
+
+                    }
+                })
+            }
+
+            function initFormExtendedDatetimepickers() {
+                $('.datetimepicker').datetimepicker({
+                    format: 'MM/DD/YYYY HH:mm A',
+                    icons: {
+                        time: "fa fa-clock-o",
+                        date: "fa fa-calendar",
+                        up: "fa fa-chevron-up",
+                        down: "fa fa-chevron-down",
+                        previous: 'fa fa-chevron-left',
+                        next: 'fa fa-chevron-right',
+                        today: 'fa fa-screenshot',
+                        clear: 'fa fa-trash',
+                        close: 'fa fa-remove'
+                    }
+
+                });
+
+                $('.datepicker').datetimepicker({
+                    format: 'MM/DD/YYYY',
+                    icons: {
+                        time: "fa fa-clock-o",
+                        date: "fa fa-calendar",
+                        up: "fa fa-chevron-up",
+                        down: "fa fa-chevron-down",
+                        previous: 'fa fa-chevron-left',
+                        next: 'fa fa-chevron-right',
+                        today: 'fa fa-screenshot',
+                        clear: 'fa fa-trash',
+                        close: 'fa fa-remove'
+                    }
+                });
+
+                $('.timepicker').datetimepicker({
+                    //          format: 'H:mm',    // use this format if you want the 24hours timepicker
+                    format: 'h:mm A',    //use this format if you want the 12hours timpiecker with AM/PM toggle
+                    icons: {
+                        time: "fa fa-clock-o",
+                        date: "fa fa-calendar",
+                        up: "fa fa-chevron-up",
+                        down: "fa fa-chevron-down",
+                        previous: 'fa fa-chevron-left',
+                        next: 'fa fa-chevron-right',
+                        today: 'fa fa-screenshot',
+                        clear: 'fa fa-trash',
+                        close: 'fa fa-remove'
+                    }
+                });
+            }
+
+
+
+        })
+
+        $(document).ready(function () {
+
+            //checkValidDate
+            $("#Dep").on("change", function () {
+                //getdate value
+                var Date = $("#Date").val();
+                alert(Date);
+                //send to server to check if schedule available
+                $.get("/Appointment/CheckSchedule", { Date : Date }, function (data) {
+                    if(data)
+                    {
+                        alert("Date is valid");
+                        //get Availible Doctor
+                        GetDoctors();
+                    }
+                    else {
+                        alert("no Schedule available");
+                        $('#DateError').css('visibility', 'visible');
+                        $('#Dep').val("");
+                        $('#Date').val("");
+                       
+                    }
+                })
+            })
+
+            //Check timeSlot
+            $("#Slot").on("change", function () {
+                var slot = $("#Slot").val();
+                alert(slot)
+                var Date = $("#Date").val();
+                alert(Date);
+                var d = document.getElementById("DocID");
+                var docId = parseInt(d.options[d.selectedIndex].value);
+                alert(docId);
+                $.get("/Appointment/TimeSlot", { Date : Date, DocID : docId, slot : slot}, function (data) {
+                    if (data) {
+                        alert("Date is Invalid");
+                        $('#Slot').siblings('span.error').css('visibility', 'visible');
+                        $("#Slot").val("");
+                        //get Availible Doctor    
+                    }
+                    else {
+                        $('#Slot').siblings('span.error').css('visibility', 'hidden');
+                        alert("Date is valid");
+                       
+                    }
+                })
+            })
+            
+            //get Availible Doctor
+            function GetDoctors ()
+            {
+                alert("Inside Doctors");
+                $.get("/Appointment/AvailableDoctors", { Date: $("#Date").val(), Department: $("#Dep").val() }, function (data) {
+                    $("#DocID").empty();
+                    $("#DocID").append("<option value='#'>" + "Select Item" + "</option>");
+                    $.each(data, function (index, row) {
+                        $("#DocID").append("<option value='" + row.DoctorID + "'>" + row.DoctorName + "</option>");
+                    })
+                })
+            }
+            
+           
+            //BookDoctor
+            $('#Book').on("click", function () {
+                //check Validation
+                var isValidItem = true;
+                if ($('#Slot').val().trim() == '') {
+                    isValidItem = false;
+                    $('#Slot').siblings('span.error').css('visibility', 'visible');
+                }
+                else {
+                    $('#Slot').siblings('span.error').css('visibility', 'hidden')
+                }
+                if ($('#Descp').val().trim() == '') {
+                    isValidItem = false;
+                    $('#Descp').siblings('span.error').css('visibility', 'visible');
+                }
+                else {
+                    $('#Descp').siblings('span.error').css('visibility', 'hidden');
+                }
+
+                if (isValidItem) {
+                    //docid
+                    var d = document.getElementById("DocID");
+                    var docId = d.options[d.selectedIndex].value;
+                    alert(docId);
+                    //pid
+                    var pid = $("#pId").val();
+                    alert(pid);
+                    //timeslot
+                    var t = document.getElementById("Slot");
+                    var slot = t.options[t.selectedIndex].value;
+
+                    //init
+                    var DoctorID = parseInt(docId);
+                    var PatientID = parseInt(pid);
+                    var Date = $('#Date').val();
+                    var Timeslot = slot;
+                    var Description = $('#Descp').val();
+
+                    //data
+                    var data = {
+                        DoctorID : DoctorID,
+                        PatientID:PatientID,
+                        Date:Date,
+                        TimeSlot:Timeslot,
+                        Description:Description,
+                    }
+                    $.ajax({
+                        url: '/Appointment/BookAppointment',
+                        type: "POST",
+                        data: JSON.stringify(data),
+                        dataType: "JSON",
+                        contentType: "application/json",
+                        success: function (d) {
+                            //check is successfully save to database 
+                            if (d.status == true) {
+                                //will send status from server side
+                                alert('Successfully done.');
+                                //clear form
+                                
+                                $('#Date').val('');
+                                $('#DocID').val('');
+                                $('#Dep').val('');
+                                $('#Slot').val('');
+                                $('#Descp').val('');
+                                
+                            }
+                            else {
+                                alert('Failed');
+                            }
+                            $('#submit').val('Save');
+                        },
+                        error: function () {
+                            alert('Error. Please try again.');
+                            $('#submit').val('Save');
+                        }
+                    });
+                }
+            })           
+        })
+
+        $(document).on('click', 'form button[type=submit]', function (e) {
+            var isValid = $(e.target).parents('form').isValid();
+            if (!isValid) {
+                e.preventDefault(); //prevent the default action
+                if ($('#desc').val().trim() == "") {
+                    $("#msg").text('desc requiret')
+                    $("#msg").on("change", function () {
+                        $("label.txt12Red")
+                            .addClass("text-warning")
+                            .removeClass("text-danger");
+                    });
+                    return;
+                }
+                if ($('#Slot').val().trim() == "") {
+                    $("#msg").text('desc requiret')
+                    $("#msg").on("change", function () {
+                        $("label.txt12Red")
+                            .addClass("text-warning")
+                            .removeClass("text-danger");
+                    });
+                    return;
+                }
+
+
+
+                //Validation/
+
+            }
+
+        })
+
+    </script>
+}

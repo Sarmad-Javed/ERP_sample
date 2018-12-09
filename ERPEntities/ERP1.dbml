@@ -23,18 +23,6 @@
       <Column Name="RoleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.Appointments" Member="Appointments">
-    <Type Name="Appointment">
-      <Column Name="AppointmentID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="DoctorID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="PatientID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="TimeSlot" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Association Name="Patient_Appointment" Member="Patient" ThisKey="PatientID" OtherKey="PatientID" Type="Patient" IsForeignKey="true" />
-      <Association Name="Doctor_Appointment" Member="Doctor" ThisKey="DoctorID" OtherKey="DoctorID" Type="Doctor" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Patient" Member="Patients">
     <Type Name="Patient">
       <Column Name="PatientID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -48,7 +36,6 @@
       <Column Name="DateofBirth" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="PatientImage" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="isAvailable" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="Patient_Appointment" Member="Appointments" ThisKey="PatientID" OtherKey="PatientID" Type="Appointment" />
     </Type>
   </Table>
   <Table Name="dbo.Doctor" Member="Doctors">
@@ -60,7 +47,6 @@
       <Column Name="Department" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Designation" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Image" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Association Name="Doctor_Appointment" Member="Appointments" ThisKey="DoctorID" OtherKey="DoctorID" Type="Appointment" />
     </Type>
   </Table>
   <Table Name="dbo.Items" Member="Items">
@@ -131,6 +117,24 @@
       <Column Name="PurchasePrice" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="Unit_of_Measure" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="LeadTime" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DoctorSchedule" Member="DoctorSchedules">
+    <Type Name="DoctorSchedule">
+      <Column Name="[Doc-ScheduleID]" Member="Doc_ScheduleID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DoctorID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EventID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Appointments" Member="Appointments">
+    <Type Name="Appointment">
+      <Column Name="AppointmentID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DoctorID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PatientID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TimeSlot" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

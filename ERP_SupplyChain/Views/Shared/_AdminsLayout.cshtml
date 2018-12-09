@@ -51,10 +51,10 @@
         <!-- Sidebar -->
         <div class="sidebar" data-color="azure" data-background-color="black" data-image="../assets/img/sidebar-1.jpg">
             <!--
-                Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+            Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
-                Tip 2: you can also add an image using data-image tag
-            -->
+            Tip 2: you can also add an image using data-image tag
+        -->
             <div class="logo">
                 <a href="http://www.creative-tim.com/" class="simple-text logo-mini">CT </a>
                 <a href="http://www.creative-tim.com/" class="simple-text logo-normal">
@@ -69,51 +69,51 @@
 
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="dashboard.html">
+                        <a class="nav-link" href="/Dashboard/Admin">
                             <i class="material-icons">dashboard</i>
                             <p> Dashboard </p>
                         </a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" data-toggle="collapse" href="#profile">
+                        <a class="nav-link" data-toggle="collapse" href="#User">
                             <i class="material-icons">image</i>
                             <p>
-                                MyProfile
+                                Manage User
                                 <b class="caret"></b>
                             </p>
                         </a>
-                        <div class="collapse" id="profile">
+                        <div class="collapse" id="User">
                             <ul class="nav">
                                 <li class="nav-item item active ">
-                                    <a class="nav-link" href="#Doctor/ViewProfile">
+                                    <a class="nav-link" href="/ManageUser/AddUser">
                                         <span class="sidebar-mini"> P </span>
-                                        <span class="sidebar-normal"> View Profile </span>
+                                        <span class="sidebar-normal"> Add User </span>
                                     </a>
                                 </li>
                                 <li class="nav-item item active">
-                                    <a class="nav-link" href="#viewitems.html">
+                                    <a class="nav-link" href="/ManageUser/ViewUser">
                                         <span class="sidebar-mini"> RS </span>
-                                        <span class="sidebar-normal">Edit Profile</span>
+                                        <span class="sidebar-normal">View User</span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link"  href="/Doctor/Appointments">
-                            <i class="material-icons">grid_on</i>
+                        <a class="nav-link" href="/Schedule/ScheduleIndex">
+                            <i class="material-icons">grid_ons</i>
                             <p>
-                               View Appointments
-                               
+                                Add Schedule
+
                             </p>
-                        </a>    
+                        </a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item ">
                         <a class="nav-link" href="/Accounts/Logout">
-                            <i class="material-icons">grid_on</i>
+                            <i class="material-icons">grid_ons</i>
                             <p>
                                 Logout
-                               
+
                             </p>
                         </a>
                     </li>
@@ -303,9 +303,9 @@
                 </ul>
             </div>
         </div>
-        
+
 </body>
-@RenderSection("Scripts",false)
+@RenderSection("Scripts", false)
 <!--   Core JS Files   -->
 
 <script src="../../assets/js/core/jquery.min.js" type="text/javascript"></script>
@@ -357,8 +357,8 @@
 
 
 <script>
-    
-   
+
+
     $(document).ready(function () {
         $().ready(function () {
             $sidebar = $('.sidebar');

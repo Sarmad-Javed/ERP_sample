@@ -14,38 +14,18 @@
         <elementListCompartment Id="d560106e-224b-4635-8a37-d5095daecf55" absoluteBounds="0.51500000000000012, 3.46, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="ed078e88-86d7-4847-a8f8-8d616ce3909b" absoluteBounds="5.125, 0.625, 2, 1.9631982421875">
-      <DataClassMoniker Name="/ERP1DataContext/Appointment" />
-      <nestedChildShapes>
-        <elementListCompartment Id="409ec6af-51a9-467e-a070-787e41f51175" absoluteBounds="5.14, 1.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="ebc1ec9e-3cbc-41eb-9f1a-88e84161cf0c" absoluteBounds="2.75, 0.625, 2, 2.9247054036458331">
       <DataClassMoniker Name="/ERP1DataContext/Patient" />
       <nestedChildShapes>
         <elementListCompartment Id="49b9127e-8446-4bfc-9c6a-3afb5a7c84ec" absoluteBounds="2.765, 1.085, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4.75 : 1.60659912109375); (5.125 : 1.60659912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/ERP1DataContext/Patient/Patient_Appointment" />
-      <nodes>
-        <classShapeMoniker Id="ebc1ec9e-3cbc-41eb-9f1a-88e84161cf0c" />
-        <classShapeMoniker Id="ed078e88-86d7-4847-a8f8-8d616ce3909b" />
-      </nodes>
-    </associationConnector>
-    <classShape Id="b7ced29c-53d9-4f41-955e-738c3bf230e5" absoluteBounds="5.125, 3.25, 2, 2.1554996744791666">
+    <classShape Id="b7ced29c-53d9-4f41-955e-738c3bf230e5" isExpanded="false" absoluteBounds="5.125, 3.25, 2, 0.45">
       <DataClassMoniker Name="/ERP1DataContext/Doctor" />
       <nestedChildShapes>
         <elementListCompartment Id="d61d0286-605c-4d13-b702-1e47fe2694cd" absoluteBounds="5.14, 3.71, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(6.125 : 3.25); (6.125 : 2.5881982421875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/ERP1DataContext/Doctor/Doctor_Appointment" />
-      <nodes>
-        <classShapeMoniker Id="b7ced29c-53d9-4f41-955e-738c3bf230e5" />
-        <classShapeMoniker Id="ed078e88-86d7-4847-a8f8-8d616ce3909b" />
-      </nodes>
-    </associationConnector>
     <classShape Id="e93de22f-f46f-4821-a9df-47968e6284f8" isExpanded="false" absoluteBounds="0.5, 5.625, 2, 0.45">
       <DataClassMoniker Name="/ERP1DataContext/Item" />
       <nestedChildShapes>
@@ -87,6 +67,18 @@
       <DataClassMoniker Name="/ERP1DataContext/Stock" />
       <nestedChildShapes>
         <elementListCompartment Id="31580434-7053-4e36-a58b-7f2a39c941ac" absoluteBounds="2.89, 6.835, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8a640f3c-fb50-4864-90e9-6fb25b8c11f0" isExpanded="false" absoluteBounds="5.125, 4.125, 2, 0.45">
+      <DataClassMoniker Name="/ERP1DataContext/DoctorSchedule" />
+      <nestedChildShapes>
+        <elementListCompartment Id="79523798-2b07-4674-873a-465c475f0399" absoluteBounds="5.14, 4.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="eae4443e-07bc-4411-8358-fba9e08e59da" absoluteBounds="5.25, 0.625, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/ERP1DataContext/Appointment" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9143fdf1-544d-46ee-b7fe-00aea117b187" absoluteBounds="5.265, 1.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

@@ -21,6 +21,8 @@ namespace ERPEntities.Models
         public string TimeSlot { get; set; }
 
         public DateTime Date { get; set; }
+
+        public string Status { get; set; }
     }
 
     public class AppointmentMetaData
@@ -40,6 +42,8 @@ namespace ERPEntities.Models
 
         [Required(ErrorMessage = "Date required")]
         public DateTime Date { get; set; }
+
+        public string Status { get; set; }
     }
 
     [MetadataType(typeof(QueryMetaData))]

@@ -73,6 +73,7 @@
     </Compile>
     <Compile Include="Models\AppointmentDetails.cs" />
     <Compile Include="Models\AppointmentModel.cs" />
+    <Compile Include="Models\AppointmentVM.cs" />
     <Compile Include="Models\ApprovedOrderVM.cs" />
     <Compile Include="Models\AttendanceModel.cs" />
     <Compile Include="Models\CartViewModel.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Models\PatientloginModel.cs" />
     <Compile Include="Models\PendingOrderVM.cs" />
     <Compile Include="Models\ScheduleModel.cs" />
+    <Compile Include="Models\ScheduleVM.cs" />
     <Compile Include="Models\ShipmentVM.cs" />
     <Compile Include="Models\StockVM.cs" />
     <Compile Include="Models\UserModel.cs" />

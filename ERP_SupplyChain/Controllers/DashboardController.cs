@@ -105,6 +105,8 @@ namespace ERP_SupplyChain.Controllers
             return new JsonResult { Data = new { status = status } };
         }
 
+
+        //Delete Event
         [HttpPost]
         public JsonResult deleteEvent(int eventID)
         {
@@ -112,14 +114,19 @@ namespace ERP_SupplyChain.Controllers
             using (ERP1DataContext dc = new ERP1DataContext())
             {
                 var v = dc.Schedules.Where(a => a.EventID == eventID).FirstOrDefault();
-                if (v != null)
+                var data = dc.DoctorSchedules.Where(a => a.EventID == eventID).ToList();
+                if (v != null || data != null)
                 {
+                    foreach (DoctorSchedule ds in data)
+                    {
+                        dc.DoctorSchedules.DeleteOnSubmit(ds);
+                    }
                     dc.Schedules.DeleteOnSubmit(v);
                     dc.SubmitChanges();
                     status = true;
                 }
             }
-          
+
             return new JsonResult { Data = new { status = status } };
         }
 

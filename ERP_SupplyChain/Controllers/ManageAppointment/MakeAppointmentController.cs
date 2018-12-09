@@ -48,11 +48,11 @@ namespace ERP_SupplyChain.Controllers
             return View();
         }
 
-        public JsonResult CheckTimeSlot(string TimeSlot)
+        public JsonResult CheckTimeSlot(string TimeSlot, string date)
         {
-            using (ERP1DataContext dc = new ERP1DataContext())
+            using (ERPDataContext dc = new ERPDataContext())
             {
-                return Json(!dc.Appointments.Any(x => x.TimeSlot == TimeSlot && x.DoctorID == int.Parse(Session["DoctorID"].ToString())), JsonRequestBehavior.AllowGet);
+                return Json(!dc.Appointments.Any(x => x.TimeSlot == TimeSlot && x.Date.ToString() == date &&  x.DoctorID == int.Parse(Session["DoctorID"].ToString() )), JsonRequestBehavior.AllowGet);
             }
         }
 

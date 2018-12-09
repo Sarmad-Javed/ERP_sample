@@ -78,8 +78,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAL_Logic\Appointments\AppointmentDAL.cs" />
-    <Compile Include="DAL_Logic\Accounts\AuthenticateUserDAL.cs" />
+    <Compile Include="DAL_Logic\Admin\AuthenticateUserDAL.cs" />
     <Compile Include="DAL_Logic\Admin\ManageUser\UserDAL.cs" />
+    <Compile Include="DAL_Logic\Appointments\AppointmentDAL1.cs" />
+    <Compile Include="DAL_Logic\DoctorPanel\DoctorDAL.cs" />
     <Compile Include="DAL_Logic\Employee\ManageAttendance\AttendanceDAL.cs" />
     <Compile Include="DAL_Logic\Employee\ManageEmployee\EmployeeDAL.cs" />
     <Compile Include="DAL_Logic\PatientAccounts\PatientAccountDAL.cs" />
@@ -112,7 +114,9 @@
       <Name>ERPEntities</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="DAL_Logic\Accounts\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

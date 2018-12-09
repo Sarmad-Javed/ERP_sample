@@ -120,7 +120,16 @@
             });
             
             $('#Slot').on('Change', function () {
-                var data = $('#Slot').val();
+                var d = document.getElementById("Date");
+                var date = d.options[d.selectedIndex].value;
+                alert(date);
+                var t = document.getElementById("Slot");
+                var timeslot = t.options[t.selectedIndex].value;
+                alert(timeslot);
+                var data = {
+                    Date: date,
+                    TimeSlot:timeslot
+                }
                 CheckTimeslot(data);
             })
 

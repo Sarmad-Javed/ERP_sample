@@ -23,25 +23,12 @@
       <Column Name="EmpRating" Type="System.Double" DbType="Float" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Users" Member="Users">
-    <Type Name="User">
-      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="FirstName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="LastName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="UserName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="RoleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="UserImage" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Association Name="Role_User" Member="Role" ThisKey="UserID" OtherKey="RoleID" Type="Role" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Roles" Member="Roles">
     <Type Name="Role">
       <Column Name="RoleID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="RoleName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="RoleDisc" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Association Name="Role_User" Member="User" ThisKey="RoleID" OtherKey="UserID" Type="User" Cardinality="One" />
+      <Association Name="Role_User" Member="Users" ThisKey="RoleID" OtherKey="RoleID" Type="User" />
     </Type>
   </Table>
   <Table Name="dbo.Schedule" Member="Schedules">
@@ -65,6 +52,7 @@
       <Column Name="Designation" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Image" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Association Name="Doctor_DoctorSchedule" Member="DoctorSchedules" ThisKey="DoctorID" OtherKey="DoctorID" Type="DoctorSchedule" />
+      <Association Name="Doctor_Appointment" Member="Appointments" ThisKey="DoctorID" OtherKey="DoctorID" Type="Appointment" />
     </Type>
   </Table>
   <Table Name="dbo.DoctorSchedule" Member="DoctorSchedules">
@@ -88,16 +76,7 @@
       <Column Name="ZIPCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="PatientImage" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="isAvailable" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Appointments" Member="Appointments">
-    <Type Name="Appointment">
-      <Column Name="AppointmentID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="DoctorID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="PatientID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="TimeSlot" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="Patient_Appointment" Member="Appointments" ThisKey="PatientID" OtherKey="PatientID" Type="Appointment" />
     </Type>
   </Table>
   <Table Name="dbo.Items" Member="Items">
@@ -173,6 +152,33 @@
       <Column Name="PurchasePrice" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="Unit_of_Measure" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="LeadTime" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Appointments" Member="Appointments">
+    <Type Name="Appointment">
+      <Column Name="AppointmentID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DoctorID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PatientID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TimeSlot" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Association Name="Doctor_Appointment" Member="Doctor" ThisKey="DoctorID" OtherKey="DoctorID" Type="Doctor" IsForeignKey="true" />
+      <Association Name="Patient_Appointment" Member="Patient" ThisKey="PatientID" OtherKey="PatientID" Type="Patient" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="UserName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="UserImage" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="RoleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DoctorID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Role_User" Member="Role" ThisKey="RoleID" OtherKey="RoleID" Type="Role" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

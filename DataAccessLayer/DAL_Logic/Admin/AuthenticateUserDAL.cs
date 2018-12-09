@@ -33,6 +33,7 @@ namespace DataAccessLayer.DAL_Logic.Accounts
                                UserImage = u.UserImage,
                                Email = u.Email,
                                RoleName = r.RoleName,
+                               DoctorID = u.DoctorID,
                                
                                
                            };
@@ -44,6 +45,7 @@ namespace DataAccessLayer.DAL_Logic.Accounts
                     User.UserName = v.UserName;
                     User.UserImage = v.UserImage;
                     User.Email = v.Email;
+                    User.DoctorID = (int)v.DoctorID;
                     User.RoleName = v.RoleName;
                     UserList.Add(User);
                 } 

@@ -1,6 +1,6 @@
 ﻿@{
-    Layout = "~/Views/Shared/_DoctorLayout.cshtml";
-    ViewBag.Title = "Doctor Panel Dashboard";
+    Layout = "~/Views/Shared/_AdminsLayout.cshtml";
+    ViewBag.Title = "Make Schedule ";
     ViewBag.isActive = "active";
 
 }
@@ -8,88 +8,18 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="card card-stats">
-                    <div class="card-header card-header-warning card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">content_copy</i>
-                        </div>
-                        <p class="card-category">Used Space</p>
-                        <h3 class="card-title">
-                            49/50
-                            <small>GB</small>
-                        </h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons text-danger">warning</i>
-                            <a href="#pablo">Get More Space...</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="card card-stats">
-                    <div class="card-header card-header-success card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">store</i>
-                        </div>
-                        <p class="card-category">Revenue</p>
-                        <h3 class="card-title">$34,245</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons">date_range</i> Last 24 Hours
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="card card-stats">
-                    <div class="card-header card-header-danger card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">info_outline</i>
-                        </div>
-                        <p class="card-category">Fixed Issues</p>
-                        <h3 class="card-title">75</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons">local_offer</i> Tracked from Github
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="card card-stats">
-                    <div class="card-header card-header-info card-header-icon">
-                        <div class="card-icon">
-                            <i class="fa fa-twitter"></i>
-                        </div>
-                        <p class="card-category">Followers</p>
-                        <h3 class="card-title">+245</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons">update</i> Just Updated
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
             <div class="col-md-1 col-md-offset-1"></div>
             <div class="col-md-10 col-md-offset-1">
                 <div class="card card-calendar">
                     <div class="card-content ps-child">
                         <div id="fullCalendar"></div>
-                        
+
                     </div>
                 </div>
             </div>
             <div class="col-md-1 col-md-offset-1"></div>
-        </div>      
-    </div>    
+        </div>
+    </div>
 </div>
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -127,7 +57,7 @@
                         <label>Subject</label>
                         <input type="text" id="txtSubject" class="form-control" />
                     </div>
-                    
+
                     <div class="form-group">
                         <label>Start</label>
                         <div class="input-group " id="dtp1">
@@ -155,7 +85,7 @@
                         <label>Description</label>
                         <textarea id="txtDescription" rows="3" class="form-control"></textarea>
                     </div>
-                    
+
                     <div class="form-group">
                         <label>Theme Color</label>
                         <select class="selectpicker form-control" data-style="select-with-transition" id="ddThemeColor" class="form-control">
@@ -250,9 +180,9 @@
                             titleFormat: 'D MMM, YYYY'
                         }
                     },
-                    
+
                     eventLimit: true, // allow "more" link when too many events
-                    events: events, 
+                    events: events,
                     eventClick: function (calEvent, jsEvent, view) {
                         selectedEvent = calEvent;
                         $('#myModal #eventTitle').text(calEvent.title);
@@ -307,10 +237,11 @@
                         data: { 'eventID': selectedEvent.eventID },
                         success: function (data) {
                             if (data.status) {
-                              
+
                                 //Refresh the calender
-                                FetchEventAndRenderCalendar();
+                                window.location.reload(true);
                                 $('#myModal').modal('hide');
+                                FetchEventAndRenderCalendar();
                             }
                         },
                         error: function () {
@@ -322,7 +253,7 @@
             $('#dtp1,#dtp2').datetimepicker({
                 format: 'MM/DD/YYYY HH:mm A'
             });
-            function initFormExtendedDatetimepickers(){
+            function initFormExtendedDatetimepickers() {
                 $('.datetimepicker').datetimepicker({
                     format: 'MM/DD/YYYY HH:mm A',
                     icons: {
@@ -370,7 +301,7 @@
                     }
                 });
             }
-           
+
             $('#chkIsFullDay').change(function () {
                 if ($(this).is(':checked')) {
                     $('#divEndDate').hide();
@@ -380,7 +311,7 @@
                 }
             });
             function openAddEditForm() {
-                
+
                 if (selectedEvent != null) {
                     $('#hdEventID').val(selectedEvent.eventID);
                     $('#txtSubject').val(selectedEvent.title);
@@ -427,22 +358,24 @@
                     IsFullDay: $('#chkIsFullDay').is(':checked')
                 }
                 SaveEvent(data);
-                // call function for submit data to the server 
+                // call function for submit data to the server
             })
             function SaveEvent(data) {
-               
+
                 $.ajax({
                     type: "POST",
                     url: '/Dashboard/SaveEvent',
                     data: data,
                     success: function (data) {
                         if (data.status) {
-                            
+
                             //Refresh the calender
-                            FetchEventAndRenderCalendar();
                            
+
                             $('#myModalSave').modal('hide');
-                           
+                            window.location.reload(true);
+                            FetchEventAndRenderCalendar();
+
                         }
                     },
                     error: function () {
@@ -451,8 +384,8 @@
                 })
             }
         });
- 
-</script>
+
+    </script>
 
 }
 

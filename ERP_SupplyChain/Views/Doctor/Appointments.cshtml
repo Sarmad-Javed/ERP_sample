@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ERPEntities.Models.AppointmentDetails>
 @{
     ViewBag.Title = "Appointments";
-    Layout = Layout = "~/Views/Shared/_PatientLayout.cshtml";
+    Layout = Layout = "~/Views/Shared/_DoctorLayout.cshtml";
 }
 <script src="~/Scripts/jquery-1.10.2.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
@@ -55,7 +55,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <hr style="margin:0px; "/>
+                            <hr style="margin:0px; " />
                             <div class="row">
                                 <div class="col-md-4"><input type="text" class="form-control" style=" visibility:hidden" id="AppID" value="@Html.DisplayFor(modelItem => item.AppointmentID)" /></div>
                                 <div class="col-md-4"></div>
@@ -63,10 +63,10 @@
                                     <div class="text-center">
                                         <a href="#" class="btn btn-warning btn-fill btn-wd" id="btnDelete">Cancel</a>
                                     </div>
-                                </div>  
-                            </div> 
-                         </div> 
-                    </div>   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 }
             </div>
         </div>
@@ -83,9 +83,9 @@
     $(document).ready(function () {
         $('#btnDelete').on("click", function () {
             var AppID = $("#AppID").val();
-            var data ={ AppID:parseInt(AppID)};
+            var data = { AppID: parseInt(AppID) };
             alert(data);
-            if ( confirm('Are you sure?')) {
+            if (confirm('Are you sure?')) {
                 $.ajax({
                     type: "POST",
                     url: '/Appointment/DeleteAppointment',

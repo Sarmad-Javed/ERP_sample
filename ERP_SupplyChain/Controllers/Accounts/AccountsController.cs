@@ -76,10 +76,11 @@ namespace ERP_SupplyChain.Controllers.Accounts
                 string UserName = User.Select(x => x.UserName).FirstOrDefault().ToString();
                 string UserID = User.Select(x => x.AuthenticatedUserID).FirstOrDefault().ToString();
                 string UserImage = User.Select(x => x.UserImage).FirstOrDefault().ToString();
+                string DoctorID = User.Select(x => x.DoctorID).FirstOrDefault().ToString();
                 Session["UserName"] = UserName;
                 Session["UserID"] = UserID;
                 Session["UserImage"] = UserImage;
-               
+                Session["DoctorID"] = DoctorID;
                 if (role == "SupplyChain")
                 {
                     return Redirect("/DashBoard/SupplyChain");

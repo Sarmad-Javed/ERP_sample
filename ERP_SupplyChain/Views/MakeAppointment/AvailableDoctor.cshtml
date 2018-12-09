@@ -81,8 +81,9 @@
                                                             {
                                                                 <tr>
                                                                     <td>@Html.DisplayFor(modelItem => item.DoctorName)</td>
-                                                                    <td>@Html.DisplayFor(modelItem => item.Department)</td>
                                                                     <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                                                                    <td>@Html.DisplayFor(modelItem => item.Department)</td>
+                                                                    
                                                                     <td class="text-right">
                                                                         <a href="/MakeAppointment/BookAppointment?id=@Html.DisplayFor(modelItem => item.DoctorID)&DoctorName=@Html.DisplayFor(modelItem => item.DoctorName)&Date=@Html.DisplayFor(modelItem => item.Date)" class="btn btn-warning btn-fill btn-wd ">Book</a>
                                                                     </td>
