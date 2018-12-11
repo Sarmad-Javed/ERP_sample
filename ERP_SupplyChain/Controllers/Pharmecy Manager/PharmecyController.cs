@@ -33,6 +33,38 @@ namespace ERP_SupplyChain.Controllers.Pharmecy_Manager
             return Json(List, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult GetStock()
+        {
+            List<LowStockVM> List = new List<LowStockVM>();
+            var data = dc.Stocks.Where(s => s.AddedDay == DateTime.Now.Day.ToString()).ToList();
+            foreach (var v in data)
+            {
+                LowStockVM S = new LowStockVM();
+                S.StockID = v.StockID;
+                S.ItemName = v.ItemName;
+                S.Quantity = (int)v.Quantity;
+
+                List.Add(S);
+            }
+            return Json(List, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetInvoice()
+        {
+            List<GetInvoiceVM> List = new List<GetInvoiceVM>();
+            var data = dc.Invoices.Where(s => s.AddedDay == DateTime.Now.Day.ToString()).ToList();
+            foreach (var v in data)
+            {
+                GetInvoiceVM S = new GetInvoiceVM();
+                S.InvoiceID = v.InvoiceID;
+                S.Total = v.TotalAmount;
+                S.InvoiceDate =(DateTime) v.InvoiceDate;
+
+                List.Add(S);
+            }
+            return Json(List, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public JsonResult SendRequest(string Req)
         {

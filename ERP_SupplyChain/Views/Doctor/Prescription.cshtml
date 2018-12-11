@@ -102,7 +102,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label>Description</label>
-                                <textarea class="form-control" id="Desc"></textarea>
+                                <p id="Desc"></p> 
                             </div>
                             <div class="col-md-6">
                                 <label>Dignosis</label>
@@ -112,87 +112,87 @@
                         </div>
                        <br />
                        <div class="row">
-                           <div class="col-md-12">
-                               <div class="table-responsive">
-                                   <table class="table">
-                                       <thead>
-                                           <tr>
-                                               <th>Med-type</th>
-                                               <th>Med</th>
-                                               <th>Strength</th>
-                                               <th>Duration</th>
-                                               <th>Dose</th>
-                                               <th>Action</th>
-                                           </tr>
-                                       </thead>
-                                       <tbody>
-                                           <tr>
-                                               <td>
-                                                   <select class="form-control" id="Type">
-                                                       <option value="Syp">Syp</option>
-                                                       <option value="Tab">Tab</option>
-                                                       <option value="Syr">Syr</option>
-                                                   </select>
-                                                   <span class="error"  id="error1" style=" visibility:hidden;">req!</span>
-                                               </td>
-                                               <td>
-                                                   <input class="form-control" id="Med"/>
-                                                   <span class="error" id="error2"  style=" visibility:hidden;"> Required field !</span>
-                                               </td>
-                                               <td>
-                                                    <input class="form-control" id="Strength"/>
-                                                   <span class="error" id="error3"  style=" visibility:hidden;"> Required field !</span>
-                                               </td>
-                                               <td>
-                                                   <input class="form-control" id="Duration"/>
-                                                   <span class="error" id="error4"  style=" visibility:hidden;"> Required field !</span>
-                                               </td>
-                                               <td>
-                                                   <select class="form-control" id="Dose">
-                                                       <option value="1-1-1">1-1-1</option>
-                                                       <option value="1-0-1">1-0-1</option>
-                                                       <option value="1">1</option>
-                                                   </select>
-                                                   <span class="error" id="error5" style=" visibility:hidden;"> req!</span>
-                                               <td class="td-actions text-right">
-                                                   <button type="button" class="btn btn-success " id="Add">
-                                                       <i class="material-icons"></i> +
-                                                   </button>
-                                               </td>
-                                           </tr>  
-                                       </tbody>
-                                   </table>
-                                   <hr />
-                                   <div class=" col-md-10 responsive-table " id="MedList">
-                                   </div>
-                                   <hr />
+                           <div class="col-md-2">
+                               <label>Med-type</label>
+                               <select class="form-control" id="Type">
+                                   <option value="Syp">Syp</option>
+                                   <option value="Tab">Tab</option>
+                                   <option value="Syr">Syr</option>
+                               </select>
+                           </div>
+                           <div class="col-md-2">
+                               <label>Medicine</label>
+                               <input class="form-control" id="Med"  />
+                               <span class="error" id="error2" style=" visibility:hidden;"> Required field !</span>
+                           </div>
+                           <div class="col-md-2">
+                               <label>Strength</label>
+                               <input type="number" class="form-control" id="Strength" style="display:inline;" />
+                               <span class="error" id="error3" style=" visibility:hidden;"> Required field !</span>
+                           </div>
+                           +
+                           <div class="col-md-1">
+                               <label>type</label>
+                               <select class="form-control" id="StrengthType">
+                                   <option value="mg">mg</option>
+                                   <option value="ml">ml</option>
+                                   <option value="cc">cc</option>
+                               </select>
+                           </div>
+                           <div class="col-md-2">
+                               <label>Duration<b>(Days)</b></label>
+                               <input type="number" class="form-control" id="Duration" style="display:inline;" />
+                               <span class="error" id="error4" style=" visibility:hidden;"> Required field !</span>
+                           </div>
+                           <div class="col-md-2">
+                               <label>Dosage</label>
+                               <select class="form-control" id="Dose">
+                                   <option value="1-1-1">1-1-1</option>
+                                   <option value="1-0-1">1-0-1</option>
+                                   <option value="1">1</option>
+                               </select>
+
+                           </div>
+                      </div>
+                       <div>
+                           <div class="text-center">
+                               <a href="#" class="btn btn-info btn-fill btn-wd" id="Add">Add</a>
+                           </div>
+                       </div>
+                       <hr>
+                           <div class="text-center">
+                               Medications list
+                            </div>
+                        <hr />
+                           <div class="row">
+                               <div class=" col-md-2"></div>
+                               <div class=" col-md-10 responsive-table " id="medlist"></div>
+                               <div class=" col-md-1"></div>
+
+                           </div>
+                           <div class="row">
+                               <div class="col-lg-6 text-left">
+
                                </div>
+                               <div class="col-lg-2 text-left">
+                                   <div class="text-center">
+                                       <a href="#" class="btn btn-info btn-fill btn-wd" id="Cancel">Prev Records</a>
+                                   </div>
+                               </div>
+                               <div class="col-lg-2 text-left">
+                                   <div class="text-center">
+                                       <a href="#" class="btn btn-info btn-fill btn-wd" id="submit">Confirm</a>
+                                   </div>
+                               </div>
+                               <div class="col-lg-2 text-left">
+                                   <div class="text-center">
+                                       <a href="/Doctor/Appointments" class="btn btn-info btn-fill btn-wd" id="Cancel">Cancel</a>
+                                   </div>
+                               </div>
+
                            </div>
+                           <br />
                        </div>
-                   </div>
-                   <div class="row">
-                       <div class="col-lg-6 text-left">
-                          
-                       </div>
-                       <div class="col-lg-2 text-left" >
-                           <div class="text-center">
-                               <a href="#" class="btn btn-info btn-fill btn-wd" id="Cancel">Prev Records</a>
-                           </div>
-                       </div>
-                       <div class="col-lg-2 text-left">
-                           <div class="text-center">
-                               <a href="#" class="btn btn-info btn-fill btn-wd" id="submit">Confirm</a>
-                           </div>
-                       </div>
-                       <div class="col-lg-2 text-left">
-                           <div class="text-center">
-                               <a href="#" class="btn btn-info btn-fill btn-wd" id="Cancel">Cancel</a>
-                           </div>
-                       </div>
-                       
-                   </div>
-                   <br />
-               </div>
            </div>
          
         </div>
@@ -229,7 +229,7 @@
                     $("#ph").text(row.PatientContact);
                     $("#pEmail").text(row.PatientEmail);
                     $("#img").attr("src",row.PatientImage);
-                    $("#Desc").attr("value",row.Description);
+                    $("#Desc").text(row.Description);
                     
                 })
 
@@ -238,7 +238,7 @@
         
         //Desc Dign Type Med Strenght Duration Dose
         $("#Add").on("click", function () {
-            alert("calling");
+           
             var isValidItem = true;
             if ($('#Diag').val().trim() == '') {
                 isValidItem = false;
@@ -285,16 +285,14 @@
             }
 
             if (isValidItem) {
-                alert("inside valid")
+                
                 var Dig = $("#Diag").val();
                 var Type = $("#Type").val();
                 var Med = $("#Med").val();
-                var Strength = $("#Strength").val();
-                var Duration = $("#Duration").val();
+                var Strength = $("#Strength").val() + $("#StrengthType").val();
+                var Duration = $("#Duration").val() + "Days";
                 var Dose = $("#Dose").val();
-                alert('pushing');
-                alert(Med);
-                alert(Type);
+                
                 
                 Meds.push({
                     Dignosis: Dig,
@@ -313,8 +311,9 @@
         $('#submit').click(function () {
 
             //Save if valid
-
-            var data = {
+            if(Meds.length > 0)
+            {
+                var data = {
                 AppointmentID: ID,
                 DoctorID: DoctorID,
                 MedDetails: Meds,
@@ -322,7 +321,7 @@
                
             }
 
-            $(this).val('Please wait...');
+                $(this).val('Please wait...');
 
             $.ajax({
                 url: '/Doctor/SavePrescription',
@@ -335,6 +334,7 @@
                     if (d.status == true) {
                         //will send status from server side
                         alert('Successfully done.');
+                        window.location.replace("/Doctor/Appointments");
                         //clear form
                         Meds = [];
                         $('#VendorId').val('');
@@ -354,41 +354,45 @@
                     $('#submit').val('Save');
                 }
             });
+            }
+            else{
+                alert("Add Medication First")
+            }
+            
         });
         //generate table
         function GeneratedItemsTable() {
-            alert("inside table")
+           
             if (Meds.length > 0) {
                 var $table = $('<table/>').addClass("table ");
                 $table.append('<thead><tr><th>Type</th><th>Med</th><th>Strength</th><th>Duration</th><th>Dose</th></tr></thead>');
                 var $tbody = $('<tbody/>');
                 $.each(Meds, function (i, val) {
                     var $row = $('<tr/>');
-                    $row.append($('<td/>').html(val.Type));
-                    $row.append($('<td/>').html(val.Medicine));
+                    $row.append($('<td/>').html(val.MedType));
+                    $row.append($('<td/>').html(val.MedName));
                     $row.append($('<td/>').html(val.Strength));
                     $row.append($('<td/>').html(val.Duration));
                     $row.append($('<td/>').html(val.Dose));
-                    var $remove = $('<button type="button" rel="tooltip" class="btn btn-danger btn-round">x</button>');
-                    var icon = $( '<i class="material-icons">close</i>')
+                    var $remove =$('<button type="button" rel="tooltip" class="btn btn-danger"><i class="material-icons">close</i></button>');
+                    
                     $remove.click(function (e) {
                         e.preventDefault();
-                        Meds.splice(i, 1);
+                        Meds.splice(i,1);
                         GeneratedItemsTable();
                     });
-                    $row.append($('</button>').html(icon));
                     $row.append($('<td/>').html($remove));
 
                     $tbody.append($row);
                 });
               
                 $table.append($tbody);
-                $('#MedList').html($table);
+                $('#medlist').html($table);
                
 
             }
             else {
-                $('#MedItems').html('');
+                $('medlist').html('');
             }
         }
     })

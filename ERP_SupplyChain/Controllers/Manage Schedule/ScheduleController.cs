@@ -24,10 +24,9 @@ namespace ERP_SupplyChain.Controllers
             List<DepartmentVM> Departments = new List<DepartmentVM>();
             Departments.Add(new DepartmentVM() { Department = "Cardiology", Value = "Cardiology" });
             Departments.Add(new DepartmentVM() { Department = "Neurology", Value = "Neurology" });
-            Departments.Add(new DepartmentVM() { Department = "Gynaecology", Value = "Gynaecology" });
+            Departments.Add(new DepartmentVM() { Department = "Gynecology", Value = "Gynecology" });
             Departments.Add(new DepartmentVM() { Department = "Gastrology", Value = "Gastrology" });
-            Departments.Add(new DepartmentVM() { Department = "Genral Medicine", Value = "Genral Medicine" });
-            Departments.Add(new DepartmentVM() { Department = "Arthopathy", Value = "Arthopathy" });
+            Departments.Add(new DepartmentVM() { Department = "Arthropathy", Value = "Arthropathy" });
             Departments.Add(new DepartmentVM() { Department = "Dermatology", Value = "Dermatology" });
 
             ViewBag.Department = new SelectList(Departments, "Value", "Department");

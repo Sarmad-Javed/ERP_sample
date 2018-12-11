@@ -52,7 +52,34 @@
                 </div>
             </div>
         </div>
-      
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">Invoice</h4>
+                        <p class="card-category">today's Invoices</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive" id="Invoice">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">Newly Added Stock</h4>
+                        <p class="card-category">Stock updated today</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive" id="NewStock">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -121,7 +148,12 @@
 
     $(document).ready(function () {
         var LowStock = [];
+        var Invoice = [];
+        var Stock = [];
+
         GetLowStock();
+        GetInvoice();
+        GetStock();
 
         function GetLowStock() {
             $.get("/Pharmecy/GetLowStock", function (data) {
@@ -156,6 +188,77 @@
             }
             else {
                 $('#LowStok').html('');
+            }
+        }
+
+        function GetStock() {
+            $.get("/Pharmecy/GetStock", function (data) {
+                $.each(data, function (index, row) {
+
+                    Stock.push({
+                        StockID:row.StockID,
+                        ItemName: row.ItemName,
+                        StockQuantity: row.Quantity,
+
+                    });
+                    GeneratedStockTable();
+                })
+
+            })
+        }
+        function GeneratedStockTable() {
+            if (Stock.length > 0) {
+                var $table = $('<table/>').addClass("table table-striped");
+                $table.append('<thead><tr><th>ID</th><th>Name</th><th>Quantity</th></tr></thead>');
+                var $tbody = $('<tbody/>');
+                $.each(Stock, function (i, val) {
+                    var $row = $('<tr/>');
+                    $row.append($('<td/>').html(val.StockID));
+                    $row.append($('<td/>').html(val.ItemName));
+                    $row.append($('<td/>').html(val.StockQuantity));
+                    $tbody.append($row);
+                });
+                console.log("current", Stock);
+                $table.append($tbody);
+                $('#NewStock').html($table);
+            }
+            else {
+                $('#NewStock').html('');
+            }
+        }
+
+        function GetInvoice() {
+            $.get("/Pharmecy/GetInvoice", function (data) {
+                $.each(data, function (index, row) {
+
+                    Invoice.push({
+                        InvoiceID: row.InvoiceID,
+                        InvoiceTotal: row.Total,
+                        InvoiceDate:  moment(row.InvoiceDate).format("MM/DD/YYYY"),
+                    });
+                    GeneratedInvoiceTable();
+                })
+
+            })
+        }
+        function GeneratedInvoiceTable() {
+            if (Invoice.length > 0) {
+                var $table = $('<table/>').addClass("table table-striped");
+                $table.append('<thead><tr><th>ID</th><th>Total</th><th>Dated</th></tr></thead>');
+                var $tbody = $('<tbody/>');
+                $.each(Invoice, function (i, val) {
+                    var $row = $('<tr/>');
+                    $row.append($('<td/>').html(val.InvoiceID));
+                    $row.append($('<td/>').html(val.InvoiceTotal));
+                    $row.append($('<td/>').html(val.InvoiceDate));
+                    $tbody.append($row);
+                });
+                console.log("current", Invoice);
+                $table.append($tbody);
+                $('#Invoice').html($table);
+            }
+            else {
+                $('#Invoice').html('');
             }
         }
         //Update log

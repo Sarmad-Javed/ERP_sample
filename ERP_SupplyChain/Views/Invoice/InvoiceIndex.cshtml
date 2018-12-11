@@ -16,62 +16,65 @@
                         <div class="card-icon">
                             <i class="material-icons">assignment</i>
                         </div>
-                        <h4 class="card-title">PlaceOrder</h4>
+                        <h4 class="card-title">Invoice</h4>
                     </div>
                     <div class="content">
                         <div class="row">
-                            <div class="col-lg-3">
-                                <div class="">
-                                    @if (ViewBag.CategoryList != null)
-                                    {   @Html.LabelFor(model => model.CategoryID)
-                                        @Html.DropDownListFor(model => model.CategoryID, ViewBag.CategoryList as SelectList, "--Select Vendor--", new { @class = " form-control ", name = "SelectCategotry", id = "CategoryId" })
-                                    }
-                                    <span class="error" style=" visibility:hidden;"> Required field !</span>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="">
-                                    @Html.LabelFor(model => model.StockID)
-                                    @Html.DropDownListFor(model => model.StockID, new SelectList("--Select Item--"), "--Select Item--", new { @class = " form-control ", name = "SelectItem", id = "StockId" })
-                                    <span class="error" style=" visibility:hidden;"> Required field !</span>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="">
-                                    <label> Select Qty</label>
-                                    <input type="text" id="Qty" name="Date" class="form-control" />
-                                    <span class="error" style=" visibility:hidden;"> Required field !</span>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="">
-                                    <label> Select date</label>
-                                    <input type="text" id="Date" name="Qty" class="form-control datepicker" />
-                                    <span class="error" style=" visibility:hidden;"> Required field !</span>
-                                </div>
-                            </div>
-                        <div class="row">
-                                <input type="text" style="visibility:hidden;" id="AppId" name="Qty" value="@ViewBag.AppID"/>
-                                <div>
-                                    <div class="text-center">
-                                        <a href="#" class="btn btn-info btn-fill btn-wd" id="add">Add</a>
+                            <div class="col-md-3">
+                                <div class="col-lg-12">
+                                    <div class="">
+                                        @if (ViewBag.CategoryList != null)
+                                        {   @Html.LabelFor(model => model.CategoryID)
+                                            @Html.DropDownListFor(model => model.CategoryID, ViewBag.CategoryList as SelectList, "--Select Category--", new { @class = " form-control ", name = "SelectCategotry", id = "CategoryId" })
+                                        }
+                                        <span class="error" style=" visibility:hidden;"> Required field !</span>
                                     </div>
                                 </div>
+                                <div class="col-lg-12">
+                                    <div class="">
+                                        @Html.LabelFor(model => model.StockID)
+                                        @Html.DropDownListFor(model => model.StockID, new SelectList("--Select Item--"), "--Select Item--", new { @class = " form-control ", name = "SelectItem", id = "StockId" })
+                                        <span class="error" style=" visibility:hidden;"> Required field !</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="">
+                                        <label> Select Qty</label>
+                                        <input type="number" id="Qty" name="Date" class="form-control" />
+                                        <span class="error" id="QtyError" style=" visibility:hidden;">Qty must be less than in stock!</span>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="">
+                                        <label> Select date</label>
+                                        <input type="text" id="Date" name="Qty" class="form-control datepicker" />
+                                        <span class="error" style=" visibility:hidden;"> Required field !</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div>
+                                        <div class="text-center">
+                                            <a href="#" class="btn btn-info btn-fill btn-wd" id="add">Add</a>
+                                        </div>
+                                    </div>
+                                    <input type="text" style="visibility:hidden;" id="AppId" name="Qty" value="@ViewBag.AppID" />
+                                </div>
                             </div>
-
-                            <div class="col-sm-1"></div>
+                            <div class="col-lg-1"></div>
                             @*Product item list*@
-                            <div class="col-lg-12 col-md-12 s" id="ProductCart">
+                            <div class=" col-lg-8 col-md-8 s" id="ProductCart">
                                 <div class="card ">
                                     <div class="card-header card-header-info">
                                         <h4 class="card-title">Items List</h4>
                                     </div>
                                     <div class="content">
                                         <div class="row">
-                                            <div class="content table-responsive table-full-width " id="OrderList">
+                                            <div class="content table-responsive  " id="OrderList">
 
                                             </div>
                                         </div>
+                                        <hr />
                                         <div class="row">
                                             <div class="col-lg-8"></div>
                                             <div class="col-lg-4 text-left">
@@ -91,7 +94,7 @@
                                             <div class="col-lg-3 text-left">
                                                 <div class="text-center">
                                                     <br>
-                                                    <a href="#" class="btn btn-info btn-fill btn-wd" id="Cancel">Cancel</a>
+                                                    <a href="/PharmAppointment/Appointments" class="btn btn-info btn-fill btn-wd" id="Cancel">Cancel</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -173,6 +176,7 @@
         //intialization
         var InvoiceItems = [];
         var InvoiceDetails = [];
+        var QuantityDetails = [];
         var AppId = parseInt($("#AppId").val());
         var StockId;
         var ItemName;
@@ -195,6 +199,39 @@
             })
         });
 
+        $("#Qty").on("change", function () {
+            var e = document.getElementById("StockId");
+            StockId = e.options[e.selectedIndex].value;
+            var data = {
+                Quantity: $('#Qty').val(),
+                id: StockId,
+            }
+            $.ajax({
+                url: '/Invoice/CheckQuanity',
+                type: "POST",
+                data: JSON.stringify(data),
+                dataType: "JSON",
+                contentType: "application/json",
+                success: function (d) {
+                    //check is successfully save to database 
+                    if (d.status == true) {
+                        //will send status from server side
+                        alert('invalid Qty');
+                        //clear form
+                        $('#QtyError').css('visibility', 'visible');
+                    }
+                    else {
+                        alert('valid Qty');
+                    }
+                    $('#submit').val('Save');
+                },
+                error: function () {
+                    alert('Error. Please try again.');
+                    $('#submit').val('Save');
+                }
+            });
+        });
+
         //get item details
         $("#StockId").on("change", function () {
 
@@ -206,10 +243,9 @@
             $.get("/Invoice/GetItemDetails", { id: StockId }, function (data) {
                 $.each(data, function (index, row) {
                     StockId = row.StockID;
-                    alert(StockId);
+                   
                     ItemName = row.ItemName,
                     Price = row.PurchasePrice;
-                    StockQuantity = row.Quantity;
                 })
             })
         });
@@ -250,11 +286,8 @@
             if (isValidItem) {
                 //initialization
                 Quantity = parseInt($("#Qty").val());
-                alert(Quantity);
                 InvoiceDate = $("#Date").val();
-                alert(Price);
                 TotalAmount = parseFloat(Quantity * Price);
-                alert(TotalAmount);
 
 
 
@@ -270,7 +303,6 @@
                     $.each(InvoiceItems, function (i, val) {
                         //if yes
                         if (InvoiceItems[i].StockId == Id) {
-                            alert("checked");
                             itemExist = true;
                         }
                     })
@@ -279,9 +311,7 @@
                 if (itemExist == true) {
                     $.each(InvoiceItems, function (i, val) {
                         if (InvoiceItems[i].StockId == Id) {
-                            alert("item exsist");
                             val.Quantity = val.Quantity + Quantity;
-                            val.StockQuantity = val.StockQuantity - Quantity
                             val.Total = val.Quantity * Price;
                             //generate table
                             GeneratedItemsTable();
@@ -289,17 +319,20 @@
                     })
                 }
                 else {
-                    alert("item doesnot");
-
                     InvoiceItems.push({
                         StockId: StockId,
                         ItemName: ItemName,
                         Category: Category,
-                        StockQuantity: StockQuantity,
                         Quantity: Quantity,
                         Price: parseFloat(Price),
                         TotalAmount: parseFloat(TotalAmount),
 
+                    });
+                    QuantityDetails.push({
+                        StockId: StockId,
+                        ItemName: ItemName,
+                        Quantity: Quantity,
+                       cast: parseFloat(TotalAmount),
                     })
                     GeneratedItemsTable();
                 }
@@ -308,22 +341,67 @@
         //Save order
         //Save button click function
         $('#submit').click(function () {
-
             //Save if valid
+            if(InvoiceItems.length > 0){
+               
+                var data = {
+                    InvoiceDate: InvoiceDate,
+                    AppointmentID: AppId,
+                    InvoiceStatus: "Approved",
+                    Payment: "isPaid",
+                    TotalAmount: Ordertotal,
+                    InvoiceDetails: InvoiceItems,
+                    QuantityDetails: QuantityDetails
+                }
 
-            var data = {
-                InvoiceDate: InvoiceDate,
-                AppointmentID : AppId,
-                InvoiceStatus: "Approved",
-                Payment: "isPaid",
-                TotalAmount: Ordertotal,
-                InvoiceDetails: InvoiceItems
+                $(this).val('Please wait...');
+
+                $.ajax({
+                    url: '/Invoice/SaveInvoice',
+                    type: "POST",
+                    data: JSON.stringify(data),
+                    dataType: "JSON",
+                    contentType: "application/json",
+                    success: function (d) {
+                        //check is successfully save to database 
+                        if (d.status == true) {
+                            //will send status from server side
+                            alert('Successfully done.');
+                            ChangeAppStatus();
+                            //clear form
+                            orderItems = [];
+                            $('#VendorId').val('');
+                            $('#ItemId').val('');
+                            $('#CategoryId').val('');
+                            $('#DateId').val('');
+                            $('#Qty').val('');
+                            $('#orderItems').empty();
+                        }
+                        else {
+                            alert('Failed');
+                        }
+                        $('#submit').val('Save');
+                    },
+                    error: function () {
+                        alert('Error. Please try again.');
+                        $('#submit').val('Save');
+                    }
+                });
             }
+            else{
+                alert("no item added");
+            }
+        });
 
-            $(this).val('Please wait...');
-
+        function ChangeAppStatus()
+        {
+            var id = parseInt($('#AppId').val());
+           
+            var data = {
+                id:id,
+            }
             $.ajax({
-                url: '/Invoice/SaveInvoice',
+                url: '/Invoice/ChangeAppStatus',
                 type: "POST",
                 data: JSON.stringify(data),
                 dataType: "JSON",
@@ -332,18 +410,11 @@
                     //check is successfully save to database 
                     if (d.status == true) {
                         //will send status from server side
-                        alert('Successfully done.');
-                        //clear form
-                        orderItems = [];
-                        $('#VendorId').val('');
-                        $('#ItemId').val('');
-                        $('#CategoryId').val('');
-                        $('#DateId').val('');
-                        $('#Qty').val('');
-                        $('#orderItems').empty();
+                        alert("successfully change Status");
+                        window.location.replace("/PharmAppointment/Appointments");
                     }
                     else {
-                        alert('Failed');
+                        alert("Failed");
                     }
                     $('#submit').val('Save');
                 },
@@ -352,8 +423,8 @@
                     $('#submit').val('Save');
                 }
             });
-        });
 
+        }
         //generate table
         function GeneratedItemsTable() {
             if (InvoiceItems.length > 0) {
@@ -379,8 +450,7 @@
                     Ordertotal = Grandtotal;
 
                     $('#Gtotal').html(Grandtotal);
-                    alert(Ordertotal);
-                    alert(Grandtotal);
+                  
                 });
                 
                 $table.append($tbody);

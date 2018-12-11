@@ -119,6 +119,7 @@
       <Column Name="TimeSlot" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Description" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="Status" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Association Name="Appointment_Invoice" Member="Invoices" ThisKey="AppointmentID" OtherKey="AppointmentID" Type="Invoice" />
     </Type>
   </Table>
   <Table Name="dbo.Prescription" Member="Prescriptions">
@@ -141,17 +142,6 @@
       <Column Name="Dose" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="Dignosis" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Association Name="Prescription_Medication" Member="Prescription" ThisKey="PrescriptionID" OtherKey="PrescriptionID" Type="Prescription" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Invoice" Member="Invoices">
-    <Type Name="Invoice">
-      <Column Name="InvoiceID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="AppointmentID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="InvoiceDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="TotalAmount" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="InvoiceStatus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Payment" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Association Name="Invoice_InvoiceDetail" Member="InvoiceDetails" ThisKey="InvoiceID" OtherKey="InvoiceID" Type="InvoiceDetail" />
     </Type>
   </Table>
   <Table Name="dbo.InvoiceDetail" Member="InvoiceDetails">
@@ -194,6 +184,45 @@
       <Column Name="AddedMonth" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="AddedYear" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="AddedDay" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StockIn" Member="StockIns">
+    <Type Name="StockIn">
+      <Column Name="StockInID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StockID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StockName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="StockQuantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PurchasedCost" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="AddedDay" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="AddedMonth" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="AddedYear" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StockOut" Member="StockOuts">
+    <Type Name="StockOut">
+      <Column Name="StockOutID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StockID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StockName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="StockQuantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StockRevenue" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="AddedDay" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="AddedMonth" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="AddedYear" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Invoice" Member="Invoices">
+    <Type Name="Invoice">
+      <Column Name="InvoiceID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AppointmentID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="InvoiceDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TotalAmount" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="InvoiceStatus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Payment" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="AddedMonth" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="AddedYear" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="AddedDay" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="Invoice_InvoiceDetail" Member="InvoiceDetails" ThisKey="InvoiceID" OtherKey="InvoiceID" Type="InvoiceDetail" />
+      <Association Name="Appointment_Invoice" Member="Appointment" ThisKey="AppointmentID" OtherKey="AppointmentID" Type="Appointment" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

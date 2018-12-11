@@ -57,13 +57,13 @@
                             </div>
                             <hr style="margin:0px; " />
                             <div class="row">
-                                <div class="col-md-6"><input type="text" class="form-control" style=" visibility:hidden" id="AppID" value="@Html.DisplayFor(modelItem => item.AppointmentID)" /></div>
+                                <div class="col-md-9"><input type="text" class="form-control" style=" visibility:hidden" id="AppID" value="@Html.DisplayFor(modelItem => item.AppointmentID)" /></div>
                                 
-                                <div class="col-md-6">
+                                <div class="col-md-3">
                                     <div class="text-center">
                                         <a href="/Doctor/Prescription?id=@Html.DisplayFor(modelItem => item.AppointmentID)" class="btn btn-warning btn-fill btn-wd" id="Attend">Attend</a>
                                    
-                                        <a href="#" class="btn btn-warning btn-fill btn-wd" id="btnDelete">Cancel</a>
+                                        
                                     </div>
                                 </div>
                             </div>

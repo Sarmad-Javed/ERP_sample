@@ -191,7 +191,6 @@
             $("#Dep").on("change", function () {
                 //getdate value
                 var Date = $("#Date").val();
-                alert(Date);
                 //send to server to check if schedule available
                 $.get("/Appointment/CheckSchedule", { Date : Date }, function (data) {
                     if(data)
@@ -213,12 +212,9 @@
             //Check timeSlot
             $("#Slot").on("change", function () {
                 var slot = $("#Slot").val();
-                alert(slot)
                 var Date = $("#Date").val();
-                alert(Date);
                 var d = document.getElementById("DocID");
                 var docId = parseInt(d.options[d.selectedIndex].value);
-                alert(docId);
                 $.get("/Appointment/TimeSlot", { Date : Date, DocID : docId, slot : slot}, function (data) {
                     if (data) {
                         alert("Date is Invalid");
@@ -228,7 +224,7 @@
                     }
                     else {
                         $('#Slot').siblings('span.error').css('visibility', 'hidden');
-                        alert("Date is valid");
+                        alert("Slot Avialable");
                        
                     }
                 })
@@ -237,7 +233,7 @@
             //get Availible Doctor
             function GetDoctors ()
             {
-                alert("Inside Doctors");
+                
                 $.get("/Appointment/AvailableDoctors", { Date: $("#Date").val(), Department: $("#Dep").val() }, function (data) {
                     $("#DocID").empty();
                     $("#DocID").append("<option value='#'>" + "Select Item" + "</option>");
@@ -271,10 +267,8 @@
                     //docid
                     var d = document.getElementById("DocID");
                     var docId = d.options[d.selectedIndex].value;
-                    alert(docId);
                     //pid
                     var pid = $("#pId").val();
-                    alert(pid);
                     //timeslot
                     var t = document.getElementById("Slot");
                     var slot = t.options[t.selectedIndex].value;

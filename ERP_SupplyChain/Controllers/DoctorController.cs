@@ -67,7 +67,7 @@ namespace ERP_SupplyChain.Controllers
                      {
                          //
                          // i.TotalAmount =
-                         A.Status = "Perscribed";
+                         A.Status = "Prescribed";
                          dc.SubmitChanges();
                         
                      }

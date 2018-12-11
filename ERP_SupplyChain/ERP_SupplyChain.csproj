@@ -457,9 +457,9 @@
     <Compile Include="Controllers\ManageAttendance\ManageAttendanceController.cs" />
     <Compile Include="Controllers\ManageEmployee\ManageBills\ManageBillsController.cs" />
     <Compile Include="Controllers\ManageEmployee\ManageEmployeeController.cs" />
-    <Compile Include="Controllers\ManageOrder\CartController.cs" />
-    <Compile Include="Controllers\ManageOrder\PendingOrderController.cs" />
-    <Compile Include="Controllers\ManageOrder\PlaceOrderController.cs" />
+    <Compile Include="Controllers\ManageUser\ManageOrder\CartController.cs" />
+    <Compile Include="Controllers\ManageUser\ManageOrder\PendingOrderController.cs" />
+    <Compile Include="Controllers\ManageUser\ManageOrder\PlaceOrderController.cs" />
     <Compile Include="Controllers\ManagePatient\ManagePatientController.cs" />
     <Compile Include="Controllers\ManageUser\ManageUserController.cs" />
     <Compile Include="Controllers\ManageVendor\ManageVendorController.cs" />
