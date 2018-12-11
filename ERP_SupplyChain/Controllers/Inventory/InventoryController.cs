@@ -5,8 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using BusinessLogicLayer;
 using ERPEntities.Models;
+using ERPEntities;
 using System.Data;
-
 
 namespace ERP_SupplyChain.Controllers.Inventory
 {
@@ -14,19 +14,30 @@ namespace ERP_SupplyChain.Controllers.Inventory
 	public class InventoryController : Controller
 	{
 		//BLL object
+        ERP1DataContext dc = new ERP1DataContext();
 		ItemsLogic ItemLogic = new ItemsLogic();
 		ItemsModel itemModel = new ItemsModel();
 		public List<ItemsModel> item;
 		//
 		// GET: /Inventory/AddItem
 		public ActionResult AddItem()
-		{ 
+		{
+         
 			return View();
 		}
 		public ActionResult AddItems()
 		{
+            List<Vendor> VendorList = dc.Vendors.ToList();
+            ViewBag.VendorList = new SelectList(VendorList, "VendorID", "VendorName");
+            List<Category> CategoryList = dc.Categories.ToList();
+            ViewBag.CategoryList = new SelectList(CategoryList, "CategoryID", "CategoryName");
 			return View();
 		}
+
+         public JsonResult CheckItem(string ItemName,int VendorID)
+        {
+            return Json(!dc.Items.Where(x => x.VendorID == VendorID).Any(x => x.ItemName == ItemName), JsonRequestBehavior.AllowGet);
+        }
 
 		// GET: /Inventory/Details/id
 		public ActionResult Details(int id)
@@ -46,7 +57,7 @@ namespace ERP_SupplyChain.Controllers.Inventory
 		public ActionResult Delete(int id)
 		{
 			ItemLogic.DeleteItem(id);
-			return Redirect("ViewUser");
+			return Redirect("ViewItems");
 		}
 
 		// GET: /Inventory/ViewItem
@@ -72,7 +83,7 @@ namespace ERP_SupplyChain.Controllers.Inventory
 
 			//clalling BLL function
 			ItemLogic.addItems(item);
-			return View();     
+			return Redirect("/Inventory/ViewItems");     
 		}
 
 		[HttpPost]
@@ -82,8 +93,8 @@ namespace ERP_SupplyChain.Controllers.Inventory
 			{ //clalling BLL function
 				ItemLogic.addItems(model);
 			 }
-		   
-			return View();
+
+            return Redirect("ViewItems");
 		}
 
 		[HttpPost]

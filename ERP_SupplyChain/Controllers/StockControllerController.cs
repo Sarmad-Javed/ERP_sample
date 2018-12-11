@@ -97,8 +97,8 @@ namespace ERP_SupplyChain.Controllers
                         S.CategoryID = (int)value.CategoryID;
                         S.VendorID = (int)value.VendorID;
                         S.ItemName = value.ItemName;
-                        S.ExpDate = (DateTime)value.ExpDate;
-                        S.MfgDate = (DateTime)value.MfgDate;
+                        S.ExpDate = value.ExpDate.ToString();
+                        S.MfgDate = value.MfgDate.ToString();
                         S.PurchasePrice = (double)value.PurchasePrice;
                         S.PurchasePrice = (double)value.PurchasePrice;
                         S.LeadTime = (int)value.LeadTime;

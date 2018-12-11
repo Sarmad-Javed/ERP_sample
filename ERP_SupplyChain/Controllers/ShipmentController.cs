@@ -61,6 +61,28 @@ namespace ERP_SupplyChain.Controllers
             return Json(NewArrival, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult GetApprovedOrders()
+        {
+            List<ApprovedOrderVM> Awaiting = new List<ApprovedOrderVM>(5);
+            var result = dc.Orders.Where(x => x.OrderStatus == "Approved").Take(5);
+            if (result != null)
+            {
+                foreach (var v in result)
+                {
+                    ApprovedOrderVM s = new ApprovedOrderVM();
+                    s.OrderId = v.OrderId;
+                    s.OrderStatus = v.OrderStatus;
+                    DateTime OrderDate = (DateTime)v.OrderDate;
+                    string date = OrderDate.ToString("MM/dd/yyyy");
+                    s.OrderDate = date;
+
+                    Awaiting.Add(s);
+                }
+                return Json(Awaiting, JsonRequestBehavior.AllowGet);
+            }
+            return Json(Awaiting, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         //Get Shipment/CheckOrderID
         public JsonResult CheckOrderID(int orderID)
@@ -326,6 +348,13 @@ namespace ERP_SupplyChain.Controllers
                             S.UnitPrice = value.UnitPrice;
                             S.LeadTime = value.LeadTime;
                             S.Unit_of_Measure = value.Unit_of_Measure;
+                            string Day = DateTime.Now.Day.ToString();
+                            string Month = DateTime.Now.Month.ToString();
+                            string Year = DateTime.Now.Year.ToString();
+                            S.AddedDay = Day;
+                            S.AddedMonth = Month;
+                            S.AddedYear = Year;
+
                             dc.Stocks.InsertOnSubmit(S);
                         }
                     }

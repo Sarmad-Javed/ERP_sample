@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using BusinessLogicLayer;
 using ERPEntities.Models;
+using ERPEntities;
 
 namespace ERP_SupplyChain.Controllers.ManageVendor
 {
@@ -12,6 +13,7 @@ namespace ERP_SupplyChain.Controllers.ManageVendor
 	public class ManageVendorController : Controller
 	{
 		//
+        ERP1DataContext dc = new ERP1DataContext();
 		VendorLogic VendorLogic = new VendorLogic();
 		VendorModel VendorModel = new VendorModel();
 		List<VendorModel> VendorList = new List<VendorModel>();
@@ -49,6 +51,10 @@ namespace ERP_SupplyChain.Controllers.ManageVendor
 			VendorList = VendorLogic.viewVendorListByID(id);
 			return View(VendorList);
 		}
+        public JsonResult CheckVendor(string VendorName)
+        {
+            return Json(!dc.Vendors.Any(x => x.VendorName == VendorName), JsonRequestBehavior.AllowGet);
+        }
 
 		[HttpPost]
 		public ActionResult AddVendor(AddVendorModel vendor)
@@ -57,7 +63,7 @@ namespace ERP_SupplyChain.Controllers.ManageVendor
 			{ //clalling BLL function
 				VendorLogic.addVendor(vendor);
 			}
-			return View();
+			return Redirect("ViewVendor");
 
 		}
 		[HttpPost]

@@ -15,7 +15,9 @@
     <link rel="stylesheet" href="../../assets/lib/css/font-awesome.min.css">
     <link rel="stylesheet" href="../../assets/css/themify-icons.css">
     <!-- CSS Files -->
-    <link href="../../assets/css/material-dashboard.min40a0.css?v=2.0.2" rel="stylesheet" />
+    
+    
+    <link href="~/assets/css/material-dashboard.min40a0.css" rel="stylesheet" />
     <link href="../../assets/css/inventory-main.css" rel="stylesheet" />
     <link href="../../assets/css/inventory-detail.css" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
@@ -49,9 +51,9 @@
                 Tip 2: you can also add an image using data-image tag
             -->
             <div class="logo">
-                <a href="http://www.creative-tim.com/" class="simple-text logo-mini">CT </a>
+                <a href="http://www.creative-tim.com/" class="simple-text logo-mini">SC </a>
                 <a href="http://www.creative-tim.com/" class="simple-text logo-normal">
-                    Creative Tim
+                    Supply Chain
                 </a>
             </div>
             <div class="sidebar-wrapper">
@@ -61,12 +63,12 @@
                 <!-- User Info End -->
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="dashboard.html">
+                        <a class="nav-link" href="/SupplyChain/Dashboard">
                             <i class="material-icons">dashboard</i>
                             <p> Dashboard </p>
                         </a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" data-toggle="collapse" href="#inventory">
                             <i class="material-icons">image</i>
                             <p>
@@ -116,14 +118,70 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item ">
-                        <a class="nav-link"  href="#pagesExamples">
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#Order">
                             <i class="material-icons">grid</i>
                             <p>
-                                Place Order
+                               Manage Order
                                 <b class="caret"></b>
                             </p>
                         </a>
+                        <div class="collapse" id="Order">
+                            <ul class="nav">
+                                <li class="nav-item item  ">
+                                    <a class="nav-link" href="/PlaceOrder/OrderIndex">
+                                        <span class="sidebar-mini"> A </span>
+                                        <span class="sidebar-normal"> Place Order </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item item ">
+                                    <a class="nav-link" href="/PendingOrder/Orders">
+                                        <span class="sidebar-mini"> V </span>
+                                        <span class="sidebar-normal">Pending Order </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/PendingOrder/Orders">
+                            <i class="material-icons">grid</i>
+                            <p>
+                                Approve Order
+
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#Shipment">
+                            <i class="material-icons">grid</i>
+                            <p>
+                               Manage Shipment
+                                <b class="caret"></b>
+                            </p>
+                        </a>
+                        <div class="collapse" id="Shipment">
+                            <ul class="nav">
+                                <li class="nav-item item  ">
+                                    <a class="nav-link" href="/Shipment/ShipmentIndex">
+                                        <span class="sidebar-mini"> S </span>
+                                        <span class="sidebar-normal"> Shipment </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item item ">
+                                    <a class="nav-link" href="/Shipment/DeliveredOrders">
+                                        <span class="sidebar-mini"> A </span>
+                                        <span class="sidebar-normal">Add to Stock </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item item ">
+                                    <a class="nav-link" href="/ManageVendor/ViewVendor">
+                                        <span class="sidebar-mini"> A </span>
+                                        <span class="sidebar-normal">Add Storage Details </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link" href="/Accounts/Logout">

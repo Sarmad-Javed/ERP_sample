@@ -79,13 +79,17 @@
     <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\DeliveredOrderVM.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
+    <Compile Include="Models\InvoiceVM.cs" />
     <Compile Include="Models\ItemQuantityVM.cs" />
     <Compile Include="Models\ItemsModel.cs" />
+    <Compile Include="Models\LowStockVM.cs" />
     <Compile Include="Models\OrderDetailVM.cs" />
     <Compile Include="Models\OrderVM.cs" />
     <Compile Include="Models\PatientModel.cs" />
     <Compile Include="Models\PatientloginModel.cs" />
     <Compile Include="Models\PendingOrderVM.cs" />
+    <Compile Include="Models\PrescriptionVM.cs" />
+    <Compile Include="Models\RequestVM.cs" />
     <Compile Include="Models\ScheduleModel.cs" />
     <Compile Include="Models\ScheduleVM.cs" />
     <Compile Include="Models\ShipmentVM.cs" />

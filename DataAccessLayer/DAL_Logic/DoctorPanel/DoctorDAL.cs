@@ -69,5 +69,59 @@ namespace DataAccessLayer.DAL_Logic.Appointments
             return AppList;
 
         }
+
+        public List<AppointmentDetails> getAppDetails(int ID)
+        {
+            ERP1DataContext dc = new ERP1DataContext();
+            var result = from app in dc.Appointments
+                         join doc in dc.Doctors on app.DoctorID equals doc.DoctorID
+                         join p in dc.Patients on app.PatientID equals p.PatientID
+                         where app.AppointmentID == ID
+                         select new
+                         {
+                             AppointmentID = app.AppointmentID,
+                             DoctorID = doc.DoctorID,
+                             Department = doc.Designation,
+                             DoctorName = doc.FirstName + " "+doc.LastName,
+                             DoctorImage = doc.Image,
+                             DoctorEmail = doc.DoctorEmail,
+                             PatientID = p.PatientID,
+                             PatientName = p.PatientName,
+                             PatientEmail = p.PatientEmail,
+                             PatientContact = p.PatientContact,
+                             PatientImage = p.PatientImage,
+                             Details = app.Description,
+                             Date = app.Date,
+                             TimeSlot = app.TimeSlot,
+                             Status = app.Status
+
+                         };
+
+            
+                foreach (var v in result)
+                {
+
+                    AppointmentDetails details = new AppointmentDetails();
+                    details.AppointmentID = v.AppointmentID;
+                    details.DoctorID = v.DoctorID;
+                    details.Designation = v.Department;
+                    details.DoctorName = v.DoctorName;
+                    details.DoctorImage = v.DoctorImage;
+                    details.DoctorEmail = v.DoctorEmail;
+                    details.PatientID = v.PatientID;
+                    details.PatientName = v.PatientName;
+                    details.PatientEmail = v.PatientEmail;
+                    details.PatientContact = v.PatientContact;
+                    details.PatientImage = v.PatientImage;
+                    details.Date = v.Date.ToString();
+                    details.Description = v.Details;
+                    details.TimeSlot = v.TimeSlot;
+                    AppList.Add(details);
+
+                }
+
+                return AppList;
+            }
+
     }
 }

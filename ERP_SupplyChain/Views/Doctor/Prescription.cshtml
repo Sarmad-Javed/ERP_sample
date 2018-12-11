@@ -1,0 +1,395 @@
+﻿
+@{
+    ViewBag.Title = "Prescription";
+    Layout = Layout = "~/Views/Shared/_DoctorLayout.cshtml";
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<div class="content">
+    <input type="text" style="visibility:hidden;" id="AppID" value="@ViewBag.AppID"/>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-header card-header-info card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">assignment</i>
+                            </div>
+                            <h4 class="card-title">Prescription</h4>
+                        </div>
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="content">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <h4 class="card-title">Doctor:</h4>
+                                                </div>
+                                                <div class="col-md-6"><h4 class="card-title"><b id="Doc"></b></h4>
+                                                </div>
+                                            </div>
+                                            <hr style="margin: 0;" />
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <h4 class="card-title" >Department:</h4>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <h4 class="card-title"><b id="Dep"></b></h4>
+                                                </div>
+                                            </div>
+                                            <hr style="margin: 0;" />
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <h4 class="card-title" >Email</h4>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <h5 class="card-title text-dark" ><b id="Email"></b></h5>
+                                                </div>
+                                            </div>
+                                        <hr style="margin: 0;" />
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <h4 class="card-title">Date</h4>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="card-title text-dark" id="Date"></p>
+                                                </div>
+                                            </div>
+                                        <hr style="margin: 0;" />
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <h4 class="card-title">TimeSlot</h4>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="card-title text-dark"  id="Slot"></p>
+                                                </div>
+                                            </div> 
+                                    </div>
+                                </div>
+                               
+                        </div>
+                        <br/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card card-profile">
+                    <div class="card-avatar">
+                        <a href="#pablo">
+                            <img class="img" id="img" src="" />
+                        </a>
+                    </div>
+                    <div class="card-body">
+
+                        <h4 class="card-title" id="Patient"></h4>
+                        <p class="card-description" id="ph"></p>
+                        <h6 class="card-category text-dark" id="pEmail"></h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+           <div class="col-md-12">
+               <div class="card">
+                   <div class=" card-header card-header-icon card-header-info">
+                       <div class="card-icon">
+                           <i class="material-icons">receipt</i><span> Medication</span>
+                          
+                       </div>
+                   </div>
+                   <div class="content">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Description</label>
+                                <textarea class="form-control" id="Desc"></textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Dignosis</label>
+                                <textarea class="form-control" id="Diag"></textarea>
+                                <span class="error" id="error6" style=" visibility:hidden;"> Required field !</span>
+                            </div>
+                        </div>
+                       <br />
+                       <div class="row">
+                           <div class="col-md-12">
+                               <div class="table-responsive">
+                                   <table class="table">
+                                       <thead>
+                                           <tr>
+                                               <th>Med-type</th>
+                                               <th>Med</th>
+                                               <th>Strength</th>
+                                               <th>Duration</th>
+                                               <th>Dose</th>
+                                               <th>Action</th>
+                                           </tr>
+                                       </thead>
+                                       <tbody>
+                                           <tr>
+                                               <td>
+                                                   <select class="form-control" id="Type">
+                                                       <option value="Syp">Syp</option>
+                                                       <option value="Tab">Tab</option>
+                                                       <option value="Syr">Syr</option>
+                                                   </select>
+                                                   <span class="error"  id="error1" style=" visibility:hidden;">req!</span>
+                                               </td>
+                                               <td>
+                                                   <input class="form-control" id="Med"/>
+                                                   <span class="error" id="error2"  style=" visibility:hidden;"> Required field !</span>
+                                               </td>
+                                               <td>
+                                                    <input class="form-control" id="Strength"/>
+                                                   <span class="error" id="error3"  style=" visibility:hidden;"> Required field !</span>
+                                               </td>
+                                               <td>
+                                                   <input class="form-control" id="Duration"/>
+                                                   <span class="error" id="error4"  style=" visibility:hidden;"> Required field !</span>
+                                               </td>
+                                               <td>
+                                                   <select class="form-control" id="Dose">
+                                                       <option value="1-1-1">1-1-1</option>
+                                                       <option value="1-0-1">1-0-1</option>
+                                                       <option value="1">1</option>
+                                                   </select>
+                                                   <span class="error" id="error5" style=" visibility:hidden;"> req!</span>
+                                               <td class="td-actions text-right">
+                                                   <button type="button" class="btn btn-success " id="Add">
+                                                       <i class="material-icons"></i> +
+                                                   </button>
+                                               </td>
+                                           </tr>  
+                                       </tbody>
+                                   </table>
+                                   <hr />
+                                   <div class=" col-md-10 responsive-table " id="MedList">
+                                   </div>
+                                   <hr />
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="row">
+                       <div class="col-lg-6 text-left">
+                          
+                       </div>
+                       <div class="col-lg-2 text-left" >
+                           <div class="text-center">
+                               <a href="#" class="btn btn-info btn-fill btn-wd" id="Cancel">Prev Records</a>
+                           </div>
+                       </div>
+                       <div class="col-lg-2 text-left">
+                           <div class="text-center">
+                               <a href="#" class="btn btn-info btn-fill btn-wd" id="submit">Confirm</a>
+                           </div>
+                       </div>
+                       <div class="col-lg-2 text-left">
+                           <div class="text-center">
+                               <a href="#" class="btn btn-info btn-fill btn-wd" id="Cancel">Cancel</a>
+                           </div>
+                       </div>
+                       
+                   </div>
+                   <br />
+               </div>
+           </div>
+         
+        </div>
+    </div>
+</div>
+<script src="../../assets/js/moment.min.js"></script>
+<script src="../../assets/js/fullcalendar.min.js"></script>
+<script src="../../assets/js/sweetalert2.js"></script>
+<script src="../../assets/js/bootstrap-datetimepicker.js"></script>
+
+
+
+<script>
+    $(document).ready(function () {
+        var ID = parseInt($("#AppID").val());
+        var Meds = [];
+        var DoctorID;
+        var PatientID;
+        GetAppointmentDetails();
+        
+        //get DeliveredOrders
+        //id's Doc Dep Email  Date Slot  Patient ph pEmail
+        function GetAppointmentDetails() {
+            $.get("/Doctor/AppointmentDetails",{ id :ID }, function (data) {
+                $.each(data, function (index, row) {
+                    $("#Doc").text(row.DoctorName);
+                    DoctorID = parseInt(row.DoctorID);
+                    PatientID = parseInt(row.PatientID);
+                    $("#Dep").text(row.Designation);
+                    $("#Email").text(row.DoctorEmail);
+                    $("#Date").text(moment(row.Date).format("MM/DD/YYYY"));
+                    $("#Slot").text(row.TimeSlot);
+                    $("#Patient").text(row.PatientName);
+                    $("#ph").text(row.PatientContact);
+                    $("#pEmail").text(row.PatientEmail);
+                    $("#img").attr("src",row.PatientImage);
+                    $("#Desc").attr("value",row.Description);
+                    
+                })
+
+            })
+        }
+        
+        //Desc Dign Type Med Strenght Duration Dose
+        $("#Add").on("click", function () {
+            alert("calling");
+            var isValidItem = true;
+            if ($('#Diag').val().trim() == '') {
+                isValidItem = false;
+                $('#error6').css('visibility', 'visible');
+            }
+            else {
+                $('#error6').css('visibility', 'hidden')
+            }
+            if ($('#Type').val().trim() == '') {
+                isValidItem = false;
+                $('#error1').siblings('span.error').css('visibility', 'visible');
+            }
+            else {
+                $('#error1').siblings('span.error').css('visibility', 'hidden')
+            }
+            if ($('#Med').val().trim() == '') {
+                isValidItem = false;
+                $('#error2').css('visibility', 'visible');
+            }
+            else {
+                $('#error2').css('visibility', 'hidden');
+            }
+            if ($('#Strength').val().trim() == '') {
+                isValidItem = false;
+                $('#error3').css('visibility', 'visible');
+            }
+            else {
+                $('#error3').css('visibility', 'hidden');
+            }
+            if ($('#Dose').val().trim() == '') {
+                isValidItem = false;
+                $('#error5').css('visibility', 'visible');
+            }
+            else {
+                $('#error5').css('visibility', 'hidden');
+            }
+
+            if ($('#Duration').val().trim() == '') {
+                isValidItem = false;
+                $('#error4').css('visibility', 'visible');
+            }
+            else {
+                $('#error4').css('visibility', 'hidden');
+            }
+
+            if (isValidItem) {
+                alert("inside valid")
+                var Dig = $("#Diag").val();
+                var Type = $("#Type").val();
+                var Med = $("#Med").val();
+                var Strength = $("#Strength").val();
+                var Duration = $("#Duration").val();
+                var Dose = $("#Dose").val();
+                alert('pushing');
+                alert(Med);
+                alert(Type);
+                
+                Meds.push({
+                    Dignosis: Dig,
+                    MedType: Type,
+                    MedName: Med,
+                    Strength: Strength,
+                    Duration: Duration,
+                    Dose: Dose,
+
+                });
+                    GeneratedItemsTable();
+                
+            }
+        })
+
+        $('#submit').click(function () {
+
+            //Save if valid
+
+            var data = {
+                AppointmentID: ID,
+                DoctorID: DoctorID,
+                MedDetails: Meds,
+                PatientID: PatientID,
+               
+            }
+
+            $(this).val('Please wait...');
+
+            $.ajax({
+                url: '/Doctor/SavePrescription',
+                type: "POST",
+                data: JSON.stringify(data),
+                dataType: "JSON",
+                contentType: "application/json",
+                success: function (d) {
+                    //check is successfully save to database 
+                    if (d.status == true) {
+                        //will send status from server side
+                        alert('Successfully done.');
+                        //clear form
+                        Meds = [];
+                        $('#VendorId').val('');
+                        $('#ItemId').val('');
+                        $('#CategoryId').val('');
+                        $('#DateId').val('');
+                        $('#Qty').val('');
+                        $('#orderItems').empty();
+                    }
+                    else {
+                        alert('Failed');
+                    }
+                    $('#submit').val('Save');
+                },
+                error: function () {
+                    alert('Error. Please try again.');
+                    $('#submit').val('Save');
+                }
+            });
+        });
+        //generate table
+        function GeneratedItemsTable() {
+            alert("inside table")
+            if (Meds.length > 0) {
+                var $table = $('<table/>').addClass("table ");
+                $table.append('<thead><tr><th>Type</th><th>Med</th><th>Strength</th><th>Duration</th><th>Dose</th></tr></thead>');
+                var $tbody = $('<tbody/>');
+                $.each(Meds, function (i, val) {
+                    var $row = $('<tr/>');
+                    $row.append($('<td/>').html(val.Type));
+                    $row.append($('<td/>').html(val.Medicine));
+                    $row.append($('<td/>').html(val.Strength));
+                    $row.append($('<td/>').html(val.Duration));
+                    $row.append($('<td/>').html(val.Dose));
+                    var $remove = $('<button type="button" rel="tooltip" class="btn btn-danger btn-round">x</button>');
+                    var icon = $( '<i class="material-icons">close</i>')
+                    $remove.click(function (e) {
+                        e.preventDefault();
+                        Meds.splice(i, 1);
+                        GeneratedItemsTable();
+                    });
+                    $row.append($('</button>').html(icon));
+                    $row.append($('<td/>').html($remove));
+
+                    $tbody.append($row);
+                });
+              
+                $table.append($tbody);
+                $('#MedList').html($table);
+               
+
+            }
+            else {
+                $('#MedItems').html('');
+            }
+        }
+    })
+</script>

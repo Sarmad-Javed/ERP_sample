@@ -1,0 +1,396 @@
+﻿@model ERPEntities.Models.GenrateInvoiceVM
+@{
+    Layout = "~/Views/Shared/_PharmLayout.cshtml";
+    ViewBag.Title = "Invoice";
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/assets/js/moment.min.js"></script>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-info card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">assignment</i>
+                        </div>
+                        <h4 class="card-title">PlaceOrder</h4>
+                    </div>
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="">
+                                    @if (ViewBag.CategoryList != null)
+                                    {   @Html.LabelFor(model => model.CategoryID)
+                                        @Html.DropDownListFor(model => model.CategoryID, ViewBag.CategoryList as SelectList, "--Select Vendor--", new { @class = " form-control ", name = "SelectCategotry", id = "CategoryId" })
+                                    }
+                                    <span class="error" style=" visibility:hidden;"> Required field !</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="">
+                                    @Html.LabelFor(model => model.StockID)
+                                    @Html.DropDownListFor(model => model.StockID, new SelectList("--Select Item--"), "--Select Item--", new { @class = " form-control ", name = "SelectItem", id = "StockId" })
+                                    <span class="error" style=" visibility:hidden;"> Required field !</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="">
+                                    <label> Select Qty</label>
+                                    <input type="text" id="Qty" name="Date" class="form-control" />
+                                    <span class="error" style=" visibility:hidden;"> Required field !</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="">
+                                    <label> Select date</label>
+                                    <input type="text" id="Date" name="Qty" class="form-control datepicker" />
+                                    <span class="error" style=" visibility:hidden;"> Required field !</span>
+                                </div>
+                            </div>
+                        <div class="row">
+                                <input type="text" style="visibility:hidden;" id="AppId" name="Qty" value="@ViewBag.AppID"/>
+                                <div>
+                                    <div class="text-center">
+                                        <a href="#" class="btn btn-info btn-fill btn-wd" id="add">Add</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-1"></div>
+                            @*Product item list*@
+                            <div class="col-lg-12 col-md-12 s" id="ProductCart">
+                                <div class="card ">
+                                    <div class="card-header card-header-info">
+                                        <h4 class="card-title">Items List</h4>
+                                    </div>
+                                    <div class="content">
+                                        <div class="row">
+                                            <div class="content table-responsive table-full-width " id="OrderList">
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-8"></div>
+                                            <div class="col-lg-4 text-left">
+                                                <label class="form-control"><b>Grand Total:</b><span id="Gtotal"></span></label>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6"></div>
+                                            <div class="col-lg-3 text-left">
+                                                <div class="text-center">
+                                                    <br>
+                                                    <a href="#" class="btn btn-info btn-fill btn-wd" id="submit">Genrate Invoice</a>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 text-left">
+                                                <div class="text-center">
+                                                    <br>
+                                                    <a href="#" class="btn btn-info btn-fill btn-wd" id="Cancel">Cancel</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../assets/js/moment.min.js"></script>
+<script src="../../assets/js/fullcalendar.min.js"></script>
+<script src="../../assets/js/sweetalert2.js"></script>
+<script src="../../assets/js/bootstrap-datetimepicker.js"></script>
+
+<script>
+    // datepicker
+    $(document).ready(function () {
+        initFormExtendedDatetimepickers();
+        $('#dtp1,#dtp2').datetimepicker({
+            format: 'MM/dd/yyyy HH:mm A'
+        });
+        function initFormExtendedDatetimepickers() {
+            $('.datetimepicker').datetimepicker({
+                format: 'MM/dd/yyyy HH:mm A',
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-chevron-up",
+                    down: "fa fa-chevron-down",
+                    previous: 'fa fa-chevron-left',
+                    next: 'fa fa-chevron-right',
+                    today: 'fa fa-screenshot',
+                    clear: 'fa fa-trash',
+                    close: 'fa fa-remove'
+                }
+
+            });
+
+            $('.datepicker').datetimepicker({
+                format: 'MM/DD/YYYY',
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-chevron-up",
+                    down: "fa fa-chevron-down",
+                    previous: 'fa fa-chevron-left',
+                    next: 'fa fa-chevron-right',
+                    today: 'fa fa-screenshot',
+                    clear: 'fa fa-trash',
+                    close: 'fa fa-remove'
+                }
+            });
+
+            $('.timepicker').datetimepicker({
+                //          format: 'H:mm',    // use this format if you want the 24hours timepicker
+                format: 'h:mm A',    //use this format if you want the 12hours timpiecker with AM/PM toggle
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-chevron-up",
+                    down: "fa fa-chevron-down",
+                    previous: 'fa fa-chevron-left',
+                    next: 'fa fa-chevron-right',
+                    today: 'fa fa-screenshot',
+                    clear: 'fa fa-trash',
+                    close: 'fa fa-remove'
+                }
+            });
+        }
+    })
+
+    $(document).ready(function () {
+
+        //intialization
+        var InvoiceItems = [];
+        var InvoiceDetails = [];
+        var AppId = parseInt($("#AppId").val());
+        var StockId;
+        var ItemName;
+        var Category;
+        var Price;
+        var Quantity;
+        var StockQuantity;
+        var InvoiceDate;
+        var TotalAmount;
+        var Grandtotal = 0;
+        var Ordertotal = 0;
+        //Get ItemList Cascading Dropdown
+        $("#CategoryId").on("change", function () {
+            $.get("/Invoice/GetItemList", {CategoryId: $("#CategoryId").val() }, function (data) {
+                $("#StockId").empty();
+                $("#StockId").append("<option value='#'>" + "Select Item" + "</option>");
+                $.each(data, function (index, row) {
+                    $("#StockId").append("<option value='" + row.StockID + "'>" + row.ItemName + "</option>");
+                })
+            })
+        });
+
+        //get item details
+        $("#StockId").on("change", function () {
+
+            //get product id
+            var e = document.getElementById("StockId");
+           StockId = e.options[e.selectedIndex].value;
+
+            //get item details
+            $.get("/Invoice/GetItemDetails", { id: StockId }, function (data) {
+                $.each(data, function (index, row) {
+                    StockId = row.StockID;
+                    alert(StockId);
+                    ItemName = row.ItemName,
+                    Price = row.PurchasePrice;
+                    StockQuantity = row.Quantity;
+                })
+            })
+        });
+
+        //add to Orderlist
+        $('#add').on("click", function () {
+            var isValidItem = true;
+            if ($('#CategoryId').val().trim() == '') {
+                isValidItem = false;
+                $('#CategoryId').siblings('span.error').css('visibility', 'visible');
+            }
+            else {
+                $('#CategoryId').siblings('span.error').css('visibility', 'hidden')
+            }
+            if ($('#StockId').val().trim() == '') {
+                isValidItem = false;
+                $('#StockId').siblings('span.error').css('visibility', 'visible');
+            }
+            else {
+                $('#StockId').siblings('span.error').css('visibility', 'hidden');
+            }
+            if ($('#Qty').val().trim() == '') {
+                isValidItem = false;
+                $('#Qty').siblings('span.error').css('visibility', 'visible');
+            }
+            else {
+                $('#Qty').siblings('span.error').css('visibility', 'hidden');
+            }
+
+            if ($('#Date').val().trim() == '') {
+                isValidItem = false;
+                $('#Date').siblings('span.error').css('visibility', 'visible');
+            }
+            else {
+                $('#Date').siblings('span.error').css('visibility', 'hidden');
+            }
+
+            if (isValidItem) {
+                //initialization
+                Quantity = parseInt($("#Qty").val());
+                alert(Quantity);
+                InvoiceDate = $("#Date").val();
+                alert(Price);
+                TotalAmount = parseFloat(Quantity * Price);
+                alert(TotalAmount);
+
+
+
+                //populate order items
+                var e = document.getElementById("StockId");
+                var c = document.getElementById("CategoryId");
+                var Id = e.options[e.selectedIndex].value;
+                Category = c.options[c.selectedIndex].text;
+                var itemExist = false;
+
+                if (InvoiceItems.length > 0) {
+                    //check if item already exsist in list
+                    $.each(InvoiceItems, function (i, val) {
+                        //if yes
+                        if (InvoiceItems[i].StockId == Id) {
+                            alert("checked");
+                            itemExist = true;
+                        }
+                    })
+                }
+
+                if (itemExist == true) {
+                    $.each(InvoiceItems, function (i, val) {
+                        if (InvoiceItems[i].StockId == Id) {
+                            alert("item exsist");
+                            val.Quantity = val.Quantity + Quantity;
+                            val.StockQuantity = val.StockQuantity - Quantity
+                            val.Total = val.Quantity * Price;
+                            //generate table
+                            GeneratedItemsTable();
+                        }
+                    })
+                }
+                else {
+                    alert("item doesnot");
+
+                    InvoiceItems.push({
+                        StockId: StockId,
+                        ItemName: ItemName,
+                        Category: Category,
+                        StockQuantity: StockQuantity,
+                        Quantity: Quantity,
+                        Price: parseFloat(Price),
+                        TotalAmount: parseFloat(TotalAmount),
+
+                    })
+                    GeneratedItemsTable();
+                }
+            }
+        });
+        //Save order
+        //Save button click function
+        $('#submit').click(function () {
+
+            //Save if valid
+
+            var data = {
+                InvoiceDate: InvoiceDate,
+                AppointmentID : AppId,
+                InvoiceStatus: "Approved",
+                Payment: "isPaid",
+                TotalAmount: Ordertotal,
+                InvoiceDetails: InvoiceItems
+            }
+
+            $(this).val('Please wait...');
+
+            $.ajax({
+                url: '/Invoice/SaveInvoice',
+                type: "POST",
+                data: JSON.stringify(data),
+                dataType: "JSON",
+                contentType: "application/json",
+                success: function (d) {
+                    //check is successfully save to database 
+                    if (d.status == true) {
+                        //will send status from server side
+                        alert('Successfully done.');
+                        //clear form
+                        orderItems = [];
+                        $('#VendorId').val('');
+                        $('#ItemId').val('');
+                        $('#CategoryId').val('');
+                        $('#DateId').val('');
+                        $('#Qty').val('');
+                        $('#orderItems').empty();
+                    }
+                    else {
+                        alert('Failed');
+                    }
+                    $('#submit').val('Save');
+                },
+                error: function () {
+                    alert('Error. Please try again.');
+                    $('#submit').val('Save');
+                }
+            });
+        });
+
+        //generate table
+        function GeneratedItemsTable() {
+            if (InvoiceItems.length > 0) {
+                Grandtotal = 0;
+                var $table = $('<table/>').addClass("table table-striped");
+                $table.append('<thead><tr><th>Item</th><th>Quantity</th><th>Rate</th><th>Total</th><th></th></tr></thead>');
+                var $tbody = $('<tbody/>');
+                $.each(InvoiceItems, function (i, val) {
+                    var $row = $('<tr/>');
+                    $row.append($('<td/>').html(val.ItemName));
+                    $row.append($('<td/>').html(val.Quantity));
+                    $row.append($('<td/>').html(val.Price));
+                    $row.append($('<td/>').html(val.TotalAmount));
+                    var $remove = $('<a href="#">Remove</a>');
+                    $remove.click(function (e) {
+                        e.preventDefault();
+                        InvoiceItems.splice(i, 1);
+                        GeneratedItemsTable();
+                    });
+                    $row.append($('<td/>').html($remove));
+                    $tbody.append($row);
+                    Grandtotal = parseFloat(InvoiceItems[i].TotalAmount + Grandtotal);
+                    Ordertotal = Grandtotal;
+
+                    $('#Gtotal').html(Grandtotal);
+                    alert(Ordertotal);
+                    alert(Grandtotal);
+                });
+                
+                $table.append($tbody);
+                $('#OrderList').html($table);
+
+            }
+            else {
+                $('#orderItems').html('');
+            }
+        }
+
+    });
+</script>

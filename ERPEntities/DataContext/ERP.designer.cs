@@ -42,9 +42,6 @@ namespace ERPEntities.DataContext
     partial void InsertSchedule(Schedule instance);
     partial void UpdateSchedule(Schedule instance);
     partial void DeleteSchedule(Schedule instance);
-    partial void InsertDoctor(Doctor instance);
-    partial void UpdateDoctor(Doctor instance);
-    partial void DeleteDoctor(Doctor instance);
     partial void InsertDoctorSchedule(DoctorSchedule instance);
     partial void UpdateDoctorSchedule(DoctorSchedule instance);
     partial void DeleteDoctorSchedule(DoctorSchedule instance);
@@ -66,15 +63,33 @@ namespace ERPEntities.DataContext
     partial void InsertOrderDetail(OrderDetail instance);
     partial void UpdateOrderDetail(OrderDetail instance);
     partial void DeleteOrderDetail(OrderDetail instance);
-    partial void InsertStock(Stock instance);
-    partial void UpdateStock(Stock instance);
-    partial void DeleteStock(Stock instance);
     partial void InsertAppointment(Appointment instance);
     partial void UpdateAppointment(Appointment instance);
     partial void DeleteAppointment(Appointment instance);
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
+    partial void InsertPrescription(Prescription instance);
+    partial void UpdatePrescription(Prescription instance);
+    partial void DeletePrescription(Prescription instance);
+    partial void InsertMedication(Medication instance);
+    partial void UpdateMedication(Medication instance);
+    partial void DeleteMedication(Medication instance);
+    partial void InsertDoctor(Doctor instance);
+    partial void UpdateDoctor(Doctor instance);
+    partial void DeleteDoctor(Doctor instance);
+    partial void InsertInvoiceDetail(InvoiceDetail instance);
+    partial void UpdateInvoiceDetail(InvoiceDetail instance);
+    partial void DeleteInvoiceDetail(InvoiceDetail instance);
+    partial void InsertInvoice(Invoice instance);
+    partial void UpdateInvoice(Invoice instance);
+    partial void DeleteInvoice(Invoice instance);
+    partial void InsertStock(Stock instance);
+    partial void UpdateStock(Stock instance);
+    partial void DeleteStock(Stock instance);
+    partial void InsertRequest(Request instance);
+    partial void UpdateRequest(Request instance);
+    partial void DeleteRequest(Request instance);
     #endregion
 		
 		public ERPDataContext() : 
@@ -139,14 +154,6 @@ namespace ERPEntities.DataContext
 			}
 		}
 		
-		public System.Data.Linq.Table<Doctor> Doctors
-		{
-			get
-			{
-				return this.GetTable<Doctor>();
-			}
-		}
-		
 		public System.Data.Linq.Table<DoctorSchedule> DoctorSchedules
 		{
 			get
@@ -203,14 +210,6 @@ namespace ERPEntities.DataContext
 			}
 		}
 		
-		public System.Data.Linq.Table<Stock> Stocks
-		{
-			get
-			{
-				return this.GetTable<Stock>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Appointment> Appointments
 		{
 			get
@@ -224,6 +223,62 @@ namespace ERPEntities.DataContext
 			get
 			{
 				return this.GetTable<User>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Prescription> Prescriptions
+		{
+			get
+			{
+				return this.GetTable<Prescription>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Medication> Medications
+		{
+			get
+			{
+				return this.GetTable<Medication>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Doctor> Doctors
+		{
+			get
+			{
+				return this.GetTable<Doctor>();
+			}
+		}
+		
+		public System.Data.Linq.Table<InvoiceDetail> InvoiceDetails
+		{
+			get
+			{
+				return this.GetTable<InvoiceDetail>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Invoice> Invoices
+		{
+			get
+			{
+				return this.GetTable<Invoice>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Stock> Stocks
+		{
+			get
+			{
+				return this.GetTable<Stock>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Request> Requests
+		{
+			get
+			{
+				return this.GetTable<Request>();
 			}
 		}
 	}
@@ -1036,244 +1091,6 @@ namespace ERPEntities.DataContext
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Doctor")]
-	public partial class Doctor : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _DoctorID;
-		
-		private string _FirstName;
-		
-		private string _LastName;
-		
-		private string _Department;
-		
-		private string _Designation;
-		
-		private string _Image;
-		
-		private EntitySet<DoctorSchedule> _DoctorSchedules;
-		
-		private EntitySet<Appointment> _Appointments;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnDoctorIDChanging(int value);
-    partial void OnDoctorIDChanged();
-    partial void OnFirstNameChanging(string value);
-    partial void OnFirstNameChanged();
-    partial void OnLastNameChanging(string value);
-    partial void OnLastNameChanged();
-    partial void OnDepartmentChanging(string value);
-    partial void OnDepartmentChanged();
-    partial void OnDesignationChanging(string value);
-    partial void OnDesignationChanged();
-    partial void OnImageChanging(string value);
-    partial void OnImageChanged();
-    #endregion
-		
-		public Doctor()
-		{
-			this._DoctorSchedules = new EntitySet<DoctorSchedule>(new Action<DoctorSchedule>(this.attach_DoctorSchedules), new Action<DoctorSchedule>(this.detach_DoctorSchedules));
-			this._Appointments = new EntitySet<Appointment>(new Action<Appointment>(this.attach_Appointments), new Action<Appointment>(this.detach_Appointments));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DoctorID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int DoctorID
-		{
-			get
-			{
-				return this._DoctorID;
-			}
-			set
-			{
-				if ((this._DoctorID != value))
-				{
-					this.OnDoctorIDChanging(value);
-					this.SendPropertyChanging();
-					this._DoctorID = value;
-					this.SendPropertyChanged("DoctorID");
-					this.OnDoctorIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string FirstName
-		{
-			get
-			{
-				return this._FirstName;
-			}
-			set
-			{
-				if ((this._FirstName != value))
-				{
-					this.OnFirstNameChanging(value);
-					this.SendPropertyChanging();
-					this._FirstName = value;
-					this.SendPropertyChanged("FirstName");
-					this.OnFirstNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string LastName
-		{
-			get
-			{
-				return this._LastName;
-			}
-			set
-			{
-				if ((this._LastName != value))
-				{
-					this.OnLastNameChanging(value);
-					this.SendPropertyChanging();
-					this._LastName = value;
-					this.SendPropertyChanged("LastName");
-					this.OnLastNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Department", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Department
-		{
-			get
-			{
-				return this._Department;
-			}
-			set
-			{
-				if ((this._Department != value))
-				{
-					this.OnDepartmentChanging(value);
-					this.SendPropertyChanging();
-					this._Department = value;
-					this.SendPropertyChanged("Department");
-					this.OnDepartmentChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Designation", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Designation
-		{
-			get
-			{
-				return this._Designation;
-			}
-			set
-			{
-				if ((this._Designation != value))
-				{
-					this.OnDesignationChanging(value);
-					this.SendPropertyChanging();
-					this._Designation = value;
-					this.SendPropertyChanged("Designation");
-					this.OnDesignationChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Image
-		{
-			get
-			{
-				return this._Image;
-			}
-			set
-			{
-				if ((this._Image != value))
-				{
-					this.OnImageChanging(value);
-					this.SendPropertyChanging();
-					this._Image = value;
-					this.SendPropertyChanged("Image");
-					this.OnImageChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Doctor_DoctorSchedule", Storage="_DoctorSchedules", ThisKey="DoctorID", OtherKey="DoctorID")]
-		public EntitySet<DoctorSchedule> DoctorSchedules
-		{
-			get
-			{
-				return this._DoctorSchedules;
-			}
-			set
-			{
-				this._DoctorSchedules.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Doctor_Appointment", Storage="_Appointments", ThisKey="DoctorID", OtherKey="DoctorID")]
-		public EntitySet<Appointment> Appointments
-		{
-			get
-			{
-				return this._Appointments;
-			}
-			set
-			{
-				this._Appointments.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_DoctorSchedules(DoctorSchedule entity)
-		{
-			this.SendPropertyChanging();
-			entity.Doctor = this;
-		}
-		
-		private void detach_DoctorSchedules(DoctorSchedule entity)
-		{
-			this.SendPropertyChanging();
-			entity.Doctor = null;
-		}
-		
-		private void attach_Appointments(Appointment entity)
-		{
-			this.SendPropertyChanging();
-			entity.Doctor = this;
-		}
-		
-		private void detach_Appointments(Appointment entity)
-		{
-			this.SendPropertyChanging();
-			entity.Doctor = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DoctorSchedule")]
 	public partial class DoctorSchedule : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1286,9 +1103,9 @@ namespace ERPEntities.DataContext
 		
 		private int _EventID;
 		
-		private EntityRef<Doctor> _Doctor;
-		
 		private EntityRef<Schedule> _Schedule;
+		
+		private EntityRef<Doctor> _Doctor;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1304,8 +1121,8 @@ namespace ERPEntities.DataContext
 		
 		public DoctorSchedule()
 		{
-			this._Doctor = default(EntityRef<Doctor>);
 			this._Schedule = default(EntityRef<Schedule>);
+			this._Doctor = default(EntityRef<Doctor>);
 			OnCreated();
 		}
 		
@@ -1377,40 +1194,6 @@ namespace ERPEntities.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Doctor_DoctorSchedule", Storage="_Doctor", ThisKey="DoctorID", OtherKey="DoctorID", IsForeignKey=true)]
-		public Doctor Doctor
-		{
-			get
-			{
-				return this._Doctor.Entity;
-			}
-			set
-			{
-				Doctor previousValue = this._Doctor.Entity;
-				if (((previousValue != value) 
-							|| (this._Doctor.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Doctor.Entity = null;
-						previousValue.DoctorSchedules.Remove(this);
-					}
-					this._Doctor.Entity = value;
-					if ((value != null))
-					{
-						value.DoctorSchedules.Add(this);
-						this._DoctorID = value.DoctorID;
-					}
-					else
-					{
-						this._DoctorID = default(int);
-					}
-					this.SendPropertyChanged("Doctor");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Schedule_DoctorSchedule", Storage="_Schedule", ThisKey="EventID", OtherKey="EventID", IsForeignKey=true)]
 		public Schedule Schedule
 		{
@@ -1441,6 +1224,40 @@ namespace ERPEntities.DataContext
 						this._EventID = default(int);
 					}
 					this.SendPropertyChanged("Schedule");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Doctor_DoctorSchedule", Storage="_Doctor", ThisKey="DoctorID", OtherKey="DoctorID", IsForeignKey=true)]
+		public Doctor Doctor
+		{
+			get
+			{
+				return this._Doctor.Entity;
+			}
+			set
+			{
+				Doctor previousValue = this._Doctor.Entity;
+				if (((previousValue != value) 
+							|| (this._Doctor.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Doctor.Entity = null;
+						previousValue.DoctorSchedules.Remove(this);
+					}
+					this._Doctor.Entity = value;
+					if ((value != null))
+					{
+						value.DoctorSchedules.Add(this);
+						this._DoctorID = value.DoctorID;
+					}
+					else
+					{
+						this._DoctorID = default(int);
+					}
+					this.SendPropertyChanged("Doctor");
 				}
 			}
 		}
@@ -2961,332 +2778,6 @@ namespace ERPEntities.DataContext
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Stock")]
-	public partial class Stock : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _StockID;
-		
-		private System.Nullable<int> _ItemID;
-		
-		private System.Nullable<int> _VendorID;
-		
-		private System.Nullable<int> _CategoryID;
-		
-		private string _ItemName;
-		
-		private System.Nullable<int> _Quantity;
-		
-		private System.Nullable<System.DateTime> _MfgDate;
-		
-		private System.Nullable<System.DateTime> _ExpDate;
-		
-		private System.Nullable<double> _UnitPrice;
-		
-		private System.Nullable<double> _PurchasePrice;
-		
-		private string _Unit_of_Measure;
-		
-		private System.Nullable<int> _LeadTime;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnStockIDChanging(int value);
-    partial void OnStockIDChanged();
-    partial void OnItemIDChanging(System.Nullable<int> value);
-    partial void OnItemIDChanged();
-    partial void OnVendorIDChanging(System.Nullable<int> value);
-    partial void OnVendorIDChanged();
-    partial void OnCategoryIDChanging(System.Nullable<int> value);
-    partial void OnCategoryIDChanged();
-    partial void OnItemNameChanging(string value);
-    partial void OnItemNameChanged();
-    partial void OnQuantityChanging(System.Nullable<int> value);
-    partial void OnQuantityChanged();
-    partial void OnMfgDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnMfgDateChanged();
-    partial void OnExpDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnExpDateChanged();
-    partial void OnUnitPriceChanging(System.Nullable<double> value);
-    partial void OnUnitPriceChanged();
-    partial void OnPurchasePriceChanging(System.Nullable<double> value);
-    partial void OnPurchasePriceChanged();
-    partial void OnUnit_of_MeasureChanging(string value);
-    partial void OnUnit_of_MeasureChanged();
-    partial void OnLeadTimeChanging(System.Nullable<int> value);
-    partial void OnLeadTimeChanged();
-    #endregion
-		
-		public Stock()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StockID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int StockID
-		{
-			get
-			{
-				return this._StockID;
-			}
-			set
-			{
-				if ((this._StockID != value))
-				{
-					this.OnStockIDChanging(value);
-					this.SendPropertyChanging();
-					this._StockID = value;
-					this.SendPropertyChanged("StockID");
-					this.OnStockIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemID", DbType="Int")]
-		public System.Nullable<int> ItemID
-		{
-			get
-			{
-				return this._ItemID;
-			}
-			set
-			{
-				if ((this._ItemID != value))
-				{
-					this.OnItemIDChanging(value);
-					this.SendPropertyChanging();
-					this._ItemID = value;
-					this.SendPropertyChanged("ItemID");
-					this.OnItemIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VendorID", DbType="Int")]
-		public System.Nullable<int> VendorID
-		{
-			get
-			{
-				return this._VendorID;
-			}
-			set
-			{
-				if ((this._VendorID != value))
-				{
-					this.OnVendorIDChanging(value);
-					this.SendPropertyChanging();
-					this._VendorID = value;
-					this.SendPropertyChanged("VendorID");
-					this.OnVendorIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CategoryID", DbType="Int")]
-		public System.Nullable<int> CategoryID
-		{
-			get
-			{
-				return this._CategoryID;
-			}
-			set
-			{
-				if ((this._CategoryID != value))
-				{
-					this.OnCategoryIDChanging(value);
-					this.SendPropertyChanging();
-					this._CategoryID = value;
-					this.SendPropertyChanged("CategoryID");
-					this.OnCategoryIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemName", DbType="VarChar(MAX)")]
-		public string ItemName
-		{
-			get
-			{
-				return this._ItemName;
-			}
-			set
-			{
-				if ((this._ItemName != value))
-				{
-					this.OnItemNameChanging(value);
-					this.SendPropertyChanging();
-					this._ItemName = value;
-					this.SendPropertyChanged("ItemName");
-					this.OnItemNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Quantity", DbType="Int")]
-		public System.Nullable<int> Quantity
-		{
-			get
-			{
-				return this._Quantity;
-			}
-			set
-			{
-				if ((this._Quantity != value))
-				{
-					this.OnQuantityChanging(value);
-					this.SendPropertyChanging();
-					this._Quantity = value;
-					this.SendPropertyChanged("Quantity");
-					this.OnQuantityChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MfgDate", DbType="Date")]
-		public System.Nullable<System.DateTime> MfgDate
-		{
-			get
-			{
-				return this._MfgDate;
-			}
-			set
-			{
-				if ((this._MfgDate != value))
-				{
-					this.OnMfgDateChanging(value);
-					this.SendPropertyChanging();
-					this._MfgDate = value;
-					this.SendPropertyChanged("MfgDate");
-					this.OnMfgDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExpDate", DbType="Date")]
-		public System.Nullable<System.DateTime> ExpDate
-		{
-			get
-			{
-				return this._ExpDate;
-			}
-			set
-			{
-				if ((this._ExpDate != value))
-				{
-					this.OnExpDateChanging(value);
-					this.SendPropertyChanging();
-					this._ExpDate = value;
-					this.SendPropertyChanged("ExpDate");
-					this.OnExpDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UnitPrice", DbType="Float")]
-		public System.Nullable<double> UnitPrice
-		{
-			get
-			{
-				return this._UnitPrice;
-			}
-			set
-			{
-				if ((this._UnitPrice != value))
-				{
-					this.OnUnitPriceChanging(value);
-					this.SendPropertyChanging();
-					this._UnitPrice = value;
-					this.SendPropertyChanged("UnitPrice");
-					this.OnUnitPriceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PurchasePrice", DbType="Float")]
-		public System.Nullable<double> PurchasePrice
-		{
-			get
-			{
-				return this._PurchasePrice;
-			}
-			set
-			{
-				if ((this._PurchasePrice != value))
-				{
-					this.OnPurchasePriceChanging(value);
-					this.SendPropertyChanging();
-					this._PurchasePrice = value;
-					this.SendPropertyChanged("PurchasePrice");
-					this.OnPurchasePriceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Unit_of_Measure", DbType="VarChar(50)")]
-		public string Unit_of_Measure
-		{
-			get
-			{
-				return this._Unit_of_Measure;
-			}
-			set
-			{
-				if ((this._Unit_of_Measure != value))
-				{
-					this.OnUnit_of_MeasureChanging(value);
-					this.SendPropertyChanging();
-					this._Unit_of_Measure = value;
-					this.SendPropertyChanged("Unit_of_Measure");
-					this.OnUnit_of_MeasureChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LeadTime", DbType="Int")]
-		public System.Nullable<int> LeadTime
-		{
-			get
-			{
-				return this._LeadTime;
-			}
-			set
-			{
-				if ((this._LeadTime != value))
-				{
-					this.OnLeadTimeChanging(value);
-					this.SendPropertyChanging();
-					this._LeadTime = value;
-					this.SendPropertyChanged("LeadTime");
-					this.OnLeadTimeChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Appointments")]
 	public partial class Appointment : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -3307,9 +2798,11 @@ namespace ERPEntities.DataContext
 		
 		private string _Status;
 		
-		private EntityRef<Doctor> _Doctor;
+		private EntitySet<Invoice> _Invoices;
 		
 		private EntityRef<Patient> _Patient;
+		
+		private EntityRef<Doctor> _Doctor;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -3333,8 +2826,9 @@ namespace ERPEntities.DataContext
 		
 		public Appointment()
 		{
-			this._Doctor = default(EntityRef<Doctor>);
+			this._Invoices = new EntitySet<Invoice>(new Action<Invoice>(this.attach_Invoices), new Action<Invoice>(this.detach_Invoices));
 			this._Patient = default(EntityRef<Patient>);
+			this._Doctor = default(EntityRef<Doctor>);
 			OnCreated();
 		}
 		
@@ -3486,37 +2980,16 @@ namespace ERPEntities.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Doctor_Appointment", Storage="_Doctor", ThisKey="DoctorID", OtherKey="DoctorID", IsForeignKey=true)]
-		public Doctor Doctor
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Appointment_Invoice", Storage="_Invoices", ThisKey="AppointmentID", OtherKey="AppointmentID")]
+		public EntitySet<Invoice> Invoices
 		{
 			get
 			{
-				return this._Doctor.Entity;
+				return this._Invoices;
 			}
 			set
 			{
-				Doctor previousValue = this._Doctor.Entity;
-				if (((previousValue != value) 
-							|| (this._Doctor.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Doctor.Entity = null;
-						previousValue.Appointments.Remove(this);
-					}
-					this._Doctor.Entity = value;
-					if ((value != null))
-					{
-						value.Appointments.Add(this);
-						this._DoctorID = value.DoctorID;
-					}
-					else
-					{
-						this._DoctorID = default(int);
-					}
-					this.SendPropertyChanged("Doctor");
-				}
+				this._Invoices.Assign(value);
 			}
 		}
 		
@@ -3554,6 +3027,40 @@ namespace ERPEntities.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Doctor_Appointment", Storage="_Doctor", ThisKey="DoctorID", OtherKey="DoctorID", IsForeignKey=true)]
+		public Doctor Doctor
+		{
+			get
+			{
+				return this._Doctor.Entity;
+			}
+			set
+			{
+				Doctor previousValue = this._Doctor.Entity;
+				if (((previousValue != value) 
+							|| (this._Doctor.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Doctor.Entity = null;
+						previousValue.Appointments.Remove(this);
+					}
+					this._Doctor.Entity = value;
+					if ((value != null))
+					{
+						value.Appointments.Add(this);
+						this._DoctorID = value.DoctorID;
+					}
+					else
+					{
+						this._DoctorID = default(int);
+					}
+					this.SendPropertyChanged("Doctor");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -3572,6 +3079,18 @@ namespace ERPEntities.DataContext
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Invoices(Invoice entity)
+		{
+			this.SendPropertyChanging();
+			entity.Appointment = this;
+		}
+		
+		private void detach_Invoices(Invoice entity)
+		{
+			this.SendPropertyChanging();
+			entity.Appointment = null;
 		}
 	}
 	
@@ -3845,6 +3364,1803 @@ namespace ERPEntities.DataContext
 						this._RoleID = default(int);
 					}
 					this.SendPropertyChanged("Role");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Prescription")]
+	public partial class Prescription : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _PrescriptionID;
+		
+		private System.Nullable<int> _DoctorID;
+		
+		private System.Nullable<int> _PatientID;
+		
+		private System.Nullable<int> _AppointmentID;
+		
+		private EntitySet<Medication> _Medications;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPrescriptionIDChanging(int value);
+    partial void OnPrescriptionIDChanged();
+    partial void OnDoctorIDChanging(System.Nullable<int> value);
+    partial void OnDoctorIDChanged();
+    partial void OnPatientIDChanging(System.Nullable<int> value);
+    partial void OnPatientIDChanged();
+    partial void OnAppointmentIDChanging(System.Nullable<int> value);
+    partial void OnAppointmentIDChanged();
+    #endregion
+		
+		public Prescription()
+		{
+			this._Medications = new EntitySet<Medication>(new Action<Medication>(this.attach_Medications), new Action<Medication>(this.detach_Medications));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrescriptionID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int PrescriptionID
+		{
+			get
+			{
+				return this._PrescriptionID;
+			}
+			set
+			{
+				if ((this._PrescriptionID != value))
+				{
+					this.OnPrescriptionIDChanging(value);
+					this.SendPropertyChanging();
+					this._PrescriptionID = value;
+					this.SendPropertyChanged("PrescriptionID");
+					this.OnPrescriptionIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DoctorID", DbType="Int")]
+		public System.Nullable<int> DoctorID
+		{
+			get
+			{
+				return this._DoctorID;
+			}
+			set
+			{
+				if ((this._DoctorID != value))
+				{
+					this.OnDoctorIDChanging(value);
+					this.SendPropertyChanging();
+					this._DoctorID = value;
+					this.SendPropertyChanged("DoctorID");
+					this.OnDoctorIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientID", DbType="Int")]
+		public System.Nullable<int> PatientID
+		{
+			get
+			{
+				return this._PatientID;
+			}
+			set
+			{
+				if ((this._PatientID != value))
+				{
+					this.OnPatientIDChanging(value);
+					this.SendPropertyChanging();
+					this._PatientID = value;
+					this.SendPropertyChanged("PatientID");
+					this.OnPatientIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AppointmentID", DbType="Int")]
+		public System.Nullable<int> AppointmentID
+		{
+			get
+			{
+				return this._AppointmentID;
+			}
+			set
+			{
+				if ((this._AppointmentID != value))
+				{
+					this.OnAppointmentIDChanging(value);
+					this.SendPropertyChanging();
+					this._AppointmentID = value;
+					this.SendPropertyChanged("AppointmentID");
+					this.OnAppointmentIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Prescription_Medication", Storage="_Medications", ThisKey="PrescriptionID", OtherKey="PrescriptionID")]
+		public EntitySet<Medication> Medications
+		{
+			get
+			{
+				return this._Medications;
+			}
+			set
+			{
+				this._Medications.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Medications(Medication entity)
+		{
+			this.SendPropertyChanging();
+			entity.Prescription = this;
+		}
+		
+		private void detach_Medications(Medication entity)
+		{
+			this.SendPropertyChanging();
+			entity.Prescription = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Medication")]
+	public partial class Medication : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MedicationID;
+		
+		private System.Nullable<int> _PrescriptionID;
+		
+		private string _MedType;
+		
+		private string _MedName;
+		
+		private string _Strength;
+		
+		private string _Duration;
+		
+		private string _Dose;
+		
+		private string _Dignosis;
+		
+		private EntityRef<Prescription> _Prescription;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMedicationIDChanging(int value);
+    partial void OnMedicationIDChanged();
+    partial void OnPrescriptionIDChanging(System.Nullable<int> value);
+    partial void OnPrescriptionIDChanged();
+    partial void OnMedTypeChanging(string value);
+    partial void OnMedTypeChanged();
+    partial void OnMedNameChanging(string value);
+    partial void OnMedNameChanged();
+    partial void OnStrengthChanging(string value);
+    partial void OnStrengthChanged();
+    partial void OnDurationChanging(string value);
+    partial void OnDurationChanged();
+    partial void OnDoseChanging(string value);
+    partial void OnDoseChanged();
+    partial void OnDignosisChanging(string value);
+    partial void OnDignosisChanged();
+    #endregion
+		
+		public Medication()
+		{
+			this._Prescription = default(EntityRef<Prescription>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MedicationID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MedicationID
+		{
+			get
+			{
+				return this._MedicationID;
+			}
+			set
+			{
+				if ((this._MedicationID != value))
+				{
+					this.OnMedicationIDChanging(value);
+					this.SendPropertyChanging();
+					this._MedicationID = value;
+					this.SendPropertyChanged("MedicationID");
+					this.OnMedicationIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrescriptionID", DbType="Int")]
+		public System.Nullable<int> PrescriptionID
+		{
+			get
+			{
+				return this._PrescriptionID;
+			}
+			set
+			{
+				if ((this._PrescriptionID != value))
+				{
+					if (this._Prescription.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnPrescriptionIDChanging(value);
+					this.SendPropertyChanging();
+					this._PrescriptionID = value;
+					this.SendPropertyChanged("PrescriptionID");
+					this.OnPrescriptionIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MedType", DbType="VarChar(10)")]
+		public string MedType
+		{
+			get
+			{
+				return this._MedType;
+			}
+			set
+			{
+				if ((this._MedType != value))
+				{
+					this.OnMedTypeChanging(value);
+					this.SendPropertyChanging();
+					this._MedType = value;
+					this.SendPropertyChanged("MedType");
+					this.OnMedTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MedName", DbType="VarChar(50)")]
+		public string MedName
+		{
+			get
+			{
+				return this._MedName;
+			}
+			set
+			{
+				if ((this._MedName != value))
+				{
+					this.OnMedNameChanging(value);
+					this.SendPropertyChanging();
+					this._MedName = value;
+					this.SendPropertyChanged("MedName");
+					this.OnMedNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Strength", DbType="VarChar(20)")]
+		public string Strength
+		{
+			get
+			{
+				return this._Strength;
+			}
+			set
+			{
+				if ((this._Strength != value))
+				{
+					this.OnStrengthChanging(value);
+					this.SendPropertyChanging();
+					this._Strength = value;
+					this.SendPropertyChanged("Strength");
+					this.OnStrengthChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Duration", DbType="VarChar(20)")]
+		public string Duration
+		{
+			get
+			{
+				return this._Duration;
+			}
+			set
+			{
+				if ((this._Duration != value))
+				{
+					this.OnDurationChanging(value);
+					this.SendPropertyChanging();
+					this._Duration = value;
+					this.SendPropertyChanged("Duration");
+					this.OnDurationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Dose", DbType="VarChar(20)")]
+		public string Dose
+		{
+			get
+			{
+				return this._Dose;
+			}
+			set
+			{
+				if ((this._Dose != value))
+				{
+					this.OnDoseChanging(value);
+					this.SendPropertyChanging();
+					this._Dose = value;
+					this.SendPropertyChanged("Dose");
+					this.OnDoseChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Dignosis", DbType="VarChar(MAX)")]
+		public string Dignosis
+		{
+			get
+			{
+				return this._Dignosis;
+			}
+			set
+			{
+				if ((this._Dignosis != value))
+				{
+					this.OnDignosisChanging(value);
+					this.SendPropertyChanging();
+					this._Dignosis = value;
+					this.SendPropertyChanged("Dignosis");
+					this.OnDignosisChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Prescription_Medication", Storage="_Prescription", ThisKey="PrescriptionID", OtherKey="PrescriptionID", IsForeignKey=true)]
+		public Prescription Prescription
+		{
+			get
+			{
+				return this._Prescription.Entity;
+			}
+			set
+			{
+				Prescription previousValue = this._Prescription.Entity;
+				if (((previousValue != value) 
+							|| (this._Prescription.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Prescription.Entity = null;
+						previousValue.Medications.Remove(this);
+					}
+					this._Prescription.Entity = value;
+					if ((value != null))
+					{
+						value.Medications.Add(this);
+						this._PrescriptionID = value.PrescriptionID;
+					}
+					else
+					{
+						this._PrescriptionID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Prescription");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Doctor")]
+	public partial class Doctor : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _DoctorID;
+		
+		private string _FirstName;
+		
+		private string _LastName;
+		
+		private string _DoctorEmail;
+		
+		private string _Department;
+		
+		private string _Designation;
+		
+		private string _Image;
+		
+		private EntitySet<DoctorSchedule> _DoctorSchedules;
+		
+		private EntitySet<Appointment> _Appointments;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnDoctorIDChanging(int value);
+    partial void OnDoctorIDChanged();
+    partial void OnFirstNameChanging(string value);
+    partial void OnFirstNameChanged();
+    partial void OnLastNameChanging(string value);
+    partial void OnLastNameChanged();
+    partial void OnDoctorEmailChanging(string value);
+    partial void OnDoctorEmailChanged();
+    partial void OnDepartmentChanging(string value);
+    partial void OnDepartmentChanged();
+    partial void OnDesignationChanging(string value);
+    partial void OnDesignationChanged();
+    partial void OnImageChanging(string value);
+    partial void OnImageChanged();
+    #endregion
+		
+		public Doctor()
+		{
+			this._DoctorSchedules = new EntitySet<DoctorSchedule>(new Action<DoctorSchedule>(this.attach_DoctorSchedules), new Action<DoctorSchedule>(this.detach_DoctorSchedules));
+			this._Appointments = new EntitySet<Appointment>(new Action<Appointment>(this.attach_Appointments), new Action<Appointment>(this.detach_Appointments));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DoctorID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int DoctorID
+		{
+			get
+			{
+				return this._DoctorID;
+			}
+			set
+			{
+				if ((this._DoctorID != value))
+				{
+					this.OnDoctorIDChanging(value);
+					this.SendPropertyChanging();
+					this._DoctorID = value;
+					this.SendPropertyChanged("DoctorID");
+					this.OnDoctorIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string FirstName
+		{
+			get
+			{
+				return this._FirstName;
+			}
+			set
+			{
+				if ((this._FirstName != value))
+				{
+					this.OnFirstNameChanging(value);
+					this.SendPropertyChanging();
+					this._FirstName = value;
+					this.SendPropertyChanged("FirstName");
+					this.OnFirstNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string LastName
+		{
+			get
+			{
+				return this._LastName;
+			}
+			set
+			{
+				if ((this._LastName != value))
+				{
+					this.OnLastNameChanging(value);
+					this.SendPropertyChanging();
+					this._LastName = value;
+					this.SendPropertyChanged("LastName");
+					this.OnLastNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DoctorEmail", DbType="VarChar(50)")]
+		public string DoctorEmail
+		{
+			get
+			{
+				return this._DoctorEmail;
+			}
+			set
+			{
+				if ((this._DoctorEmail != value))
+				{
+					this.OnDoctorEmailChanging(value);
+					this.SendPropertyChanging();
+					this._DoctorEmail = value;
+					this.SendPropertyChanged("DoctorEmail");
+					this.OnDoctorEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Department", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Department
+		{
+			get
+			{
+				return this._Department;
+			}
+			set
+			{
+				if ((this._Department != value))
+				{
+					this.OnDepartmentChanging(value);
+					this.SendPropertyChanging();
+					this._Department = value;
+					this.SendPropertyChanged("Department");
+					this.OnDepartmentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Designation", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Designation
+		{
+			get
+			{
+				return this._Designation;
+			}
+			set
+			{
+				if ((this._Designation != value))
+				{
+					this.OnDesignationChanging(value);
+					this.SendPropertyChanging();
+					this._Designation = value;
+					this.SendPropertyChanged("Designation");
+					this.OnDesignationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Image
+		{
+			get
+			{
+				return this._Image;
+			}
+			set
+			{
+				if ((this._Image != value))
+				{
+					this.OnImageChanging(value);
+					this.SendPropertyChanging();
+					this._Image = value;
+					this.SendPropertyChanged("Image");
+					this.OnImageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Doctor_DoctorSchedule", Storage="_DoctorSchedules", ThisKey="DoctorID", OtherKey="DoctorID")]
+		public EntitySet<DoctorSchedule> DoctorSchedules
+		{
+			get
+			{
+				return this._DoctorSchedules;
+			}
+			set
+			{
+				this._DoctorSchedules.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Doctor_Appointment", Storage="_Appointments", ThisKey="DoctorID", OtherKey="DoctorID")]
+		public EntitySet<Appointment> Appointments
+		{
+			get
+			{
+				return this._Appointments;
+			}
+			set
+			{
+				this._Appointments.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_DoctorSchedules(DoctorSchedule entity)
+		{
+			this.SendPropertyChanging();
+			entity.Doctor = this;
+		}
+		
+		private void detach_DoctorSchedules(DoctorSchedule entity)
+		{
+			this.SendPropertyChanging();
+			entity.Doctor = null;
+		}
+		
+		private void attach_Appointments(Appointment entity)
+		{
+			this.SendPropertyChanging();
+			entity.Doctor = this;
+		}
+		
+		private void detach_Appointments(Appointment entity)
+		{
+			this.SendPropertyChanging();
+			entity.Doctor = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.InvoiceDetail")]
+	public partial class InvoiceDetail : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _InvoiceDetailID;
+		
+		private System.Nullable<int> _InvoiceID;
+		
+		private System.Nullable<int> _ItemID;
+		
+		private string _ItemName;
+		
+		private string _Category;
+		
+		private System.Nullable<int> _Quantity;
+		
+		private System.Nullable<decimal> _Price;
+		
+		private System.Nullable<decimal> _TotalAmount;
+		
+		private EntityRef<Invoice> _Invoice;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnInvoiceDetailIDChanging(int value);
+    partial void OnInvoiceDetailIDChanged();
+    partial void OnInvoiceIDChanging(System.Nullable<int> value);
+    partial void OnInvoiceIDChanged();
+    partial void OnItemIDChanging(System.Nullable<int> value);
+    partial void OnItemIDChanged();
+    partial void OnItemNameChanging(string value);
+    partial void OnItemNameChanged();
+    partial void OnCategoryChanging(string value);
+    partial void OnCategoryChanged();
+    partial void OnQuantityChanging(System.Nullable<int> value);
+    partial void OnQuantityChanged();
+    partial void OnPriceChanging(System.Nullable<decimal> value);
+    partial void OnPriceChanged();
+    partial void OnTotalAmountChanging(System.Nullable<decimal> value);
+    partial void OnTotalAmountChanged();
+    #endregion
+		
+		public InvoiceDetail()
+		{
+			this._Invoice = default(EntityRef<Invoice>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceDetailID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int InvoiceDetailID
+		{
+			get
+			{
+				return this._InvoiceDetailID;
+			}
+			set
+			{
+				if ((this._InvoiceDetailID != value))
+				{
+					this.OnInvoiceDetailIDChanging(value);
+					this.SendPropertyChanging();
+					this._InvoiceDetailID = value;
+					this.SendPropertyChanged("InvoiceDetailID");
+					this.OnInvoiceDetailIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceID", DbType="Int")]
+		public System.Nullable<int> InvoiceID
+		{
+			get
+			{
+				return this._InvoiceID;
+			}
+			set
+			{
+				if ((this._InvoiceID != value))
+				{
+					if (this._Invoice.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnInvoiceIDChanging(value);
+					this.SendPropertyChanging();
+					this._InvoiceID = value;
+					this.SendPropertyChanged("InvoiceID");
+					this.OnInvoiceIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemID", DbType="Int")]
+		public System.Nullable<int> ItemID
+		{
+			get
+			{
+				return this._ItemID;
+			}
+			set
+			{
+				if ((this._ItemID != value))
+				{
+					this.OnItemIDChanging(value);
+					this.SendPropertyChanging();
+					this._ItemID = value;
+					this.SendPropertyChanged("ItemID");
+					this.OnItemIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemName", DbType="VarChar(20)")]
+		public string ItemName
+		{
+			get
+			{
+				return this._ItemName;
+			}
+			set
+			{
+				if ((this._ItemName != value))
+				{
+					this.OnItemNameChanging(value);
+					this.SendPropertyChanging();
+					this._ItemName = value;
+					this.SendPropertyChanged("ItemName");
+					this.OnItemNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Category", DbType="VarChar(20)")]
+		public string Category
+		{
+			get
+			{
+				return this._Category;
+			}
+			set
+			{
+				if ((this._Category != value))
+				{
+					this.OnCategoryChanging(value);
+					this.SendPropertyChanging();
+					this._Category = value;
+					this.SendPropertyChanged("Category");
+					this.OnCategoryChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Quantity", DbType="Int")]
+		public System.Nullable<int> Quantity
+		{
+			get
+			{
+				return this._Quantity;
+			}
+			set
+			{
+				if ((this._Quantity != value))
+				{
+					this.OnQuantityChanging(value);
+					this.SendPropertyChanging();
+					this._Quantity = value;
+					this.SendPropertyChanged("Quantity");
+					this.OnQuantityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Decimal(12,2)")]
+		public System.Nullable<decimal> Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this.OnPriceChanging(value);
+					this.SendPropertyChanging();
+					this._Price = value;
+					this.SendPropertyChanged("Price");
+					this.OnPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalAmount", DbType="Decimal(12,2)")]
+		public System.Nullable<decimal> TotalAmount
+		{
+			get
+			{
+				return this._TotalAmount;
+			}
+			set
+			{
+				if ((this._TotalAmount != value))
+				{
+					this.OnTotalAmountChanging(value);
+					this.SendPropertyChanging();
+					this._TotalAmount = value;
+					this.SendPropertyChanged("TotalAmount");
+					this.OnTotalAmountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Invoice_InvoiceDetail", Storage="_Invoice", ThisKey="InvoiceID", OtherKey="InvoiceID", IsForeignKey=true)]
+		public Invoice Invoice
+		{
+			get
+			{
+				return this._Invoice.Entity;
+			}
+			set
+			{
+				Invoice previousValue = this._Invoice.Entity;
+				if (((previousValue != value) 
+							|| (this._Invoice.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Invoice.Entity = null;
+						previousValue.InvoiceDetails.Remove(this);
+					}
+					this._Invoice.Entity = value;
+					if ((value != null))
+					{
+						value.InvoiceDetails.Add(this);
+						this._InvoiceID = value.InvoiceID;
+					}
+					else
+					{
+						this._InvoiceID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Invoice");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Invoice")]
+	public partial class Invoice : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _InvoiceID;
+		
+		private System.Nullable<int> _AppointmentID;
+		
+		private System.Nullable<System.DateTime> _InvoiceDate;
+		
+		private string _TotalAmount;
+		
+		private string _InvoiceStatus;
+		
+		private string _Payment;
+		
+		private EntitySet<InvoiceDetail> _InvoiceDetails;
+		
+		private EntityRef<Appointment> _Appointment;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnInvoiceIDChanging(int value);
+    partial void OnInvoiceIDChanged();
+    partial void OnAppointmentIDChanging(System.Nullable<int> value);
+    partial void OnAppointmentIDChanged();
+    partial void OnInvoiceDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnInvoiceDateChanged();
+    partial void OnTotalAmountChanging(string value);
+    partial void OnTotalAmountChanged();
+    partial void OnInvoiceStatusChanging(string value);
+    partial void OnInvoiceStatusChanged();
+    partial void OnPaymentChanging(string value);
+    partial void OnPaymentChanged();
+    #endregion
+		
+		public Invoice()
+		{
+			this._InvoiceDetails = new EntitySet<InvoiceDetail>(new Action<InvoiceDetail>(this.attach_InvoiceDetails), new Action<InvoiceDetail>(this.detach_InvoiceDetails));
+			this._Appointment = default(EntityRef<Appointment>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int InvoiceID
+		{
+			get
+			{
+				return this._InvoiceID;
+			}
+			set
+			{
+				if ((this._InvoiceID != value))
+				{
+					this.OnInvoiceIDChanging(value);
+					this.SendPropertyChanging();
+					this._InvoiceID = value;
+					this.SendPropertyChanged("InvoiceID");
+					this.OnInvoiceIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AppointmentID", DbType="Int")]
+		public System.Nullable<int> AppointmentID
+		{
+			get
+			{
+				return this._AppointmentID;
+			}
+			set
+			{
+				if ((this._AppointmentID != value))
+				{
+					if (this._Appointment.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnAppointmentIDChanging(value);
+					this.SendPropertyChanging();
+					this._AppointmentID = value;
+					this.SendPropertyChanged("AppointmentID");
+					this.OnAppointmentIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> InvoiceDate
+		{
+			get
+			{
+				return this._InvoiceDate;
+			}
+			set
+			{
+				if ((this._InvoiceDate != value))
+				{
+					this.OnInvoiceDateChanging(value);
+					this.SendPropertyChanging();
+					this._InvoiceDate = value;
+					this.SendPropertyChanged("InvoiceDate");
+					this.OnInvoiceDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalAmount", DbType="VarChar(50)")]
+		public string TotalAmount
+		{
+			get
+			{
+				return this._TotalAmount;
+			}
+			set
+			{
+				if ((this._TotalAmount != value))
+				{
+					this.OnTotalAmountChanging(value);
+					this.SendPropertyChanging();
+					this._TotalAmount = value;
+					this.SendPropertyChanged("TotalAmount");
+					this.OnTotalAmountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceStatus", DbType="VarChar(50)")]
+		public string InvoiceStatus
+		{
+			get
+			{
+				return this._InvoiceStatus;
+			}
+			set
+			{
+				if ((this._InvoiceStatus != value))
+				{
+					this.OnInvoiceStatusChanging(value);
+					this.SendPropertyChanging();
+					this._InvoiceStatus = value;
+					this.SendPropertyChanged("InvoiceStatus");
+					this.OnInvoiceStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Payment", DbType="VarChar(20)")]
+		public string Payment
+		{
+			get
+			{
+				return this._Payment;
+			}
+			set
+			{
+				if ((this._Payment != value))
+				{
+					this.OnPaymentChanging(value);
+					this.SendPropertyChanging();
+					this._Payment = value;
+					this.SendPropertyChanged("Payment");
+					this.OnPaymentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Invoice_InvoiceDetail", Storage="_InvoiceDetails", ThisKey="InvoiceID", OtherKey="InvoiceID")]
+		public EntitySet<InvoiceDetail> InvoiceDetails
+		{
+			get
+			{
+				return this._InvoiceDetails;
+			}
+			set
+			{
+				this._InvoiceDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Appointment_Invoice", Storage="_Appointment", ThisKey="AppointmentID", OtherKey="AppointmentID", IsForeignKey=true)]
+		public Appointment Appointment
+		{
+			get
+			{
+				return this._Appointment.Entity;
+			}
+			set
+			{
+				Appointment previousValue = this._Appointment.Entity;
+				if (((previousValue != value) 
+							|| (this._Appointment.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Appointment.Entity = null;
+						previousValue.Invoices.Remove(this);
+					}
+					this._Appointment.Entity = value;
+					if ((value != null))
+					{
+						value.Invoices.Add(this);
+						this._AppointmentID = value.AppointmentID;
+					}
+					else
+					{
+						this._AppointmentID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Appointment");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_InvoiceDetails(InvoiceDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Invoice = this;
+		}
+		
+		private void detach_InvoiceDetails(InvoiceDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Invoice = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Stock")]
+	public partial class Stock : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _StockID;
+		
+		private System.Nullable<int> _ItemID;
+		
+		private System.Nullable<int> _VendorID;
+		
+		private System.Nullable<int> _CategoryID;
+		
+		private string _ItemName;
+		
+		private System.Nullable<int> _Quantity;
+		
+		private string _MfgDate;
+		
+		private string _ExpDate;
+		
+		private System.Nullable<double> _UnitPrice;
+		
+		private System.Nullable<double> _PurchasePrice;
+		
+		private string _Unit_of_Measure;
+		
+		private System.Nullable<int> _LeadTime;
+		
+		private string _AddedMonth;
+		
+		private string _AddedYear;
+		
+		private string _AddedDay;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnStockIDChanging(int value);
+    partial void OnStockIDChanged();
+    partial void OnItemIDChanging(System.Nullable<int> value);
+    partial void OnItemIDChanged();
+    partial void OnVendorIDChanging(System.Nullable<int> value);
+    partial void OnVendorIDChanged();
+    partial void OnCategoryIDChanging(System.Nullable<int> value);
+    partial void OnCategoryIDChanged();
+    partial void OnItemNameChanging(string value);
+    partial void OnItemNameChanged();
+    partial void OnQuantityChanging(System.Nullable<int> value);
+    partial void OnQuantityChanged();
+    partial void OnMfgDateChanging(string value);
+    partial void OnMfgDateChanged();
+    partial void OnExpDateChanging(string value);
+    partial void OnExpDateChanged();
+    partial void OnUnitPriceChanging(System.Nullable<double> value);
+    partial void OnUnitPriceChanged();
+    partial void OnPurchasePriceChanging(System.Nullable<double> value);
+    partial void OnPurchasePriceChanged();
+    partial void OnUnit_of_MeasureChanging(string value);
+    partial void OnUnit_of_MeasureChanged();
+    partial void OnLeadTimeChanging(System.Nullable<int> value);
+    partial void OnLeadTimeChanged();
+    partial void OnAddedMonthChanging(string value);
+    partial void OnAddedMonthChanged();
+    partial void OnAddedYearChanging(string value);
+    partial void OnAddedYearChanged();
+    partial void OnAddedDayChanging(string value);
+    partial void OnAddedDayChanged();
+    #endregion
+		
+		public Stock()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StockID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int StockID
+		{
+			get
+			{
+				return this._StockID;
+			}
+			set
+			{
+				if ((this._StockID != value))
+				{
+					this.OnStockIDChanging(value);
+					this.SendPropertyChanging();
+					this._StockID = value;
+					this.SendPropertyChanged("StockID");
+					this.OnStockIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemID", DbType="Int")]
+		public System.Nullable<int> ItemID
+		{
+			get
+			{
+				return this._ItemID;
+			}
+			set
+			{
+				if ((this._ItemID != value))
+				{
+					this.OnItemIDChanging(value);
+					this.SendPropertyChanging();
+					this._ItemID = value;
+					this.SendPropertyChanged("ItemID");
+					this.OnItemIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VendorID", DbType="Int")]
+		public System.Nullable<int> VendorID
+		{
+			get
+			{
+				return this._VendorID;
+			}
+			set
+			{
+				if ((this._VendorID != value))
+				{
+					this.OnVendorIDChanging(value);
+					this.SendPropertyChanging();
+					this._VendorID = value;
+					this.SendPropertyChanged("VendorID");
+					this.OnVendorIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CategoryID", DbType="Int")]
+		public System.Nullable<int> CategoryID
+		{
+			get
+			{
+				return this._CategoryID;
+			}
+			set
+			{
+				if ((this._CategoryID != value))
+				{
+					this.OnCategoryIDChanging(value);
+					this.SendPropertyChanging();
+					this._CategoryID = value;
+					this.SendPropertyChanged("CategoryID");
+					this.OnCategoryIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemName", DbType="VarChar(MAX)")]
+		public string ItemName
+		{
+			get
+			{
+				return this._ItemName;
+			}
+			set
+			{
+				if ((this._ItemName != value))
+				{
+					this.OnItemNameChanging(value);
+					this.SendPropertyChanging();
+					this._ItemName = value;
+					this.SendPropertyChanged("ItemName");
+					this.OnItemNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Quantity", DbType="Int")]
+		public System.Nullable<int> Quantity
+		{
+			get
+			{
+				return this._Quantity;
+			}
+			set
+			{
+				if ((this._Quantity != value))
+				{
+					this.OnQuantityChanging(value);
+					this.SendPropertyChanging();
+					this._Quantity = value;
+					this.SendPropertyChanged("Quantity");
+					this.OnQuantityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MfgDate", DbType="VarChar(MAX)")]
+		public string MfgDate
+		{
+			get
+			{
+				return this._MfgDate;
+			}
+			set
+			{
+				if ((this._MfgDate != value))
+				{
+					this.OnMfgDateChanging(value);
+					this.SendPropertyChanging();
+					this._MfgDate = value;
+					this.SendPropertyChanged("MfgDate");
+					this.OnMfgDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExpDate", DbType="VarChar(MAX)")]
+		public string ExpDate
+		{
+			get
+			{
+				return this._ExpDate;
+			}
+			set
+			{
+				if ((this._ExpDate != value))
+				{
+					this.OnExpDateChanging(value);
+					this.SendPropertyChanging();
+					this._ExpDate = value;
+					this.SendPropertyChanged("ExpDate");
+					this.OnExpDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UnitPrice", DbType="Float")]
+		public System.Nullable<double> UnitPrice
+		{
+			get
+			{
+				return this._UnitPrice;
+			}
+			set
+			{
+				if ((this._UnitPrice != value))
+				{
+					this.OnUnitPriceChanging(value);
+					this.SendPropertyChanging();
+					this._UnitPrice = value;
+					this.SendPropertyChanged("UnitPrice");
+					this.OnUnitPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PurchasePrice", DbType="Float")]
+		public System.Nullable<double> PurchasePrice
+		{
+			get
+			{
+				return this._PurchasePrice;
+			}
+			set
+			{
+				if ((this._PurchasePrice != value))
+				{
+					this.OnPurchasePriceChanging(value);
+					this.SendPropertyChanging();
+					this._PurchasePrice = value;
+					this.SendPropertyChanged("PurchasePrice");
+					this.OnPurchasePriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Unit_of_Measure", DbType="VarChar(50)")]
+		public string Unit_of_Measure
+		{
+			get
+			{
+				return this._Unit_of_Measure;
+			}
+			set
+			{
+				if ((this._Unit_of_Measure != value))
+				{
+					this.OnUnit_of_MeasureChanging(value);
+					this.SendPropertyChanging();
+					this._Unit_of_Measure = value;
+					this.SendPropertyChanged("Unit_of_Measure");
+					this.OnUnit_of_MeasureChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LeadTime", DbType="Int")]
+		public System.Nullable<int> LeadTime
+		{
+			get
+			{
+				return this._LeadTime;
+			}
+			set
+			{
+				if ((this._LeadTime != value))
+				{
+					this.OnLeadTimeChanging(value);
+					this.SendPropertyChanging();
+					this._LeadTime = value;
+					this.SendPropertyChanged("LeadTime");
+					this.OnLeadTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddedMonth", DbType="VarChar(10)")]
+		public string AddedMonth
+		{
+			get
+			{
+				return this._AddedMonth;
+			}
+			set
+			{
+				if ((this._AddedMonth != value))
+				{
+					this.OnAddedMonthChanging(value);
+					this.SendPropertyChanging();
+					this._AddedMonth = value;
+					this.SendPropertyChanged("AddedMonth");
+					this.OnAddedMonthChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddedYear", DbType="VarChar(10)")]
+		public string AddedYear
+		{
+			get
+			{
+				return this._AddedYear;
+			}
+			set
+			{
+				if ((this._AddedYear != value))
+				{
+					this.OnAddedYearChanging(value);
+					this.SendPropertyChanging();
+					this._AddedYear = value;
+					this.SendPropertyChanged("AddedYear");
+					this.OnAddedYearChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddedDay", DbType="VarChar(10)")]
+		public string AddedDay
+		{
+			get
+			{
+				return this._AddedDay;
+			}
+			set
+			{
+				if ((this._AddedDay != value))
+				{
+					this.OnAddedDayChanging(value);
+					this.SendPropertyChanging();
+					this._AddedDay = value;
+					this.SendPropertyChanged("AddedDay");
+					this.OnAddedDayChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Request")]
+	public partial class Request : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _RequestID;
+		
+		private string _ReqText;
+		
+		private string _Status;
+		
+		private string _AddedMonth;
+		
+		private string _AddedYear;
+		
+		private string _AddedDay;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnRequestIDChanging(int value);
+    partial void OnRequestIDChanged();
+    partial void OnReqTextChanging(string value);
+    partial void OnReqTextChanged();
+    partial void OnStatusChanging(string value);
+    partial void OnStatusChanged();
+    partial void OnAddedMonthChanging(string value);
+    partial void OnAddedMonthChanged();
+    partial void OnAddedYearChanging(string value);
+    partial void OnAddedYearChanged();
+    partial void OnAddedDayChanging(string value);
+    partial void OnAddedDayChanged();
+    #endregion
+		
+		public Request()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequestID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int RequestID
+		{
+			get
+			{
+				return this._RequestID;
+			}
+			set
+			{
+				if ((this._RequestID != value))
+				{
+					this.OnRequestIDChanging(value);
+					this.SendPropertyChanging();
+					this._RequestID = value;
+					this.SendPropertyChanged("RequestID");
+					this.OnRequestIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReqText", DbType="VarChar(MAX)")]
+		public string ReqText
+		{
+			get
+			{
+				return this._ReqText;
+			}
+			set
+			{
+				if ((this._ReqText != value))
+				{
+					this.OnReqTextChanging(value);
+					this.SendPropertyChanging();
+					this._ReqText = value;
+					this.SendPropertyChanged("ReqText");
+					this.OnReqTextChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(10)")]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddedMonth", DbType="VarChar(10)")]
+		public string AddedMonth
+		{
+			get
+			{
+				return this._AddedMonth;
+			}
+			set
+			{
+				if ((this._AddedMonth != value))
+				{
+					this.OnAddedMonthChanging(value);
+					this.SendPropertyChanging();
+					this._AddedMonth = value;
+					this.SendPropertyChanged("AddedMonth");
+					this.OnAddedMonthChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddedYear", DbType="VarChar(10)")]
+		public string AddedYear
+		{
+			get
+			{
+				return this._AddedYear;
+			}
+			set
+			{
+				if ((this._AddedYear != value))
+				{
+					this.OnAddedYearChanging(value);
+					this.SendPropertyChanging();
+					this._AddedYear = value;
+					this.SendPropertyChanged("AddedYear");
+					this.OnAddedYearChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddedDay", DbType="VarChar(10)")]
+		public string AddedDay
+		{
+			get
+			{
+				return this._AddedDay;
+			}
+			set
+			{
+				if ((this._AddedDay != value))
+				{
+					this.OnAddedDayChanging(value);
+					this.SendPropertyChanging();
+					this._AddedDay = value;
+					this.SendPropertyChanged("AddedDay");
+					this.OnAddedDayChanged();
 				}
 			}
 		}

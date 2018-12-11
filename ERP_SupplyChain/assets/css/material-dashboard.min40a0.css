@@ -12775,13 +12775,11 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
     width: 80%
 }
 
-form .form-group label[for=inputState] {
-    position: absolute;
+form .form-group label[for=inputState] {  
     top: -12px
 }
 
 form .form-group select.form-control {
-    position: absolute;
     top: -5px
 }
 

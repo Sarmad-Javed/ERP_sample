@@ -460,9 +460,13 @@
     <Compile Include="Controllers\ManageUser\ManageUserController.cs" />
     <Compile Include="Controllers\ManageVendor\ManageVendorController.cs" />
     <Compile Include="Controllers\Manage Schedule\ScheduleController.cs" />
+    <Compile Include="Controllers\Pharmecy Manager\InvoiceController.cs" />
+    <Compile Include="Controllers\Pharmecy Manager\PharmecyController.cs" />
+    <Compile Include="Controllers\Pharmecy Manager\PharmAppointmentController.cs" />
     <Compile Include="Controllers\SessionCheck.cs" />
     <Compile Include="Controllers\ShipmentController.cs" />
     <Compile Include="Controllers\StockControllerController.cs" />
+    <Compile Include="Controllers\SupplyChain\SupplyChainController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -546,6 +550,12 @@
     <Content Include="Views\Shared\_AdminsLayout.cshtml" />
     <Content Include="Views\Appointment\AppointmentIndex.cshtml" />
     <Content Include="Views\Doctor\Appointments.cshtml" />
+    <Content Include="Views\Doctor\Prescription.cshtml" />
+    <Content Include="Views\PharmAppointment\Appointments.cshtml" />
+    <Content Include="Views\PharmAppointment\Prescription.cshtml" />
+    <Content Include="Views\Invoice\InvoiceIndex.cshtml" />
+    <Content Include="Views\SupplyChain\Dashboard.cshtml" />
+    <Content Include="Views\Pharmecy\Dashboard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

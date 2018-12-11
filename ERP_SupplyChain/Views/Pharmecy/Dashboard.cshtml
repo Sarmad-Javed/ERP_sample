@@ -1,0 +1,210 @@
+﻿@{
+    Layout = "~/Views/Shared/_Pharmlayout.cshtml";
+    ViewBag.Title = "Pharmecy Dashboard";
+    ViewBag.isActive = "active";
+
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/assets/js/moment.min.js"></script>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header card-header-info card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">assignment</i>
+                        </div>
+                        <h4 class="card-title">Make Request</h4>
+                        <hr />
+                        <span class="text-info">Enter your request!</span>
+                    </div>
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <label>Enter Request</label>
+                                <textarea id="Req" name="Req" class="form-control" ></textarea>
+                                <span class="error" id="ReqError" style=" visibility:hidden;"> Enter request!</span>
+                            </div>
+                            <div class="col-lg-4">
+                                </br>
+                                <div class="text-center">
+                                    <a href="#" class="btn btn-info btn-fill btn-wd" id="send">Send</a>
+                                </div>
+                            </div>
+                         </div>   
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Low Stock</h4>
+                        <p class="card-category">stock item with low stock level</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive" id="LowStock">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+    </div>
+</div>
+
+
+<script src="../../assets/js/moment.min.js"></script>
+<script src="../../assets/js/fullcalendar.min.js"></script>
+<script src="../../assets/js/sweetalert2.js"></script>
+<script src="../../assets/js/bootstrap-datetimepicker.js"></script>
+
+<script>
+    // datepicker
+    $(document).ready(function () {
+        initFormExtendedDatetimepickers();
+        $('#dtp1,#dtp2').datetimepicker({
+            format: 'MM/dd/yyyy HH:mm A'
+        });
+        function initFormExtendedDatetimepickers() {
+            $('.datetimepicker').datetimepicker({
+                format: 'MM/dd/yyyy HH:mm A',
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-chevron-up",
+                    down: "fa fa-chevron-down",
+                    previous: 'fa fa-chevron-left',
+                    next: 'fa fa-chevron-right',
+                    today: 'fa fa-screenshot',
+                    clear: 'fa fa-trash',
+                    close: 'fa fa-remove'
+                }
+
+            });
+
+            $('.datepicker').datetimepicker({
+                format: 'MM/DD/YYYY',
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-chevron-up",
+                    down: "fa fa-chevron-down",
+                    previous: 'fa fa-chevron-left',
+                    next: 'fa fa-chevron-right',
+                    today: 'fa fa-screenshot',
+                    clear: 'fa fa-trash',
+                    close: 'fa fa-remove'
+                }
+            });
+
+            $('.timepicker').datetimepicker({
+                //          format: 'H:mm',    // use this format if you want the 24hours timepicker
+                format: 'h:mm A',    //use this format if you want the 12hours timpiecker with AM/PM toggle
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-chevron-up",
+                    down: "fa fa-chevron-down",
+                    previous: 'fa fa-chevron-left',
+                    next: 'fa fa-chevron-right',
+                    today: 'fa fa-screenshot',
+                    clear: 'fa fa-trash',
+                    close: 'fa fa-remove'
+                }
+            });
+        }
+    })
+
+    $(document).ready(function () {
+        var LowStock = [];
+        GetLowStock();
+
+        function GetLowStock() {
+            $.get("/Pharmecy/GetLowStock", function (data) {
+                $.each(data, function (index, row) {
+
+                    LowStock.push({
+                        StockID: row.StockID,
+                        StockName: row.ItemName,
+                        Quantity: row.Quantity,
+                    });
+                    GeneratedItemsTable();
+                })
+
+            })
+        }
+        function GeneratedItemsTable() {
+            
+            if (LowStock.length > 0) {
+                var $table = $('<table/>').addClass("table");
+                $table.append('<thead><tr><th>StockID</th><th>ItemName</th><th>ItemQuantity</th></tr></thead>');
+                var $tbody = $('<tbody/>');
+                $.each(LowStock, function (i, val) {
+                    var $row = $('<tr/>');
+                    $row.append($('<td/>').html(val.StockID));
+                    $row.append($('<td/>').html(val.StockName));
+                    $row.append($('<td/>').html(val.Quantity));
+                    $tbody.append($row);
+                });
+
+                $table.append($tbody);
+                $('#LowStock').html($table);
+            }
+            else {
+                $('#LowStok').html('');
+            }
+        }
+        //Update log
+        $("#send").on("click", function () {
+           
+            var isValidItem = true;
+            if ($('#Req').val().trim() == '') {
+                
+                isValidItem = false;
+                $('#ReqError').css('visibility', 'visible');
+            }
+            else {
+                $('#ReqError').css('visibility', 'hidden')
+            }
+            
+            if (isValidItem) {
+                
+                var Req = $("#Req").val();
+                var data = {
+                    Req: Req,
+                }
+                $.ajax({
+                    url: '/Pharmecy/SendRequest',
+                    type: "POST",
+                    data: JSON.stringify(data),
+                    dataType: "JSON",
+                    contentType: "application/json",
+                    success: function (d) {
+                        //check is successfully save to database 
+                        if (d.status == true) {
+                            //will send status from server side
+
+                            alert("request sent");
+                           
+                            //clear form
+
+                        }
+                        else {
+                            alert("failed")
+                        }
+                    },
+                    error: function () {
+                        alert('Error. Please try again.');
+                        $('#submit').val('Save');
+                    }
+                });
+            }
+            
+        })
+
+    })
+</script>

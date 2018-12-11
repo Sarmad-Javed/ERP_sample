@@ -15,7 +15,9 @@
     <link rel="stylesheet" href="../../assets/lib/css/font-awesome.min.css">
     <link rel="stylesheet" href="../../assets/css/themify-icons.css">
     <!-- CSS Files -->
-    <link href="../../assets/css/material-dashboard.min40a0.css?v=2.0.2" rel="stylesheet" />
+
+
+    <link href="~/assets/css/material-dashboard.min40a0.css" rel="stylesheet" />
     <link href="../../assets/css/inventory-main.css" rel="stylesheet" />
     <link href="../../assets/css/inventory-detail.css" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
@@ -49,79 +51,49 @@
                 Tip 2: you can also add an image using data-image tag
             -->
             <div class="logo">
-                <a href="http://www.creative-tim.com/" class="simple-text logo-mini">CT </a>
+                <a href="http://www.creative-tim.com/" class="simple-text logo-mini">P </a>
                 <a href="http://www.creative-tim.com/" class="simple-text logo-normal">
-                    Creative Tim
+                   Pharmecy
                 </a>
             </div>
             <div class="sidebar-wrapper">
                 <!-- User Info -->
-                @Html.Partial("_UserInfo", Model)
+                @Html.Partial("_UserInfo")
 
                 <!-- User Info End -->
-
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="dashboard.html">
+                        <a class="nav-link" href="/Pharmecy/Dashboard">
                             <i class="material-icons">dashboard</i>
                             <p> Dashboard </p>
                         </a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" data-toggle="collapse" href="#pagesExamples">
-                            <i class="material-icons">image</i>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/PharmAppointments/Appointments">
+                            <i class="material-icons">grid</i>
                             <p>
-                                Manage User
-                                <b class="caret"></b>
+                               Appointments
+
                             </p>
                         </a>
-                        <div class="collapse" id="pagesExamples">
-                            <ul class="nav">
-                                <li class="nav-item item active ">
-                                    <a class="nav-link" href="additems.html">
-                                        <span class="sidebar-mini"> P </span>
-                                        <span class="sidebar-normal"> Add User </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item item active">
-                                    <a class="nav-link" href="viewitems.html">
-                                        <span class="sidebar-mini"> RS </span>
-                                        <span class="sidebar-normal">View User</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" data-toggle="collapse" href="#tablesExamples">
+                        <a class="nav-link" href="/Invoice/InvoiceIndex">
+                            <i class="material-icons">grid</i>
+                            <p>
+                               Invoice
+
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/Accounts/Logout">
                             <i class="material-icons">grid_on</i>
                             <p>
-                                Tables
+                                Logout
                                 <b class="caret"></b>
                             </p>
                         </a>
-                        <div class="collapse" id="tablesExamples">
-                            <ul class="nav">
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="tables/regular.html">
-                                        <span class="sidebar-mini"> RT </span>
-                                        <span class="sidebar-normal"> Regular Tables </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="tables/extended.html">
-                                        <span class="sidebar-mini"> ET </span>
-                                        <span class="sidebar-normal"> Extended Tables </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="tables/datatables.net.html">
-                                        <span class="sidebar-mini"> DT </span>
-                                        <span class="sidebar-normal"> DataTables.net </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
                     </li>
                 </ul>
             </div>
@@ -310,7 +282,8 @@
             </div>
         </div>
         <!--   Core JS Files   -->
-        <script src="~/Scripts/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="~/Scripts/jquery-1.10.2.js" type="text/javascript"></script>
+        @*<script src="~/Scripts/jquery-1.7.1.min.js" type="text/javascript"></script>*@
         <script src="~/Scripts/jquery.validate.min.js" type="text/javascript"></script>
         <script src="~/Scripts/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
         <script src="../../assets/js/core/jquery.min.js" type="text/javascript"></script>
@@ -343,7 +316,7 @@
         <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
         <script src="../../assets/js/plugins/nouislider.min.js"></script>
         <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
-        <script src="../../assets/lib/js/core-js/core.js"></script>
+        <script src="../../assets/lib/js/core.js"></script>
         <!-- Library for adding dinamically elements -->
         <script src="../../assets/js/plugins/arrive.min.js"></script>
         <!--  Google Maps Plugin    -->
@@ -672,7 +645,7 @@
                 demo.initFormExtendedDatetimepickers();
             });
         </script>
+    </div>
 </body>
 
 
-</html>

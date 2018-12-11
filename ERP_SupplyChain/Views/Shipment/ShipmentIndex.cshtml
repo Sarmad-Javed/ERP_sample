@@ -171,7 +171,7 @@
         function GetDeleiveredOrders() {
             $.get("/Shipment/GetDeleiveredOrders", function (data) {
                 $.each(data, function (index, row) {
-                    alert(row.OrderID)
+                    
                     NewArrival.push({
                         OrderID: row.OrderID,
                         OrderStatus: row.OrderStatus,
@@ -190,15 +190,13 @@
         
         //CheckID
         function CheckOrderID() {
-            alert("id check");
+           
             var OrderID = parseInt($("#OrderID").val());
             var OrderDate = $("#Date").val();
             var data = {
                 OrderID: OrderID,
                 
             }
-            alert(OrderID);
-            alert(OrderDate);
             $.ajax({
                 url: '/Shipment/CheckOrderID',
                 type: "POST",
@@ -209,22 +207,22 @@
                     //check is successfully save to database 
                     if (d.status == true) {
                         //will send status from server side
-                        alert("id exist");
+                        
                         isValidItem = true;
                         if (d.status == true) {
-                            alert("log update");
+                           
                             //Updating Status
                             $.get("/Shipment/UpdateLog", {orderID:OrderID,orderDate: OrderDate }, function (data) {
                                 $('#orderItems').html('');
                                 NewArrival = [];
                                 $.each(data, function (index, row) {
-                                    alert(row.OrderID)
+                                   
                                     NewArrival.push({
                                         OrderID: row.OrderID,
                                         OrderStatus: row.OrderStatus,
                                         OrderDate : row.OrderDate,
                                     });
-                                    GeneratedItemsTable();
+                                    window.location.replace("/Shipment/ShipmentIndex");
                                 })
                             })
                         }
@@ -247,7 +245,7 @@
         function GeneratedItemsTable() {
             if (NewArrival.length > 0) {
                 var $table = $('<table/>').addClass("table table-striped");
-                $table.append('<thead><tr><th>Item</th><th>Quantity</th><th>Rate</th></tr></thead>');
+                $table.append('<thead><tr><th>Item</th><th>OrderDate</th><th>Rate</th></tr></thead>');
                 var $tbody = $('<tbody/>');
                 $.each(NewArrival, function (i, val) {
                     var $row = $('<tr/>');

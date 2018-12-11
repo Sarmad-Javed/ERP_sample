@@ -1,0 +1,340 @@
+﻿@{
+    Layout = "~/Views/Shared/_SClayout.cshtml";
+    ViewBag.Title = "Supply Chain Dashboard";
+    ViewBag.isActive = "active";
+
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/assets/js/moment.min.js"></script>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header card-header-success">
+                        <h4 class="card-title">Low Stock</h4>
+                        <p class="card-category">Pharmecy requests for new stock</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive" id="Request">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Low Stock</h4>
+                        <p class="card-category">stock item with low stock level</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive" id="LowStock">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 style="display:inline">Pending Orders</h4><br />
+                        <span>Order Waiting Approval</span>
+                    </div>
+                    <div class="content">
+
+                        <div class="row">
+                            <div class="content table-responsive " id="Pending">
+
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="text-center">
+                            <a href="/PendingOrder/Orders" class="btn btn-danger btn-fill btn-wd" id="Approve">View More</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header card-header-warning">
+                        <h4 style="display:inline">Awaiting Shipment</h4><br />
+                        <span>Order Awaiting Shipment</span>
+                    </div>
+                    <div class="content">
+
+                        <div class="row">
+                            <div class="content table-responsive " id="Approved">
+
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="text-center">
+                            <a href="/Shipment/ApprovedOrders" class="btn btn-warning btn-fill btn-wd" id="Approve">View More</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header card-header-success">
+                        <h4 style="display:inline">New Arrival</h4><br />
+                        <span>Shipment Log</span>
+                    </div>
+                    <div class="content">
+
+                        <div class="row">
+                            <div class="content table-responsive " id="NewArrival">
+
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="text-center">
+                            <a href="/Shipment/DeliveredOrders" class="btn btn-success btn-fill btn-wd" id="Approve">Add to Stock</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../assets/js/moment.min.js"></script>
+<script src="../../assets/js/fullcalendar.min.js"></script>
+<script src="../../assets/js/sweetalert2.js"></script>
+<script src="../../assets/js/bootstrap-datetimepicker.js"></script>
+
+<script>
+    $(document).ready(function () {
+        var LowStock = [];
+        var Requests = [];
+        var Approved = [];
+        var NewArrival = [];
+        var Pending = [];
+
+        GetLowStock();
+        GetRequests();
+        GetApprovedOrders();
+        GetDeliveredOrders();
+        GetPendingOrders();
+
+        function GetLowStock() {
+            $.get("/SupplyChain/GetLowStock", function (data) {
+                $.each(data, function (index, row) {
+                    
+                    LowStock.push({
+                        StockID: row.StockID,
+                        StockName : row.ItemName,
+                        Quantity: row.Quantity,
+                    });
+                    GeneratedItemsTable();
+                })
+
+            })
+        }
+        function GeneratedItemsTable() {
+           
+            if (LowStock.length > 0) {
+                var $table = $('<table/>').addClass("table");
+                $table.append('<thead><tr><th>StockID</th><th>ItemName</th><th>ItemQuantity</th></tr></thead>');
+                var $tbody = $('<tbody/>');
+                $.each(LowStock, function (i, val) {
+                    var $row = $('<tr/>');
+                    $row.append($('<td/>').html(val.StockID));
+                    $row.append($('<td/>').html(val.StockName));
+                    $row.append($('<td/>').html(val.Quantity));
+                    $tbody.append($row);
+                });
+               
+                $table.append($tbody);
+                $('#LowStock').html($table);
+            }
+            else {
+                $('#LowStok').html('');
+            }
+        }
+
+        function GetRequests() {
+            $.get("/SupplyChain/GetRequests", function (data) {
+                $.each(data, function (index, row) {
+
+                    Requests.push({
+                        RequestID : row.ReqID,
+                        RequestText: row.ReqText,
+                       
+                    });
+                    GeneratedRequestTable();
+                })
+
+            })
+        }
+        function GeneratedRequestTable() {
+            if (Requests.length > 0) {
+                var $table = $('<table/>').addClass("table");
+                $table.append('<thead><tr><th>#</th><th>Requests</th></tr></thead>');
+                var $tbody = $('<tbody/>');
+                $.each(Requests, function (i, val) {
+                    var $row = $('<tr/>');
+                    $row.append($('<td/>').html(i+1));
+                    $row.append($('<td/>').html(val.RequestText));
+                    $tbody.append($row);
+                });
+
+                $table.append($tbody);
+                $('#Request').html($table);
+            }
+            else {
+                $('#Request').html('');
+            }
+        }
+
+        $("#mark").click( function () {
+            alert("mark");
+            var data = {
+                RequestID: ID,
+            };
+            $.ajax({
+                url: '/SupplyChain/MarkSeen',
+                type: "POST",
+                data: JSON.stringify(data),
+                dataType: "JSON",
+                contentType: "application/json",
+                success: function (d) {
+                    //check is successfully save to database 
+                    if (d.status == true) {
+                        //will send status from server side
+                        alert('Successfully done.');
+                        GetRequests();
+                        //clear form
+
+                    }
+                    else {
+                        alert('Failed');
+                    }
+                    $('#submit').val('Save');
+                },
+                error: function () {
+                    alert('Error. Please try again.');
+                    $('#submit').val('Save');
+                }
+            });
+        });
+
+        //get DeliveredOrders
+        function GetApprovedOrders() {
+            $.get("/SupplyChain/GetApprovedOrders", function (data) {
+                $.each(data, function (index, row) {
+
+                    Approved.push({
+                        OrderID: row.OrderId,
+                        OrderStatus: row.OrderStatus,
+                        OrderDate: row.OrderDate,
+                    });
+                    GeneratedApprovedTable();
+                })
+
+            })
+        }
+        function GeneratedApprovedTable() {
+            if (Approved.length > 0) {
+                var $table = $('<table/>').addClass("table table-striped");
+                $table.append('<thead><tr><th>Item</th><th>OrderDate</th><th>Rate</th></tr></thead>');
+                var $tbody = $('<tbody/>');
+                $.each(Approved, function (i, val) {
+                    var $row = $('<tr/>');
+                    $row.append($('<td/>').html(val.OrderID));
+                    $row.append($('<td/>').html(val.OrderDate));
+                    $row.append($('<td/>').html(val.OrderStatus));
+                    $tbody.append($row);
+                });
+                console.log("current", Approved);
+                $table.append($tbody);
+                $('#Approved').html($table);
+            }
+            else {
+                $('#Approved').html('');
+            }
+        }
+
+        function GetDeliveredOrders() {
+            $.get("/SupplyChain/GetDeleiveredOrders", function (data) {
+                $.each(data, function (index, row) {
+
+                    NewArrival.push({
+                        OrderID: row.OrderID,
+                        OrderStatus: row.OrderStatus,
+                        OrderDate: row.OrderDate,
+                    });
+                    GeneratedDeliveredTable();
+                })
+
+            })
+        }
+        function GeneratedDeliveredTable() {
+            if (NewArrival.length > 0) {
+                var $table = $('<table/>').addClass("table table-striped");
+                $table.append('<thead><tr><th>Item</th><th>OrderDate</th><th>Rate</th></tr></thead>');
+                var $tbody = $('<tbody/>');
+                $.each(NewArrival, function (i, val) {
+                    var $row = $('<tr/>');
+                    $row.append($('<td/>').html(val.OrderID));
+                    $row.append($('<td/>').html(val.OrderDate));
+                    $row.append($('<td/>').html(val.OrderStatus));
+                    $tbody.append($row);
+                });
+                console.log("current", NewArrival);
+                $table.append($tbody);
+                $('#NewArrival').html($table);
+            }
+            else {
+                $('#NewArrival').html('');
+            }
+        }
+
+        function GetPendingOrders() {
+            $.get("/SupplyChain/GetPendingOrders", function (data) {
+                $.each(data, function (index, row) {
+
+                    Pending.push({
+                        OrderID: row.OrderId,
+                        OrderStatus: row.OrderStatus,
+                        OrderDate: row.OrderDate,
+                    });
+                    GeneratedPendingTable();
+                })
+
+            })
+        }
+        function GeneratedPendingTable() {
+            if (Pending.length > 0) {
+                var $table = $('<table/>').addClass("table table-striped");
+                $table.append('<thead><tr><th>Item</th><th>OrderDate</th><th>Rate</th></tr></thead>');
+                var $tbody = $('<tbody/>');
+                $.each(Pending, function (i, val) {
+                    var $row = $('<tr/>');
+                    $row.append($('<td/>').html(val.OrderID));
+                    $row.append($('<td/>').html(val.OrderDate));
+                    $row.append($('<td/>').html(val.OrderStatus));
+                    $tbody.append($row);
+                });
+                console.log("current", Pending);
+                $table.append($tbody);
+                $('#Pending').html($table);
+            }
+            else {
+                $('#Pending').html('');
+            }
+        }
+
+        
+    });
+    
+</script>

@@ -105,7 +105,7 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="text-center">
-                                    <a href="#" class="btn btn-rose btn-fill btn-wd" >Back</a>
+                                    <a href="/PendingOrder/Orders" class="btn btn-rose btn-fill btn-wd" >Back</a>
                                 </div>
                             </div> 
                         </div>
@@ -132,12 +132,13 @@
     $(document).ready(function () {
         $('#Approve').on("click", function () {
             var id = parseInt($("#id").val());
-                alert(id);
+                
             
                 $.get("/PendingOrder/ApproveOrder", { OrderID: id }, function (data) {
                     if(data != null)
                     {
-                        alert("data is true");
+                        alert("Order Apporved");
+                        window.location.replace("/PendingOrder/Orders");
                         $.each(data, function (i, row) {
                             
                                 alert(status);

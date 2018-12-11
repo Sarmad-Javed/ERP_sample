@@ -17,7 +17,7 @@ ViewBag.Title = "Add Vendor";
                         <h4 class="card-title">@ViewBag.Title</h4>
                     </div>
                     <div class="content">
-                        @using (Html.BeginForm("", "", FormMethod.Post, new { method = "post", action = "/ManageVendor/AddVendor?id=" + @Html.DisplayFor(vendor => vendor.VendorID) }))
+                        @using (Html.BeginForm("", "", FormMethod.Post, new {id = "VendorForm", method = "post", action = "/ManageVendor/AddVendor?id=" + @Html.DisplayFor(vendor => vendor.VendorID) }))
                         { @Html.ValidationSummary(true)
                             @Html.AntiForgeryToken()
 
@@ -66,3 +66,36 @@ ViewBag.Title = "Add Vendor";
         </div>
     </div>
 </div>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script>
+    $(document).ready(function () {
+        $.validator.addMethod("lettersonly", function (value, element) {
+            return this.optional(element) || /^[a-z]+$/i.test(value);
+        }, "Letters only please");
+        $.validator.addMethod("phoneNL", function (value, element) {
+            return this.optional(element) || /^((\+|00(\s|\s?\-\s?)?)31(\s|\s?\-\s?)?(\(0\)[\-\s]?)?|0)[1-9]((\s|\s?\-\s?)?[0-9]){8}$/.test(value);
+        }, "Please specify a valid phone number.");
+        $("#VendorForm").validate({
+            rules: {
+                VendorName: {
+                   
+                    text: true,
+                },
+                VendorContact: {
+                    
+                    number: true,   
+                },
+                VendorAddress: {
+                      
+                },
+                ZIPCode: {
+                    
+                    number: true,
+                },
+
+
+            },
+        });
+    });
+</script>

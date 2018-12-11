@@ -20,47 +20,49 @@
                     </div>
                     <div class="content">
                         <div class="row">
-                            <div class="col-lg-3">
-                                <div class="">
-                                    @if (ViewBag.CategoryList != null)
-                                    {   @Html.LabelFor(model => model.CategoryID)
-                                        @Html.DropDownListFor(model => model.CategoryID, ViewBag.CategoryList as SelectList, "--Select Vendor--", new { @class = " form-control ", name = "SelectCategotry", id = "CategoryId" })
-                                    }
-                                    <span class="error" style=" visibility:hidden;"> Required field !</span>
+                            
+                                <div class="col-lg-3">
+                                    <div class="">
+                                        @if (ViewBag.CategoryList != null)
+                                        {   @Html.LabelFor(model => model.CategoryID)
+                                            @Html.DropDownListFor(model => model.CategoryID, ViewBag.CategoryList as SelectList, "--Select Vendor--", new { @class = " form-control ", name = "SelectCategotry", id = "CategoryId" })
+                                        }
+                                        <span class="error" style=" visibility:hidden;"> Required field !</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="">
-                                    @if (ViewBag.VendorList != null)
-                                    {   @Html.LabelFor(model => model.VendorID)
-                                        @Html.DropDownListFor(model => model.VendorID, ViewBag.VendorList as SelectList, "--Select Vendor--", new { @class = " form-control ", name = "SelectVendor", id = "VendorId" })
-                                    <span class="error" style=" visibility:hidden;"> Required field !</span>
-                                    }
-                                    
+                                <div class="col-lg-3">
+                                    <div class="">
+                                        @if (ViewBag.VendorList != null)
+                                        {   @Html.LabelFor(model => model.VendorID)
+                                            @Html.DropDownListFor(model => model.VendorID, ViewBag.VendorList as SelectList, "--Select Vendor--", new { @class = " form-control ", name = "SelectVendor", id = "VendorId" })
+                                            <span class="error" style=" visibility:hidden;"> Required field !</span>
+                                        }
+
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="">
-                                    @Html.LabelFor(model => model.ItemID) 
-                                    @Html.DropDownListFor(model => model.ItemID, new SelectList("--Select Item--"), "--Select Item--", new { @class = " form-control ", name = "SelectItem", id = "ItemId" })
-                                    <span class="error" style=" visibility:hidden;"> Required field !</span>
+                                <div class="col-lg-3">
+                                    <div class="">
+                                        @Html.LabelFor(model => model.ItemID)
+                                        @Html.DropDownListFor(model => model.ItemID, new SelectList("--Select Item--"), "--Select Item--", new { @class = " form-control ", name = "SelectItem", id = "ItemId" })
+                                        <span class="error" style=" visibility:hidden;"> Required field !</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="">
-                                    <label> Select Qty</label>
-                                    <input type="text" id="Qty" name="Date" class="form-control" />
-                                    <span class="error" style=" visibility:hidden;"> Required field !</span>
+                                <div class="col-lg-3">
+                                    <div class="">
+                                        <label> Select Qty</label>
+                                        <input type="number" id="Qty" name="Qty"  class="form-control" />
+                                        <span class="error" id="Qtyerror" style=" visibility:hidden;"> Required field !</span>
+                                    </div>
                                 </div>
-                            </div>
-                                
+                              
                         </div>
+                        
                         <div class="row">
                             <div class="col-lg-3"> 
                                 <div class="">
                                         <label> Select date</label>
                                         <input type="text" id="Date" name="Qty" class="form-control datepicker" />
-                                        <span class="error" style=" visibility:hidden;"> Required field !</span>
+                                    <span class="error" id="Dateerror" style=" visibility:hidden;"> Required field !</span>
                                 </div>
                                 <div>
                                     <div class="text-center">
@@ -68,7 +70,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                   
                             <div class="col-sm-1"></div>
                             @*Product item list*@
                             <div class="col-lg-8 col-md-8 s" id="ProductCart">
@@ -101,7 +103,7 @@
                                             <div class="col-lg-3 text-left">
                                                 <div class="text-center">
                                                     <br>
-                                                    <a href="#" class="btn btn-info btn-fill btn-wd" id="Cancel">Cancel</a>
+                                                    <a href="/PlaceOrder/OrderIndex" class="btn btn-info btn-fill btn-wd" id="Cancel">Cancel</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -252,18 +254,18 @@
             }
             if ($('#Qty').val().trim() == '') {
                 isValidItem = false;
-                $('#Qty').siblings('span.error').css('visibility', 'visible');
+                $('#Qtyerror').css('visibility', 'visible');
             }
             else {
-                $('#Qty').siblings('span.error').css('visibility', 'hidden');
+                $('#Qtyerror').css('visibility', 'hidden');
             }
 
             if ($('#Date').val().trim() == '') {
                 isValidItem = false;
-                $('#Date').siblings('span.error').css('visibility', 'visible');
+                $('#Dateerror').css('visibility', 'visible');
             }
             else {
-                $('#Date').siblings('span.error').css('visibility', 'hidden');
+                $('#Dateerror').css('visibility', 'hidden');
             }
 
             if (isValidItem)
@@ -290,7 +292,6 @@
                     $.each(orderItems, function (i, val) {
                         //if yes
                         if (orderItems[i].ItemId == Id) {
-                            alert("checked");
                             itemExist = true;
                         }
                     })
@@ -299,7 +300,6 @@
                 if (itemExist == true) {
                     $.each(orderItems, function (i, val) {
                         if (orderItems[i].ItemId == Id) {
-                            alert("item exsist");
                             val.Quantity = val.Quantity + Quantity;
                             val.Total = val.Quantity * Price;
                             //generate table
@@ -308,8 +308,6 @@
                     })
                 }
                 else {
-                    alert("item doesnot");
-                    
                     orderItems.push({
                         ItemId: ItemId,
                         ItemName: ItemName,
@@ -323,25 +321,27 @@
                     })
                     GeneratedItemsTable();   
                 }    
-            }   
+            }
+            
         });
         //Save order
         //Save button click function
         $('#submit').click(function () {
             
             //Save if valid
-           
-            var data = {
-                OrderDate: OrderDate,
-                OrderStatus: "Pending",
-                Payment: "isDue",
-                TotalAmount: Ordertotal,
-                OrderDetails: orderItems
-            }
+            if(orderItems.length > 0) 
+            {
+                var data = {
+                    OrderDate: OrderDate,
+                    OrderStatus: "Pending",
+                    Payment: "isDue",
+                    TotalAmount: Ordertotal,
+                    OrderDetails: orderItems
+                }
 
-            $(this).val('Please wait...');
+                $(this).val('Please wait...');
 
-            $.ajax({
+                $.ajax({
                     url: '/PlaceOrder/SaveOrder',
                     type: "POST",
                     data: JSON.stringify(data),
@@ -352,6 +352,7 @@
                         if (d.status == true) {
                             //will send status from server side
                             alert('Successfully done.');
+                            window.location.replace("/PendingOrder/Orders");
                             //clear form
                             orderItems = [];
                             $('#VendorId').val('');
@@ -371,6 +372,10 @@
                         $('#submit').val('Save');
                     }
                 });
+            }
+            else {
+                alert("add item first");
+            }
          });
 
         //generate table
@@ -398,8 +403,6 @@
                     Ordertotal = Grandtotal;
 
                     $('#Gtotal').html(Grandtotal);
-                    alert(Ordertotal);
-                    alert(Grandtotal);
                 });
                 console.log("current", orderItems);
                 $table.append($tbody);
@@ -411,6 +414,12 @@
             }
         }
         
-     });
+    });
 
+    $(document).ready(function () {
+        
+     
+
+    });
+ 
 </script>        
