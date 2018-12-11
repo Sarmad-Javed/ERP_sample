@@ -204,6 +204,7 @@
     <Content Include="assets\scss\bootstrap\scss\bootstrap-grid.css" />
     <Content Include="assets\scss\bootstrap\scss\bootstrap-reboot.css" />
     <Content Include="assets\scss\bootstrap\scss\bootstrap.css" />
+    <Content Include="Resources\Public\PatientImage\patient-07.jpg" />
     <Content Include="Resources\Public\PatientImage\patient-02.jpg" />
     <Content Include="Resources\Public\PatientImage\patient-03.jpeg" />
     <Content Include="Resources\Public\PatientImage\Patient-04.jpg" />
@@ -216,7 +217,10 @@
     <Content Include="Resources\Public\UserImage\Doctor-02.jpg" />
     <Content Include="Resources\Public\UserImage\Doctor-03.jpg" />
     <Content Include="Resources\Public\UserImage\Doctor-04.jpg" />
-    <Content Include="Resources\Public\UserImage\Doctor-05.jpeg" />
+    <Content Include="Resources\Public\UserImage\Doctor-05.jpg" />
+    <Content Include="Resources\Public\UserImage\Doctor-07.jpg" />
+    <Content Include="Resources\Public\UserImage\Doctor_09.jpg" />
+    <Content Include="Resources\Public\UserImage\Doctor_08.jpg" />
     <Content Include="Resources\Public\UserImage\user1.jpg" />
     <Content Include="Resources\Public\UserImage\marc.jpg" />
     <Content Include="Global.asax" />
