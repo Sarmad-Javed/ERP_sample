@@ -1,0 +1,214 @@
+﻿@model ERPEntities.Models.ScheduleVM
+@{
+    Layout = "~/Views/Shared/_FDLayout.cshtml";
+    ViewBag.Title = "FrontDesk Dashboard";
+
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/assets/js/moment.min.js"></script>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-info card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">assignment</i>
+                        </div>
+                        <h4 class="card-title">PlaceOrder</h4>
+                    </div>
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="">
+                                    @if (ViewBag.Department != null)
+                                    {   @Html.LabelFor(model => model.Department)
+                                        @Html.DropDownListFor(model => model.Department, ViewBag.Department as SelectList, "--Select Department--", new { @class = " form-control ", name = "SelectDep", id = "Dep" })
+                                    }
+                                    <span class="error" style=" visibility:hidden;"> Required field !</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="">
+                                    @Html.LabelFor(model => model.DoctorID)
+                                    @Html.DropDownListFor(model => model.DoctorID, new SelectList("--Select Doc--"), "--Select Item--", new { @class = " form-control ", name = "SelectItem", id = "Doc" })
+                                    <span class="error" style=" visibility:hidden;"> Required field !</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="">
+                                    @if (ViewBag.ScheduleList != null)
+                                    {   @Html.LabelFor(model => model.ScheduleID)
+                                        @Html.DropDownListFor(model => model.ScheduleID, ViewBag.ScheduleList as SelectList, "--Select Schedule--", new { @class = " form-control ", name = "Event", id = "Event" })
+                                    }
+                                    <span class="error" style=" visibility:hidden;"> Required field !</span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+
+                                <div>
+                                    <div class="text-center">
+                                        <a href="#" class="btn btn-info btn-fill btn-wd" id="submit">Add</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../assets/js/moment.min.js"></script>
+<script src="../../assets/js/fullcalendar.min.js"></script>
+<script src="../../assets/js/sweetalert2.js"></script>
+<script src="../../assets/js/bootstrap-datetimepicker.js"></script>
+
+<script>
+    // datepicker
+    $(document).ready(function () {
+        initFormExtendedDatetimepickers();
+        $('#dtp1,#dtp2').datetimepicker({
+            format: 'MM/dd/yyyy HH:mm A'
+        });
+        function initFormExtendedDatetimepickers() {
+            $('.datetimepicker').datetimepicker({
+                format: 'MM/dd/yyyy HH:mm A',
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-chevron-up",
+                    down: "fa fa-chevron-down",
+                    previous: 'fa fa-chevron-left',
+                    next: 'fa fa-chevron-right',
+                    today: 'fa fa-screenshot',
+                    clear: 'fa fa-trash',
+                    close: 'fa fa-remove'
+                }
+
+            });
+
+            $('.datepicker').datetimepicker({
+                format: 'MM/DD/YYYY',
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-chevron-up",
+                    down: "fa fa-chevron-down",
+                    previous: 'fa fa-chevron-left',
+                    next: 'fa fa-chevron-right',
+                    today: 'fa fa-screenshot',
+                    clear: 'fa fa-trash',
+                    close: 'fa fa-remove'
+                }
+            });
+
+            $('.timepicker').datetimepicker({
+                //          format: 'H:mm',    // use this format if you want the 24hours timepicker
+                format: 'h:mm A',    //use this format if you want the 12hours timpiecker with AM/PM toggle
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-chevron-up",
+                    down: "fa fa-chevron-down",
+                    previous: 'fa fa-chevron-left',
+                    next: 'fa fa-chevron-right',
+                    today: 'fa fa-screenshot',
+                    clear: 'fa fa-trash',
+                    close: 'fa fa-remove'
+                }
+            });
+        }
+    })
+    //Cascading DropdownList
+    $(document).ready(function () {
+
+        $("#Dep").on("change", function () {
+            $.get("/Schedule/GetDoctorList", { Department: $("#Dep").val() }, function (data) {
+                $("#Doc").empty();
+                $("#Doc").append("<option value='#'>" + "--Select Item--" + "</option>");
+                $.each(data, function (index, row) {
+                    $("#Doc").append("<option value='" + row.DoctorID + "'>" + row.FirstName + "</option>");
+                })
+            })
+        });
+
+
+        //add to Orderlist
+        $('#submit').on("click", function () {
+            var isValidItem = true;
+            if ($('#Dep').val().trim() == '') {
+                isValidItem = false;
+                $('#Dep').siblings('span.error').css('visibility', 'visible');
+            }
+            else {
+                $('#Dep').siblings('span.error').css('visibility', 'hidden')
+            }
+            if ($('#Doc').val().trim() == '') {
+                isValidItem = false;
+                $('#Doc').siblings('span.error').css('visibility', 'visible');
+            }
+            else {
+                $('#Doc').siblings('span.error').css('visibility', 'hidden');
+            }
+            if ($('#Event').val().trim() == '') {
+                isValidItem = false;
+                $('#Event').siblings('span.error').css('visibility', 'visible');
+            }
+            else {
+                $('#Event').siblings('span.error').css('visibility', 'hidden');
+            }
+            if (isValidItem) {
+                //initialization
+                var d = document.getElementById("Doc");
+                var DocId = d.options[d.selectedIndex].value;
+                alert(DocId);
+                var e = document.getElementById("Event");
+                var EventId = e.options[e.selectedIndex].value;
+                alert(EventId);
+
+                //Save if valid
+
+                var data = {
+                    DoctorID: parseInt(DocId),
+                    EventID: parseInt(EventId),
+                }
+                $.ajax({
+                    url: '/Schedule/SaveSchedule',
+                    type: "POST",
+                    data: JSON.stringify(data),
+                    dataType: "JSON",
+                    contentType: "application/json",
+                    success: function (d) {
+                        //check is successfully save to database
+                        if (d.status == true) {
+                            //will send status from server side
+                            alert('Successfully done.');
+                            //clear form
+                            $('#Dep').val('');
+                            $('#Doc').val('');
+                            $('#Event').val('');
+                        }
+                        else {
+                            alert('Failed');
+                        }
+                        $('#submit').val('Save');
+                    },
+                    error: function () {
+                        alert('Error. Please try again.');
+                        $('#submit').val('Save');
+                    }
+                });
+            }
+        });
+    });
+
+</script>
+  

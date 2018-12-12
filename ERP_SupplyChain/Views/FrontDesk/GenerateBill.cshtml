@@ -1,0 +1,329 @@
+﻿@{
+    ViewBag.Title = "Generate";
+    Layout = Layout = "~/Views/Shared/_FDLayout.cshtml";
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<div class="content">
+    <input type="text" style="visibility:hidden;" id="AppID" value="@ViewBag.AppID" />
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header card-header-info card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">assignment</i>
+                        </div>
+                        <h4 class="card-title">GenerateBill</h4>
+                    </div>
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="content">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h4 class="card-title">Doctor:</h4>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h4 class="card-title"><b id="Doc"></b></h4>
+                                        </div>
+                                    </div>
+                                    <hr style="margin: 0;" />
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h4 class="card-title">Department:</h4>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h4 class="card-title"><b id="Dep"></b></h4>
+                                        </div>
+                                    </div>
+                                    <hr style="margin: 0;" />
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h4 class="card-title">Email</h4>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h5 class="card-title text-dark"><b id="Email"></b></h5>
+                                        </div>
+                                    </div>
+                                    <hr style="margin: 0;" />
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h4 class="card-title">Date</h4>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p class="card-title text-dark" id="Date"></p>
+                                        </div>
+                                    </div>
+                                    <hr style="margin: 0;" />
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h4 class="card-title">TimeSlot</h4>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p class="card-title text-dark" id="Slot"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <br />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card card-profile">
+                    <div class="card-avatar">
+                        <a href="#pablo">
+                            <img class="img" id="img" src="" />
+                        </a>
+                    </div>
+                    <div class="card-body">
+
+                        <h4 class="card-title" id="Patient"></h4>
+                        <p class="card-description" id="ph"></p>
+                        <h6 class="card-category text-dark" id="pEmail"></h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class=" card-header card-header-icon card-header-info">
+                        <div class="card-icon">
+                            <i class="material-icons">receipt</i><span> Bill Items</span>
+
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-3">
+                                <label>Enter Charge</label>
+                                <input class="form-control" id="Name" />
+                                <span class="error" id="error2" style=" visibility:hidden;"> Required field !</span>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Enter Amount</label>
+                                <input type="number" class="form-control" id="Amount" style="display:inline;" />
+                                <span class="error" id="error3" style=" visibility:hidden;"> Required field !</span>
+                            </div>
+                            <div class="col-md-3"> </div>   
+                        </div>
+                        <div>
+                            <div class="text-center">
+                                <a href="#" class="btn btn-info btn-fill btn-wd" id="Add">Add</a>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="text-center">
+                          Appointment Charges
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class=" col-md-3"></div>
+                            <div class=" col-md-6 responsive-table " id="medlist">
+                                
+                            </div>
+                            <div class=" col-md-3"></div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-8"></div>
+                            <div class="col-lg-4 text-left">
+                                <label class="form-control"><b>Grand Total:</b><span id="Gtotal"></span></label>
+
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 text-left">
+
+                            </div>
+                            
+                            <div class="col-lg-3 text-left">
+                                <div class="text-center">
+                                    <a href="#" class="btn btn-info btn-fill btn-wd" id="submit">Generate</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 text-left">
+                                <div class="text-center">
+                                    <a href="/FrontDesk/ReferedApp" class="btn btn-info btn-fill btn-wd" id="Cancel">Cancel</a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <br />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="../../assets/js/moment.min.js"></script>
+    <script src="../../assets/js/fullcalendar.min.js"></script>
+    <script src="../../assets/js/sweetalert2.js"></script>
+    <script src="../../assets/js/bootstrap-datetimepicker.js"></script>
+
+
+
+    <script>
+        $(document).ready(function () {
+            var ID = parseInt($("#AppID").val());
+            var Meds = [];
+            var DoctorID;
+            var PatientID;
+            var Grandtotal = 0;
+            GetAppointmentDetails();
+
+            //get DeliveredOrders
+            //id's Doc Dep Email  Date Slot  Patient ph pEmail
+            function GetAppointmentDetails() {
+                $.get("/Doctor/AppointmentDetails", { id: ID }, function (data) {
+                    $.each(data, function (index, row) {
+                        $("#Doc").text(row.DoctorName);
+                        DoctorID = parseInt(row.DoctorID);
+                        PatientID = parseInt(row.PatientID);
+                        $("#Dep").text(row.Designation);
+                        $("#Email").text(row.DoctorEmail);
+                        $("#Date").text(moment(row.Date).format("MM/DD/YYYY"));
+                        $("#Slot").text(row.TimeSlot);
+                        $("#Patient").text(row.PatientName);
+                        $("#ph").text(row.PatientContact);
+                        $("#pEmail").text(row.PatientEmail);
+                        $("#img").attr("src", row.PatientImage);
+                        $("#Desc").text(row.Description);
+
+                    })
+
+                })
+            }
+
+            //Desc Dign Type Med Strenght Duration Dose
+            $("#Add").on("click", function () {
+
+                var isValidItem = true;
+                if ($('#Name').val().trim() == '') {
+                    isValidItem = false;
+                    $('#error1').css('visibility', 'visible');
+                }
+                else {
+                    $('#error1').css('visibility', 'hidden')
+                }
+                if ($('#Amount').val().trim() == '') {
+                    isValidItem = false;
+                    $('#error2').siblings('span.error').css('visibility', 'visible');
+                }
+                else {
+                    $('#error2').siblings('span.error').css('visibility', 'hidden')
+                }
+                
+                if (isValidItem) {
+
+                    var ChargeName = $("#Name").val();
+                    var ChargeAmount = parseFloat($("#Amount").val());
+                   
+
+                    Meds.push({
+                        Name: ChargeName,
+                        Amount: ChargeAmount,
+
+                    });
+                    GeneratedItemsTable();
+
+                }
+            })
+
+            $('#submit').click(function () {
+
+                //Save if valid
+                if (Meds.length > 0) {
+                    var data = {
+                        AppointmentID: ID,
+                        DoctorID: DoctorID,
+                        MedDetails: Meds,
+                        PatientID: PatientID,
+
+                    }
+
+                    $(this).val('Please wait...');
+
+                    $.ajax({
+                        url: '/FrontDesk/SaveBill',
+                        type: "POST",
+                        data: JSON.stringify(data),
+                        dataType: "JSON",
+                        contentType: "application/json",
+                        success: function (d) {
+                            //check is successfully save to database
+                            if (d.status == true) {
+                                //will send status from server side
+                                alert('Successfully done.');
+                                window.location.replace("/Doctor/Appointments");
+                                //clear form
+                                Meds = [];
+                                $('#VendorId').val('');
+                                $('#ItemId').val('');
+                                $('#CategoryId').val('');
+                                $('#DateId').val('');
+                                $('#Qty').val('');
+                                $('#orderItems').empty();
+                            }
+                            else {
+                                alert('Failed');
+                            }
+                            $('#submit').val('Save');
+                        },
+                        error: function () {
+                            alert('Error. Please try again.');
+                            $('#submit').val('Save');
+                        }
+                    });
+                }
+                else {
+                    alert("Add Medication First")
+                }
+
+            });
+            //generate table
+            function GeneratedItemsTable() {
+                Grandtotal = 0;
+                if (Meds.length > 0) {
+                    var $table = $('<table/>').addClass("table ");
+                    $table.append('<thead><tr><th>#</th>Charge</th><th>Amount</th></tr></thead>');
+                    var $tbody = $('<tbody/>');
+                    $.each(Meds, function (i, val) {
+                        var $row = $('<tr/>');
+                        $row.append($('<td/>').html(i+1));
+                        $row.append($('<td/>').html(val.Name));
+                        $row.append($('<td/>').html(val.Amount));
+                        var $remove = $('<button type="button" rel="tooltip" class="btn btn-danger"><i class="material-icons">close</i></button>');
+
+                        $remove.click(function (e) {
+                            e.preventDefault();
+                            Meds.splice(i, 1);
+                            GeneratedItemsTable();
+                        });
+                        $row.append($('<td/>').html($remove));
+                        
+                        $tbody.append($row);
+                        Grandtotal = parseFloat(Meds[i].Amount + Grandtotal);
+                        Ordertotal = Grandtotal;
+
+                        $('#Gtotal').html(Grandtotal);
+                    });
+
+                    $table.append($tbody);
+                    $('#medlist').html($table);
+
+
+                }
+                else {
+                    $('medlist').html('');
+                }
+            }
+        })
+    </script>

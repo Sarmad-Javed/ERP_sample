@@ -1,0 +1,106 @@
+﻿@model IEnumerable<ERPEntities.Models.AppointmentDetails>
+@{
+    ViewBag.Title = "Appointments";
+    Layout = Layout = "~/Views/Shared/_FDLayout.cshtml";
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                @foreach (var item in Model)
+                {
+                    <div class="card">
+                        <div class="card-header card-header-warning">
+                            <h4 style="display:inline">Appointment ID : @Html.DisplayFor(modelItem => item.AppointmentID)</h4>
+                        </div>
+                        <div class="content">
+                            <br />
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card card-profile">
+                                        <div class="card-avatar">
+                                            <a href="#pablo">
+                                                <img class="img" src="@Html.DisplayFor(modelItem => item.DoctorImage)" />
+                                            </a>
+                                        </div>
+                                        <div class="card-body">
+
+                                            <h4 class="card-title">@Html.DisplayFor(modelItem => item.DoctorName)</h4>
+                                            <p class="card-description"> @Html.DisplayFor(modelItem => item.Designation)</p>
+                                            <h6 class="card-category text-dark">@Html.DisplayFor(modelItem => item.DoctorEmail)</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Timings-->
+                                <div class="col-md-4 text-center">
+                                    <p class="card-description"><i class="fa fa-calendar"></i> @Html.DisplayFor(modelItem => item.Date)</p>
+                                    <p class="card-description"><i class="fa fa-hourglass-o"></i> @Html.DisplayFor(modelItem => item.TimeSlot)</p>
+                                </div>
+                                <!-- Patientinfo-->
+                                <div class="col-md-4 ">
+                                    <div class="card card-profile">
+                                        <div class="card-avatar">
+                                            <a href="#pablo">
+                                                <img class="img" src="@Html.DisplayFor(modelItem => item.PatientImage)" />
+                                            </a>
+                                        </div>
+                                        <div class="card-body">
+                                            <h4 class="card-title"><i class="fa fa-user-o"></i> @Html.DisplayFor(modelItem => item.PatientName)</h4>
+                                            <p class="card-description"><i class="fa fa-phone"></i> @Html.DisplayFor(modelItem => item.PatientContact)</p>
+                                            <h6 class="card-category text-dark"><i class="fa fa-envelope-o"></i> @Html.DisplayFor(modelItem => item.PatientEmail)</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr style="margin:0px; " />
+                            <div class="row">
+                                <div class="col-md-4"><input type="text" class="form-control" style=" visibility:hidden" id="AppID" value="@Html.DisplayFor(modelItem => item.AppointmentID)" /></div>
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4">
+                                    <div class="text-center">
+                                        <a href="#" class="btn btn-warning btn-fill btn-wd" id="btnDelete">Cancel</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../assets/js/moment.min.js"></script>
+<script src="../../assets/js/fullcalendar.min.js"></script>
+<script src="../../assets/js/sweetalert2.js"></script>
+<script src="../../assets/js/bootstrap-datetimepicker.js"></script>
+
+
+
+<script>
+    $(document).ready(function () {
+        $('#btnDelete').on("click", function () {
+            var AppID = $("#AppID").val();
+            var data = { AppID: parseInt(AppID) };
+            alert(data);
+            if (confirm('Are you sure?')) {
+                $.ajax({
+                    type: "POST",
+                    url: '/Appointment/DeleteAppointment',
+                    data: data,
+                    success: function (data) {
+                        if (data.status) {
+                            //Refresh page
+                            window.location.reload(true);
+                        }
+                    },
+                    error: function () {
+                        alert('Failed');
+                    }
+                })
+            }
+        })
+    })
+</script>

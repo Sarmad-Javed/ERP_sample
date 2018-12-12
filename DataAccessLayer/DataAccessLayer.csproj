@@ -84,6 +84,7 @@
     <Compile Include="DAL_Logic\DoctorPanel\DoctorDAL.cs" />
     <Compile Include="DAL_Logic\Employee\ManageAttendance\AttendanceDAL.cs" />
     <Compile Include="DAL_Logic\Employee\ManageEmployee\EmployeeDAL.cs" />
+    <Compile Include="DAL_Logic\FrontDesk\FrontDeskDAL.cs" />
     <Compile Include="DAL_Logic\PatientAccounts\PatientAccountDAL.cs" />
     <Compile Include="DAL_Logic\Patient\ManagePatient\PatientDAL.cs" />
     <Compile Include="DAL_Logic\Pharmecy\PharmecyDAL.cs" />
