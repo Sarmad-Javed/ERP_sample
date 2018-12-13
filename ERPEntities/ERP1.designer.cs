@@ -87,6 +87,12 @@ namespace ERPEntities
     partial void InsertInvoice(Invoice instance);
     partial void UpdateInvoice(Invoice instance);
     partial void DeleteInvoice(Invoice instance);
+    partial void InsertBill(Bill instance);
+    partial void UpdateBill(Bill instance);
+    partial void DeleteBill(Bill instance);
+    partial void InsertBillDetail(BillDetail instance);
+    partial void UpdateBillDetail(BillDetail instance);
+    partial void DeleteBillDetail(BillDetail instance);
     #endregion
 		
 		public ERP1DataContext() : 
@@ -268,6 +274,22 @@ namespace ERPEntities
 			get
 			{
 				return this.GetTable<Invoice>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Bill> Bills
+		{
+			get
+			{
+				return this.GetTable<Bill>();
+			}
+		}
+		
+		public System.Data.Linq.Table<BillDetail> BillDetails
+		{
+			get
+			{
+				return this.GetTable<BillDetail>();
 			}
 		}
 	}
@@ -4651,6 +4673,439 @@ namespace ERPEntities
 		{
 			this.SendPropertyChanging();
 			entity.Invoice = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Bill")]
+	public partial class Bill : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _BillID;
+		
+		private System.Nullable<int> _AppointmentID;
+		
+		private System.Nullable<int> _PatientID;
+		
+		private System.Nullable<int> _DoctorID;
+		
+		private System.Nullable<decimal> _TotalAmount;
+		
+		private string _AddedMonth;
+		
+		private string _AddedYear;
+		
+		private string _AddedDay;
+		
+		private EntitySet<BillDetail> _BillDetails;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnBillIDChanging(int value);
+    partial void OnBillIDChanged();
+    partial void OnAppointmentIDChanging(System.Nullable<int> value);
+    partial void OnAppointmentIDChanged();
+    partial void OnPatientIDChanging(System.Nullable<int> value);
+    partial void OnPatientIDChanged();
+    partial void OnDoctorIDChanging(System.Nullable<int> value);
+    partial void OnDoctorIDChanged();
+    partial void OnTotalAmountChanging(System.Nullable<decimal> value);
+    partial void OnTotalAmountChanged();
+    partial void OnAddedMonthChanging(string value);
+    partial void OnAddedMonthChanged();
+    partial void OnAddedYearChanging(string value);
+    partial void OnAddedYearChanged();
+    partial void OnAddedDayChanging(string value);
+    partial void OnAddedDayChanged();
+    #endregion
+		
+		public Bill()
+		{
+			this._BillDetails = new EntitySet<BillDetail>(new Action<BillDetail>(this.attach_BillDetails), new Action<BillDetail>(this.detach_BillDetails));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int BillID
+		{
+			get
+			{
+				return this._BillID;
+			}
+			set
+			{
+				if ((this._BillID != value))
+				{
+					this.OnBillIDChanging(value);
+					this.SendPropertyChanging();
+					this._BillID = value;
+					this.SendPropertyChanged("BillID");
+					this.OnBillIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AppointmentID", DbType="Int")]
+		public System.Nullable<int> AppointmentID
+		{
+			get
+			{
+				return this._AppointmentID;
+			}
+			set
+			{
+				if ((this._AppointmentID != value))
+				{
+					this.OnAppointmentIDChanging(value);
+					this.SendPropertyChanging();
+					this._AppointmentID = value;
+					this.SendPropertyChanged("AppointmentID");
+					this.OnAppointmentIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientID", DbType="Int")]
+		public System.Nullable<int> PatientID
+		{
+			get
+			{
+				return this._PatientID;
+			}
+			set
+			{
+				if ((this._PatientID != value))
+				{
+					this.OnPatientIDChanging(value);
+					this.SendPropertyChanging();
+					this._PatientID = value;
+					this.SendPropertyChanged("PatientID");
+					this.OnPatientIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DoctorID", DbType="Int")]
+		public System.Nullable<int> DoctorID
+		{
+			get
+			{
+				return this._DoctorID;
+			}
+			set
+			{
+				if ((this._DoctorID != value))
+				{
+					this.OnDoctorIDChanging(value);
+					this.SendPropertyChanging();
+					this._DoctorID = value;
+					this.SendPropertyChanged("DoctorID");
+					this.OnDoctorIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalAmount", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> TotalAmount
+		{
+			get
+			{
+				return this._TotalAmount;
+			}
+			set
+			{
+				if ((this._TotalAmount != value))
+				{
+					this.OnTotalAmountChanging(value);
+					this.SendPropertyChanging();
+					this._TotalAmount = value;
+					this.SendPropertyChanged("TotalAmount");
+					this.OnTotalAmountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddedMonth", DbType="VarChar(10)")]
+		public string AddedMonth
+		{
+			get
+			{
+				return this._AddedMonth;
+			}
+			set
+			{
+				if ((this._AddedMonth != value))
+				{
+					this.OnAddedMonthChanging(value);
+					this.SendPropertyChanging();
+					this._AddedMonth = value;
+					this.SendPropertyChanged("AddedMonth");
+					this.OnAddedMonthChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddedYear", DbType="VarChar(10)")]
+		public string AddedYear
+		{
+			get
+			{
+				return this._AddedYear;
+			}
+			set
+			{
+				if ((this._AddedYear != value))
+				{
+					this.OnAddedYearChanging(value);
+					this.SendPropertyChanging();
+					this._AddedYear = value;
+					this.SendPropertyChanged("AddedYear");
+					this.OnAddedYearChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddedDay", DbType="VarChar(10)")]
+		public string AddedDay
+		{
+			get
+			{
+				return this._AddedDay;
+			}
+			set
+			{
+				if ((this._AddedDay != value))
+				{
+					this.OnAddedDayChanging(value);
+					this.SendPropertyChanging();
+					this._AddedDay = value;
+					this.SendPropertyChanged("AddedDay");
+					this.OnAddedDayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Bill_BillDetail", Storage="_BillDetails", ThisKey="BillID", OtherKey="BillID")]
+		public EntitySet<BillDetail> BillDetails
+		{
+			get
+			{
+				return this._BillDetails;
+			}
+			set
+			{
+				this._BillDetails.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_BillDetails(BillDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Bill = this;
+		}
+		
+		private void detach_BillDetails(BillDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Bill = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.BillDetails")]
+	public partial class BillDetail : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _BillDetailID;
+		
+		private System.Nullable<int> _BillID;
+		
+		private string _BillItem;
+		
+		private System.Nullable<decimal> _Charges;
+		
+		private EntityRef<Bill> _Bill;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnBillDetailIDChanging(int value);
+    partial void OnBillDetailIDChanged();
+    partial void OnBillIDChanging(System.Nullable<int> value);
+    partial void OnBillIDChanged();
+    partial void OnBillItemChanging(string value);
+    partial void OnBillItemChanged();
+    partial void OnChargesChanging(System.Nullable<decimal> value);
+    partial void OnChargesChanged();
+    #endregion
+		
+		public BillDetail()
+		{
+			this._Bill = default(EntityRef<Bill>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillDetailID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int BillDetailID
+		{
+			get
+			{
+				return this._BillDetailID;
+			}
+			set
+			{
+				if ((this._BillDetailID != value))
+				{
+					this.OnBillDetailIDChanging(value);
+					this.SendPropertyChanging();
+					this._BillDetailID = value;
+					this.SendPropertyChanged("BillDetailID");
+					this.OnBillDetailIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillID", DbType="Int")]
+		public System.Nullable<int> BillID
+		{
+			get
+			{
+				return this._BillID;
+			}
+			set
+			{
+				if ((this._BillID != value))
+				{
+					if (this._Bill.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnBillIDChanging(value);
+					this.SendPropertyChanging();
+					this._BillID = value;
+					this.SendPropertyChanged("BillID");
+					this.OnBillIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillItem", DbType="VarChar(20)")]
+		public string BillItem
+		{
+			get
+			{
+				return this._BillItem;
+			}
+			set
+			{
+				if ((this._BillItem != value))
+				{
+					this.OnBillItemChanging(value);
+					this.SendPropertyChanging();
+					this._BillItem = value;
+					this.SendPropertyChanged("BillItem");
+					this.OnBillItemChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Charges", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> Charges
+		{
+			get
+			{
+				return this._Charges;
+			}
+			set
+			{
+				if ((this._Charges != value))
+				{
+					this.OnChargesChanging(value);
+					this.SendPropertyChanging();
+					this._Charges = value;
+					this.SendPropertyChanged("Charges");
+					this.OnChargesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Bill_BillDetail", Storage="_Bill", ThisKey="BillID", OtherKey="BillID", IsForeignKey=true)]
+		public Bill Bill
+		{
+			get
+			{
+				return this._Bill.Entity;
+			}
+			set
+			{
+				Bill previousValue = this._Bill.Entity;
+				if (((previousValue != value) 
+							|| (this._Bill.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Bill.Entity = null;
+						previousValue.BillDetails.Remove(this);
+					}
+					this._Bill.Entity = value;
+					if ((value != null))
+					{
+						value.BillDetails.Add(this);
+						this._BillID = value.BillID;
+					}
+					else
+					{
+						this._BillID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Bill");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

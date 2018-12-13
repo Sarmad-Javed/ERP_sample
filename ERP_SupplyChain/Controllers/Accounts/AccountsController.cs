@@ -83,11 +83,11 @@ namespace ERP_SupplyChain.Controllers.Accounts
                 Session["DoctorID"] = DoctorID;
                 if (role == "SupplyChain")
                 {
-                    return Redirect("/DashBoard/SupplyChain");
+                    return Redirect("/SupplyChain/DashBoard/");
                 }
                 if (role == "Pharmacy")
                 {
-                    return Redirect("/DashBoard/Pharmacy");
+                    return Redirect("/Pharmecy/DashBoard/");
                 }
                 if (role == "HRManager")
                 {
@@ -103,7 +103,7 @@ namespace ERP_SupplyChain.Controllers.Accounts
                 }
                 if (role == "FDManager")
                 {
-                    return Redirect("/DashBoard/FrontDesk");
+                    return Redirect("/FrontDesk/DashBoard/");
                 }
                 else
                     return View();

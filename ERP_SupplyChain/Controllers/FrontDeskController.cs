@@ -174,38 +174,47 @@ namespace ERP_SupplyChain.Controllers
         }
 
         [HttpPost]
-        public JsonResult SaveBill(PrescriptionVM P)
+        public JsonResult ChangeAppStatus(int id)
+        {
+            bool status = false;
+            if (id != 0)
+            {
+                var data = dc.Appointments.Where(a => a.AppointmentID == id).ToList();
+                foreach (Appointment A in data)
+                {
+                    A.Status = "Finished";
+                }
+                dc.SubmitChanges();
+                status = true;
+                return new JsonResult { Data = new { status = status } };
+            }
+            return new JsonResult { Data = new { status = status } };
+        }
+
+        [HttpPost]
+        public JsonResult SaveBill(BillVM B)
         {
             bool status = false;
             if (ModelState.IsValid)
             {
                 using (ERP1DataContext dc = new ERP1DataContext())
                 {
-                    Prescription pres = new Prescription { AppointmentID = P.AppointmentID, DoctorID = P.DoctorID, PatientID = P.PatientID };
-                    foreach (var i in P.MedDetails)
+
+                    string Day = DateTime.Now.Day.ToString();
+                    string Month = DateTime.Now.Month.ToString();
+                    string Year = DateTime.Now.Year.ToString();
+                    Bill bill = new Bill { AppointmentID = B.AppointmentID, DoctorID = B.DoctorID, PatientID = B.PatientID, TotalAmount = decimal.Parse(B.TotalAmount), AddedDay = Day, AddedMonth = Month, AddedYear = Year };
+                    foreach (var i in B.BillDetails)
                     {
                         //
                         // i.TotalAmount = 
-                        pres.Medications.Add(i);
+                        bill.BillDetails.Add(i);
                     }
-                    dc.Prescriptions.InsertOnSubmit(pres);
-                    dc.SubmitChanges();
-                    var data = dc.Appointments.Where(a => a.AppointmentID == P.AppointmentID).ToList();
-                    foreach (Appointment A in data)
-                    {
-                        //
-                        // i.TotalAmount =
-                        A.Status = "Prescribed";
-                        dc.SubmitChanges();
-
-                    }
+                    dc.Bills.InsertOnSubmit(bill);
                     dc.SubmitChanges();
                     status = true;
+                    return new JsonResult { Data = new { status = status } };
                 }
-            }
-            else
-            {
-                status = false;
             }
             return new JsonResult { Data = new { status = status } };
         }

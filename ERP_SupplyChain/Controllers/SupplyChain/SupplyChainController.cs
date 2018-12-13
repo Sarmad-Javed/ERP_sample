@@ -37,7 +37,7 @@ namespace ERP_SupplyChain.Controllers
         public JsonResult GetRequests()
         {
             List<RequestVM> List = new List<RequestVM>();
-            var data = dc.Requests.Where(s => s.Status == "UnSeen" && s.AddedMonth == DateTime.Now.Month.ToString()).ToList();
+            var data = dc.Requests.Where(s => s.Status == "UnSeen" && s.AddedDay == DateTime.Now.Day.ToString()).ToList();
             foreach (var v in data)
             {
                 RequestVM R = new RequestVM();

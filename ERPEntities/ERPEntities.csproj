@@ -76,6 +76,7 @@
     <Compile Include="Models\AppointmentVM.cs" />
     <Compile Include="Models\ApprovedOrderVM.cs" />
     <Compile Include="Models\AttendanceModel.cs" />
+    <Compile Include="Models\BillVM.cs" />
     <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\DeliveredOrderVM.cs" />
     <Compile Include="Models\EmployeeModel.cs" />

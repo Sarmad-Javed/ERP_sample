@@ -228,8 +228,9 @@
                    
 
                     Meds.push({
-                        Name: ChargeName,
-                        Amount: ChargeAmount,
+                        BillItem: ChargeName,
+                       Charges: ChargeAmount,
+
 
                     });
                     GeneratedItemsTable();
@@ -244,9 +245,9 @@
                     var data = {
                         AppointmentID: ID,
                         DoctorID: DoctorID,
-                        MedDetails: Meds,
                         PatientID: PatientID,
-
+                        TotalAmount: Grandtotal,
+                        BillDetails: Meds,
                     }
 
                     $(this).val('Please wait...');
@@ -262,15 +263,9 @@
                             if (d.status == true) {
                                 //will send status from server side
                                 alert('Successfully done.');
-                                window.location.replace("/Doctor/Appointments");
+                                ChangeAppStatus();
                                 //clear form
-                                Meds = [];
-                                $('#VendorId').val('');
-                                $('#ItemId').val('');
-                                $('#CategoryId').val('');
-                                $('#DateId').val('');
-                                $('#Qty').val('');
-                                $('#orderItems').empty();
+                                
                             }
                             else {
                                 alert('Failed');
@@ -298,8 +293,8 @@
                     $.each(Meds, function (i, val) {
                         var $row = $('<tr/>');
                         $row.append($('<td/>').html(i+1));
-                        $row.append($('<td/>').html(val.Name));
-                        $row.append($('<td/>').html(val.Amount));
+                        $row.append($('<td/>').html(val.BillItem));
+                        $row.append($('<td/>').html(val.Charges));
                         var $remove = $('<button type="button" rel="tooltip" class="btn btn-danger"><i class="material-icons">close</i></button>');
 
                         $remove.click(function (e) {
@@ -310,7 +305,7 @@
                         $row.append($('<td/>').html($remove));
                         
                         $tbody.append($row);
-                        Grandtotal = parseFloat(Meds[i].Amount + Grandtotal);
+                        Grandtotal = parseFloat(Meds[i].Charges + Grandtotal);
                         Ordertotal = Grandtotal;
 
                         $('#Gtotal').html(Grandtotal);
@@ -324,6 +319,37 @@
                 else {
                     $('medlist').html('');
                 }
+            }
+            function ChangeAppStatus() {
+                var id = parseInt($('#AppId').val());
+
+                var data = {
+                    id: ID,
+                }
+                $.ajax({
+                    url: '/FrontDesk/ChangeAppStatus',
+                    type: "POST",
+                    data: JSON.stringify(data),
+                    dataType: "JSON",
+                    contentType: "application/json",
+                    success: function (d) {
+                        //check is successfully save to database 
+                        if (d.status == true) {
+                            //will send status from server side
+                            alert("successfully change Status");
+                            window.location.replace("/FrontDesk/ReferedApp");
+                        }
+                        else {
+                            alert("Failed");
+                        }
+                        $('#submit').val('Save');
+                    },
+                    error: function () {
+                        alert('Error. Please try again.');
+                        $('#submit').val('Save');
+                    }
+                });
+
             }
         })
     </script>
