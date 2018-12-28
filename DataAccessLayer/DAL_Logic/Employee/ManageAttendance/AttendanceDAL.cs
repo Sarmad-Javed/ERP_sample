@@ -13,7 +13,7 @@ namespace DataAccessLayer.DAL_Logic.Employee.ManageAttendance
     {
         List<AttendanceModel> AttendanceList = new List<AttendanceModel>();
         AttendanceModel attendance = new AttendanceModel();
-        SqlConnection Sqlcon = new SqlConnection("Data Source=pc-sarmad;Initial Catalog=ERP;Integrated Security=True");
+        SqlConnection Sqlcon = new SqlConnection("Data Source=Ijlal07-PC;Initial Catalog=ERP;Integrated Security=True");
         public void addAttendance(AddAttendanceModel attendance)
         {
             if (Sqlcon.State == ConnectionState.Closed)

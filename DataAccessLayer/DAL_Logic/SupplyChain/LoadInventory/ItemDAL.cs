@@ -17,7 +17,7 @@ namespace DataAccessLayer.SupplyChain.LoadInventory
     public class ItemDAL
     {
         List<ItemsModel> itemList = new List<ItemsModel>();
-        SqlConnection Sqlcon = new SqlConnection("Data Source=pc-sarmad;Initial Catalog=ERP;Integrated Security=True");
+        SqlConnection Sqlcon = new SqlConnection("Data Source=Ijlal07-PC;Initial Catalog=ERP;Integrated Security=True");
         public void addItems(ItemsModel item)
         {
             if (Sqlcon.State == ConnectionState.Closed)

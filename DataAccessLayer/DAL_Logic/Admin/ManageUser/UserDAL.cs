@@ -16,7 +16,7 @@ namespace DataAccessLayer.DAL_Logic.Admin
     {
         List<UserModel> UserList= new List<UserModel>();
         UserModel user = new UserModel();
-        SqlConnection Sqlcon = new SqlConnection("Data Source=pc-sarmad;Initial Catalog=ERP;Integrated Security=True");
+        SqlConnection Sqlcon = new SqlConnection("Data Source=Ijlal07-PC;Initial Catalog=ERP;Integrated Security=True");
         public void addUser(UserModel user)
         {
             if (Sqlcon.State == ConnectionState.Closed)

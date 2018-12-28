@@ -26,7 +26,7 @@ namespace DataAccessLayer.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=pc-sarmad;Initial Catalog=ERP;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=Ijlal07-PC;Initial Catalog=ERP;Integrated Security=True")]
         public string ERPConnectionString {
             get {
                 return ((string)(this["ERPConnectionString"]));
